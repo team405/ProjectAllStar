@@ -1,0 +1,28 @@
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script>
+$(function(){
+  $("#test").html("Hello World!")
+});
+
+$.ajax({
+        type: "POST",
+        url: "http://192.168.0.11:8000/02_server/login_a.php",
+        data: 'userID=aaa&password=aaa',
+        success: function() {
+                alert('success');
+        }
+})
+
+</script>
+
+<head>
+<body>
+
+<div id="test"></div>
+
+</body>
+</html>
