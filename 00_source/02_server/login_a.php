@@ -15,7 +15,8 @@ function login($userID, $password) {
 
 $userID = $_POST["userID"];
 $password = $_POST["password"];
-var $a = login($userID,$password);
+
+$a = login($userID,$password);
 //userIDはゆくゆくはuserNameに変更by kj
 $b = array('result' => $a, 'userID' => $userID);
 echo json_encode($b);
