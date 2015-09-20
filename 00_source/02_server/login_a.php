@@ -1,9 +1,21 @@
+<!DOCTYPE html>
+<head>
+<html lang="ja">
+<meta charset="UTF-8">
+<title>SmaQ - ログインページ</title>
+</head>
+<body>
 <?php
-header("Content-Type: text/html; charset=UTF-8");
 function login($userID, $password) {
-
     // file関数はファイル全体を読み込んで配列に格納する
-@@ -13,10 +14,13 @@ function login($userID, $password) {
+    $lines = file("user.csv", FILE_IGNORE_NEW_LINES);
+    foreach ($lines as $line) {
+        $user = explode(",", $line);
+        if ($user[0] === $userID && $user[1] === $password) {
+            // ログインOK
+            return true;
+        }
+    }
     return false;
 }
 $json = file_get_contents("php://input");
@@ -16,3 +28,5 @@ $b = json_encode(array('result' => $a, 'userID' => $userID));
 //header('Content-Type: text/javascript; charset=utf-8');
 echo $b;
 ?>
+</body>
+</html>
