@@ -1,10 +1,15 @@
-ï»¿/* ã‚³ãƒ¡ãƒ³ãƒˆï¼šHTMLå´ã§localã«ã‚ã‚‹ç”»åƒã‚’å‚ç…§ */
+/* 01‰æ‘œ‚ðƒAƒbƒvƒ[ƒh‚·‚é•û–@01(ƒ‰ƒt”Å) */
+
+/* HTML‘¤‚Ålocal‚É‚ ‚é‰æ‘œ‚ðŽQÆ */
 <form enctype="multipart/form-data" action="picture.php" method="post">
 <input type="file" name="image">
-<input type="submit" value="å¤‰æ›´ã™ã‚‹">
+<input type="submit" value="•ÏX‚·‚é">
 </form>
 
-/*ã€€ã‚³ãƒ¡ãƒ³ãƒˆï¼šä¸Šè¨˜ã‚’HTMLã‹ã‚‰PHPã«é€ã‚‹â†“é€ã£ãŸå…ˆã®PHP
+/* ã‹L‚ðHTML‚©‚çPHP‚É‘—‚é«‘—‚Á‚½æ‚ÌPHP */
+/* ‚±‚ÌŽž‚Í–ó‚ ‚è‚Ågif‚Ì‚Ý‚É‚µ‚Ü‚µ‚½Bƒlƒbƒgã‚Å’²‚×‚ê‚ÎˆÙ˜_‚½Œ`Ž®‚Ì‰æ‘œ‚É•Ï‚¦‚ç‚ê‚Ü‚·B */
+/* "gakuseki"‚ÍuserID‚Æl‚¦‚Ä‚­‚¾‚³‚¢ */
+/* ‚ ‚ÆA—\Šú‚¹‚ÊƒGƒ‰[‚ª‹N‚«‚½‚Æ‚«‚É‚ðl‚¦‚Ä‚È‚¢ */
 
 <?php
    $tmpf=$_FILES["image"]["tmp_name"];
@@ -15,26 +20,73 @@
 	copy($tmpgazo,$gazo);
 	unlink($tmpgazo);
    }
-   echo 'æ³¨ï¼‰.gifã®ã¿ã§ã™ã€‚<img src="img/'.$_SESSION["gakuseki"].'.gif" width="300">';
-   if(is_uploaded_file($tmpf))echo '<br><br>ç”»åƒãŒå¤‰ã‚ã‚‰ãªã„å ´åˆã¯ã€æ›´æ–°ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã€ä½•ã‹èžã‹ã‚ŒãŸã¨ãã€Œå†è©¦è¡Œã€ã‚’é¸ã‚“ã§ãã ã•ã„ã€‚<br><br>';
+   echo '’j.gif‚Ì‚Ý‚Å‚·B<img src="img/'.$_SESSION["gakuseki"].'.gif" width="300">';
+   if(is_uploaded_file($tmpf))echo '<br><br>‰æ‘œ‚ª•Ï‚í‚ç‚È‚¢ê‡‚ÍAXVƒ{ƒ^ƒ“‚ð‰Ÿ‚µA‰½‚©•·‚©‚ê‚½‚Æ‚«uÄŽŽsv‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢B<br><br>';
 ?>
-<br>å†™çœŸã‚’å¤‰æ›´ã™ã‚‹ï¼š<br>
-<form enctype="multipart/form-data" action="picture.php" method="post">
-<input type="file" name="image">
-<input type="submit" value="å¤‰æ›´ã™ã‚‹">
-</form>
-
-<br>
 
 
 
+/* ======================================= */
+/* 02‰æ‘œ‚ðƒAƒbƒvƒ[ƒh‚·‚é•û–@02(×‚©‚¢”Å) */
 
-</div></div>
-<br>
-<a href="mixe.php">è‡ªåˆ†ã®ãƒšãƒ¼ã‚¸ã«æˆ»ã‚‹</a>
-</div>
-</td></tr>
-</table>
-</div>
-</body>
-</html>
+/* HTML‘¤‚Ålocal‚É‚ ‚é‰æ‘œ‚ðŽQÆ */
+       <div class="text10-hh" style="color:#555555;">jpgƒtƒ@ƒCƒ‹<br>H:180~W:180<br>1MBˆÈ‰º</div></td>
+         <td width="80%" bgcolor="#ffffff" align="center">
+	<?php
+	   $gazo='../images/'.$row[account].'.jpg';
+	   if(file_exists($gazo)) echo '<img src="'.$gazo.'" width="180" height="180"><br>•ÏX‚·‚éF'
+	?>
+	<input type="file" name="image">
+
+
+/* ã‹L‚ðHTML‚©‚çPHP‚É‘—‚é«‘—‚Á‚½æ‚ÌPHP */
+/* ‚±‚Á‚¿‚Í.jpg‚Ì‚ÝB‚ñ‚ÅA‚¢‚ë‚¢‚ë‚ÈƒGƒ‰[‚ð‘z’è‚µ‚Ä‚é‚Â‚à‚èB */
+
+<?php
+	   if(is_uploaded_file($tmpf)){
+              if($size>1007200){
+                 echo 'ƒtƒ@ƒCƒ‹‚ª‘å‚«‚·‚¬‚Ü‚·B<br>1MBˆÈ‰º‚É‚µ‚Ä‚­‚¾‚³‚¢B<br><input type="file" name="image">';
+	         $hantei++;
+	      }
+	      else if(strpos($type,"image/jpg")!==false){
+	         echo '.jpgƒtƒ@ƒCƒ‹‚É‚µ‚Ä‚­‚¾‚³‚¢B<input type="file" name="image">';
+	         $hantei++;
+	      }
+	      else {
+	         $gazo="../images/".$_SESSION[account].".jpg";
+                 $tmpgazo="../images/tmpgazo.jpg";
+	         move_uploaded_file($_FILES["image"]["tmp_name"],$tmpgazo);
+                 copy($tmpgazo,$gazo);
+	         echo '<img src="'.$gazo.'" width="180" height="180">';
+	         unlink($tmpgazo);
+	         }
+	   }
+	   else{
+	      $gazo='../images/'.$_SESSION[account].'.jpg';
+	      if(file_exists($gazo)) {echo '<img src="'.$gazo.'" width="180" height="180">';}
+	      else{ echo "‰æ‘œ‚È‚µ";}
+	   }
+?>
+
+
+
+/* ======================================= */
+/* 03ƒ^ƒCƒ€ƒXƒ^ƒ“ƒvŠÖŒW‚ÆAƒ~ƒŠ•b’PˆÊ‚Ìtimestamp */
+
+/* •’Ê‚Éƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð“¾‚é•û–@ */
+<?php
+	$starttimestame=time();
+?>
+
+/* •’Ê‚Ìƒ^ƒCƒvƒXƒ^ƒ“ƒv‚ð®Œ` */
+<?php
+      $update=getdate($row[upd]);
+      echo $update[year]."/".$update[mon]."/".$update[mday]."/";
+      printf("%02d:%02d:%02d",$update[hours],$update[minutes],$update[seconds]);
+?>
+
+/* ƒ~ƒŠ•b’PˆÊ‚Ìtimestamp ©floatŒ^‚¾‚ÆŽv‚¤ */
+<?php
+	$microstamp=microtime();
+?>
+
