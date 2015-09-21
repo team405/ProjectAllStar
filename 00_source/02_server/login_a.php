@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<head>
-<html lang="ja">
-<meta charset="UTF-8">
-<title>SmaQ - ログインページ</title>
-</head>
-<body>
 <?php
 function login($userID, $password) {
     // file関数はファイル全体を読み込んで配列に格納する
-    $lines = file("user.csv", FILE_IGNORE_NEW_LINES);
+    $lines = file("admin_user.csv", FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
         $user = explode(",", $line);
         if ($user[0] === $userID && $user[1] === $password) {
@@ -24,15 +17,12 @@ $dm = if(login($userID, $password)){
 }else{
   "fuck"
 };
-$json = file_get_contents("php://input");
-$data = json_decode($json, true);
-$userID = $data["userID"];
-$password = $data["password"];
+$userID = $_POST["userID"]; //浅井追記
+$password = $_POST["password"];
 $a = login($userID, $password);
 //userIDはゆくゆくはuserNameに変更by kj
 $b = json_encode(array('result' => $a, 'userID' => $userID, 'resultdesc' => $dm));
-//header('Content-Type: text/javascript; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json; charset=utf-8');
 echo $b;
 ?>
-</body>
-</html>
