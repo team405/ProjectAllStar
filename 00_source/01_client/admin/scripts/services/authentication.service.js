@@ -44,8 +44,7 @@
                  type: 'POST',
                  url: "http://192.168.0.11:8000/02_server/login_a.php",
                  data: { userID: username, password: password },
-                 success: callback,
-                 dataType: dataType
+                 success: callback
                });
 
         }
