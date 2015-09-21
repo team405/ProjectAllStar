@@ -11,10 +11,12 @@ function login($userID, $password) {
     }
     return false;
 }
-$json = file_get_contents("php://input");
-$data = json_decode($json, true);
-$userID = $data["userID"];
-$password = $data["password"];
+//$json = file_get_contents("php://input");
+//$data = json_decode($json, true);
+//$userID = $data["userID"];
+//$password = $data["password"];
+$userID = $_POST["userID"]; //浅井追記
+$password = $_POST["password"];
 $a = login($userID, $password);
 //userIDはゆくゆくはuserNameに変更by kj
 $b = json_encode(array('result' => $a, 'userID' => $userID));
