@@ -19,6 +19,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"> {{globals.currentUser.username}}</a></li>
+            <li><a ng-if="globals.currentUser.username"
+  href="#/login">ログアウト</a></li>
           </ul>
         </div><!--/.nav-collapse -->
     </div>

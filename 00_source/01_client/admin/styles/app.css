@@ -126,22 +126,6 @@ i {
 header.jumbotron {
 	/* background: url(../img/bg01.jpg) no-repeat center top; */
 	background-color: #3498db;
-	/*margin-top: -20px;*/
-	/*padding-top:150px;*/
-	background-attachment: relative;
-	background-position: center center;
-	/*min-height: 650px;*/
-	width: 100%;
-	
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 header.jumbotron h1 {
@@ -155,6 +139,6 @@ header.jumbotron h1 {
 
 
 .container {
-    padding-top: 150px;
+    padding-top: 50px;
 
 }

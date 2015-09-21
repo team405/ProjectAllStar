@@ -19,7 +19,7 @@
         function login() {
             vm.dataLoading = true;
             AuthenticationService.Login(vm.username, vm.password, function (response) {
-                alert(response.username)
+                alert(response.userName)
                 if (response.result) {
                     AuthenticationService.SetCredentials(vm.username, vm.password);
                     $location.path('/');
