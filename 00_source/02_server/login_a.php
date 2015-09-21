@@ -12,11 +12,12 @@ function login($userID, $password) {
     return false;
 }
 
-$dm = if(login($userID, $password)){
-  " "
+$dm = "";
+if(login($userID, $password)){
+  $dm =" ";
 }else{
-  "fuck"
-};
+  $dm ="fuck";
+}
 $userID = $_POST["userID"]; //浅井追記
 $password = $_POST["password"];
 $a = login($userID, $password);

@@ -15,7 +15,7 @@ $data = json_decode($json, true);
 
 $userID = $_POST["userID"];
 $password = $_POST["password"];
-$dm = " "
+$dm = " ";
 $a = write($userID, $password);
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
