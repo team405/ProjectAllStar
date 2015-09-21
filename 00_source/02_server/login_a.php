@@ -20,7 +20,7 @@ function login($userID, $password) {
 }
 
 $dm = if(login($userID, $password)){
-  ""
+  " "
 }else{
   "fuck"
 };
@@ -30,7 +30,7 @@ $userID = $data["userID"];
 $password = $data["password"];
 $a = login($userID, $password);
 //userIDはゆくゆくはuserNameに変更by kj
-$b = json_encode(array('result' => $a, 'userID' => $userID, resultdesc => $dm));
+$b = json_encode(array('result' => $a, 'userID' => $userID, 'resultdesc' => $dm));
 //header('Content-Type: text/javascript; charset=utf-8');
 echo $b;
 ?>
