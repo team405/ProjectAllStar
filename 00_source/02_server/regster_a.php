@@ -2,7 +2,7 @@
 // 受け取った情報をfileに書き込む
 function write($userID, $password) {
     if($userID != "" && $password != ""){
-        $regster = "$userID, $password" . PHP_EOL;
+        $regster = "$userID,$password" . PHP_EOL;
         file_put_contents("admin_user.csv", $regster, FILE_APPEND);
         return true;
     }
