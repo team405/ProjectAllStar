@@ -12,15 +12,15 @@ function login($userID, $password) {
     return false;
 }
 
+$userID = $_POST["userID"]; //浅井追記
+$password = $_POST["password"];
+$a = login($userID, $password);
 $dm = "";
-if(login($userID, $password)){
+if($a){
   $dm =" ";
 }else{
   $dm ="fuck";
 }
-$userID = $_POST["userID"]; //浅井追記
-$password = $_POST["password"];
-$a = login($userID, $password);
 //userIDはゆくゆくはuserNameに変更by kj
 $b = json_encode(array('result' => $a, 'userID' => $userID, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
