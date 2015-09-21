@@ -9,12 +9,19 @@ function write($userID, $password) {
     return false;
 }
 
-//受け取りうんぬんは後ほどアップデート予定 $_POST
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
-$userID = $_POST["userID"];
-$password = $_POST["password"];
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+  $userID = $_GET["userID"];
+  $password = $_GET["password"];
+}else {
+  $userID = $_POST["userID"]; //浅井追記
+  $password = $_POST["password"];
+}
+
+//$userID = $_POST["userID"];
+//$password = $_POST["password"];
 $dm = "";
 $a = write($userID, $password);
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));

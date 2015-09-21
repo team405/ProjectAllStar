@@ -10,8 +10,11 @@ function contents($userID) {
     }
     return array(false,"0","0","fuck");
 }
-
-$userID = $_POST["userID"]; //浅井追記
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+  $userID = $_GET["userID"]; //浅井追記
+}else {
+  $userID = $_POST["userID"]; //浅井追記
+}
 foreach(contents($userID) as $line2){
   $a = explode(",", $line2);
   $b = json_encode(array('result' => $a[0], 'contentID' => $a[1],'contentName' => $a[2], 'resultdesc' => $a[3]));
