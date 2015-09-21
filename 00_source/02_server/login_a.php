@@ -15,9 +15,8 @@ function login($userID, $password) {
 $userID = $_POST["userID"]; //浅井追記
 $password = $_POST["password"];
 $a = login($userID, $password);
-$dm = "";
 if($a){
-  $dm =" ";
+  $dm ="";
 }else{
   $dm ="fuck";
 }
