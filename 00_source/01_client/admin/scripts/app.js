@@ -33,12 +33,6 @@
                 controllerAs: 'vm'
             })
 
-            .when('/player', {
-                controller: 'PlayerController',
-                templateUrl: 'views/player.view.html',
-                controllerAs: 'vm'
-            })
-
             .otherwise({ redirectTo: '/login' });
     }
 
