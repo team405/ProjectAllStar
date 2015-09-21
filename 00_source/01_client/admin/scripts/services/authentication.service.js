@@ -40,18 +40,35 @@
             //        callback(response);
             //    });
 
-               $.ajax({
-                 type: 'POST',
-                 url: "http://192.168.0.10:8000/02_server/login_a.php",
-                 data: { userID: username, password: password },
-                 datatype: "json",
-                 success: function (response) {
-                     callback(response);
-                 },
-                 error: function (response) {
-                     callback(response);
-                 }
-               });
+            //callback({result:true})
+
+               // $.ajax({
+               //   type: 'POST',
+               //   url: "http://192.168.0.10:8000/02_server/login_a.php",
+               //   data: { userID: username, password: password },
+               //   datatype: "json",
+               //   success: function (response) {
+               //       callback(response);
+               //   },
+               //   error: function (response) {
+               //       callback(response);
+               //   }
+               // });
+var transform = function(data){
+        return $.param(data);
+}
+$http({
+    method : 'POST',
+    url : 'http://192.168.0.10:8000/02_server/login_a.php',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+    transformRequest: transform,
+    data: { userID: username, password: password }
+}).success(function(data, status, headers, config) {
+    callback(data)
+}).error(function(data, status, headers, config) {
+    callback(data)
+});
+
 
         }
 
