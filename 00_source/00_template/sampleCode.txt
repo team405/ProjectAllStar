@@ -1,0 +1,40 @@
+﻿/* コメント：HTML側でlocalにある画像を参照 */
+<form enctype="multipart/form-data" action="picture.php" method="post">
+<input type="file" name="image">
+<input type="submit" value="変更する">
+</form>
+
+/*　コメント：上記をHTMLからPHPに送る↓送った先のPHP
+
+<?php
+   $tmpf=$_FILES["image"]["tmp_name"];
+   if(is_uploaded_file($tmpf)){
+	$gazo='img/'.$_SESSION["gakuseki"].'.gif';
+	$tmpgazo="img/tmpgazo.gif";
+	move_uploaded_file($_FILES["image"]["tmp_name"],$tmpgazo);
+	copy($tmpgazo,$gazo);
+	unlink($tmpgazo);
+   }
+   echo '注）.gifのみです。<img src="img/'.$_SESSION["gakuseki"].'.gif" width="300">';
+   if(is_uploaded_file($tmpf))echo '<br><br>画像が変わらない場合は、更新ボタンを押し、何か聞かれたとき「再試行」を選んでください。<br><br>';
+?>
+<br>写真を変更する：<br>
+<form enctype="multipart/form-data" action="picture.php" method="post">
+<input type="file" name="image">
+<input type="submit" value="変更する">
+</form>
+
+<br>
+
+
+
+
+</div></div>
+<br>
+<a href="mixe.php">自分のページに戻る</a>
+</div>
+</td></tr>
+</table>
+</div>
+</body>
+</html>
