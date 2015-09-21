@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<head>
-<html lang="ja">
-<meta charset="UTF-8">
-<title>SmaQ - ログインページ</title>
-</head>
-<body>
 <?php
 function login($userID, $password) {
     // file関数はファイル全体を読み込んで配列に格納する
@@ -25,8 +18,7 @@ $password = $data["password"];
 $a = login($userID, $password);
 //userIDはゆくゆくはuserNameに変更by kj
 $b = json_encode(array('result' => $a, 'userID' => $userID));
-//header('Content-Type: text/javascript; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: text/javascript; charset=utf-8');
 echo $b;
 ?>
-</body>
-</html>
