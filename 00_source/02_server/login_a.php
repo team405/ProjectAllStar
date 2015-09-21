@@ -21,6 +21,6 @@ $a = login($userID, $password);
 //userIDはゆくゆくはuserNameに変更by kj
 $b = json_encode(array('result' => $a, 'userID' => $userID));
 header("Access-Control-Allow-Origin: *");
-header('Content-Type: text/javascript; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 echo $b;
 ?>
