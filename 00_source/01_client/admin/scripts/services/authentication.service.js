@@ -34,10 +34,19 @@
 
             /* Use this for real authentication
              ----------------------------------------------*/
-            $http.post('http://192.168.0.11:8000/02_server/login_a.php', { userID: username, password: password })
+            //$http.post('http://192.168.0.11:8000/02_server/login_a.php', { userID: username, password: password })
+            $http.get('http://localhost/02_server/login_a.txt', { userID: username, password: password })
                .success(function (response) {
                    callback(response);
                });
+
+               // $.ajax({
+               //   type: 'http://localhost/02_server/login_a.txt',
+               //   url: url,
+               //   data: data,
+               //   success: success,
+               //   dataType: dataType
+               // });
 
         }
 
