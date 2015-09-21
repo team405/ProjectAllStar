@@ -27,6 +27,12 @@
                 controllerAs: 'vm'
             })
 
+            .when('/cont_register', {
+                controller: 'ContRegisterController',
+                templateUrl: 'views/cont_register.view.html',
+                controllerAs: 'vm'
+            })
+
             .otherwise({ redirectTo: '/login' });
     }
 
