@@ -44,13 +44,12 @@
                  type: 'POST',
                  url: "http://192.168.0.12:8000/02_server/login_a.php",
                  data: { userID: username, password: password },
-                 datatype: "text",
+                 datatype: "json",
                  success: function (response) {
-                     console.log("success");
+                     callback(response);
                  },
-                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                     console.log(textStatus);
-                     console.log(errorThrown);
+                 error: function (response) {
+                     callback(response);
                  }
                });
 

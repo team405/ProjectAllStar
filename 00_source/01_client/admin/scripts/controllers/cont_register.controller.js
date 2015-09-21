@@ -9,7 +9,6 @@
     function ContRegisterController(UserService, $location, $rootScope, FlashService) {
         var vm = this;
 
-        vm.register = register;
     }
 
 })();
