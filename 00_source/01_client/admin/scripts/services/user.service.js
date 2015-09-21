@@ -31,7 +31,19 @@
         }
 
         function Create(user) {
-            return $http.post('/api/users', user).then(handleSuccess, handleError('Error creating user'));
+            $.ajax({
+              type: 'POST',
+              url: "http://192.168.0.10:8000/02_server/register_a.php",
+              data: user,
+              datatype: "json",
+              success: function (response) {
+                  handleSuccess;
+              },
+              error: function (response) {
+                  handleError('Error creating user');
+              }
+            });
+
         }
 
         function Update(user) {
