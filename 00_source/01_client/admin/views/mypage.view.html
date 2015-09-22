@@ -1,18 +1,30 @@
 ﻿<div id="headerwrap">
-<div class="container">
-<h2>おはよう{{ct.contents}}!!!</h2>
-<!-- <h1> {{vm.user.firstName}}!</h1> -->
-<p>You're logged in!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li ng-repeat="user in ct.contents">
-        {{ct.contentName}}
-        - <a href="#" ng-click="vm.deleteUser(user.id)">Delete</a>
-    </li>
-</ul>
-<p>&nbsp;</p>
-<p><a href="#/cont_register" class="btn btn-primary">イベント登録</a>
-<a href="#/player" class="btn btn-primary">再生ページ(暫定)</a></p>
-</div>
+  <div class="container">
+    <h3>All Events:</h3>
 
+    <table class="table table-striped">
+      <thead>
+	<tr>
+	  <th>イベント名</th>
+	  <th>編集</th>
+	  <th>再生</th>
+	  <th>テスト</th>
+	  <th>履歴</th>
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="event in ct.contents">
+	  <td>{{event.contentName}}</td>
+	  <td>●</td>
+	  <td>●</td>
+	  <td>●</td>
+	  <td>●</td>
+	</tr>
+      </tbody>
+    </table>
+    <p>&nbsp;</p>
+    
+    <p><a href="#/cont_register" class="btn btn-primary">イベント登録</a>
+      <a href="#/player" class="btn btn-primary">再生ページ(暫定)</a></p>
+  </div>
 </div>

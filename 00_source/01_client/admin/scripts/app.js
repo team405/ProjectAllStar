@@ -12,7 +12,7 @@
             .when('/', {
                 controller: 'MypageController',
                 templateUrl: 'views/mypage.view.html',
-                controllerAs: 'vm'
+                controllerAs: 'ct'
             })
 
             .when('/login', {

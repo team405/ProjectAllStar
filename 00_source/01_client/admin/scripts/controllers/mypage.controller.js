@@ -9,9 +9,6 @@
     function MypageController(ContentService, $rootScope) {
         var ct = this;
 
-        //現在のコンテンツ
-        //ct.content = null;
-
         //ユーザのすべてのコンテンツ
         ct.contents = [];
         ct.test = null;
@@ -25,7 +22,6 @@
         function loadContents() {
             ContentService.GetByUserId($rootScope.globals.currentUser.username)
                 .then(function (response) {
-                    console.log(response.contents)
                     if (response.result) {
                         ct.contents = response.contents;
                     } else {
