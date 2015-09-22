@@ -1,24 +1,14 @@
-﻿<div id="headerwrap">
-<div class="container">
-<h2>おはよう{{globals.currentUser.username}}!!!</h2>
-<!-- <h1> {{vm.user.firstName}}!</h1> -->
-<p>You're logged in!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li ng-repeat="user in vm.allUsers">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a href="#" ng-click="vm.deleteUser(user.id)">Delete</a>
-    </li>
-</ul>
+﻿<div id="headerwrap"></div>
 <p>&nbsp;</p>
-</div>
+<div class="container">
+  {{ct.contents.quesText}}
   <table border ="1", width=800px, height=500px>
     <tr>
-      <td>{{ct.choiceText[0]}}</td>
-      <td>{{ct.choiceText[1]}}</td>
+      <td>{{ct.contents.choiceText[0]}}</td>
+      <td>{{ct.contents.choiceText[1]}}</td>
     </tr>
     <tr>
-      <td>{{ct.choiceText[2]}}</td>
-      <td>{{ct.choiceText[3]}}</td>
+      <td>{{ct.contents.choiceText[2]}}</td>
+      <td>{{ct.contents.choiceText[3]}}</td>
     </tr>
 </div>

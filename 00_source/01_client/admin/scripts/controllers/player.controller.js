@@ -25,7 +25,7 @@
 	    ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contents_id, ct.ques_id)
 		.then(function (response) {
 		    if (response.result) {
-			ct.contents = response.contents;
+			ct.contents = response;
 		    } else {
 			FlashService.Error(response.resultdesc);
 		    }
