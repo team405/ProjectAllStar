@@ -36,7 +36,7 @@
             .when('/player', {
                 controller: 'PlayerController',
                 templateUrl: 'views/player.view.html',
-                controllerAs: 'vm'
+                controllerAs: 'ct'
             })
 
             .otherwise({ redirectTo: '/login' });
