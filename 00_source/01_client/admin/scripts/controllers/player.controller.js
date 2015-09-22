@@ -12,6 +12,9 @@
 	ct.contentid = $rootScope.globals.currentContent.contentid;
 	ct.quesid = 0;
 	ct.contents = [];
+    ct.pre=0;
+    //前説が0、質問中が1、答え表示中が2
+    ct.clickContainer=clickContainer;
 
         initController();
 
@@ -38,6 +41,17 @@
                     vm.user = user;
                 });
         }
+
+        function clickContainer() {
+            if(ct.pre){
+                ct.pre=false;
+            }else{
+                ct.pre=true;
+            }
+        }
+
     }
+
+
 
 })();
