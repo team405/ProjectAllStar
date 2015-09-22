@@ -2,7 +2,7 @@
 <html ng-app="app">
 <head>
     <meta charset="utf-8" />
-    <title>SmaQ</title>
+    <title>AngularJS User Registration and Login Example</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link href="styles/app.css" rel="stylesheet" />
 </head>
@@ -24,8 +24,7 @@
           </ul>
         </div><!--/.nav-collapse -->
     </div>
-
-    
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
     <div ng-view></div>
 
 
