@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 //$password = $_POST["password"];
 $dm = "";
 $a = write($userID, $password);
-$b = json_encode(array('result' => $a, 'resultdesc' => $dm));
+$b = json_encode(array('result' => $a, 'resultDesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
