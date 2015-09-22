@@ -23,7 +23,7 @@
                     AuthenticationService.SetCredentials(vm.username, vm.password);
                     $location.path('/');
                 } else {
-                    FlashService.Error({message:response.resultDesc});
+                    FlashService.Error(response.resultdesc);
                     vm.dataLoading = false;
                 }
             });

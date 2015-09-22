@@ -5,6 +5,16 @@
         .module('app')
         .factory('UserService', UserService);
 
+    angular.module('app').config(function ($httpProvider) {
+        $httpProvider.defaults.transformRequest = function(data){
+            if (data === undefined) {
+                return data;
+            }
+            return $.param(data);
+        }
+    });
+
+
     UserService.$inject = ['$http'];
     function UserService($http) {
         var service = {};
@@ -17,6 +27,10 @@
         service.Delete = Delete;
 
         return service;
+
+        // var transform = function(data){
+        //         return $.param(data);
+        // }
 
         function GetAll() {
             return $http.get('/api/users').then(handleSuccess, handleError('Error getting all users'));
@@ -31,18 +45,12 @@
         }
 
         function Create(user) {
-            $.ajax({
-              type: 'POST',
-              url: "http://192.168.0.10:8000/02_server/register_a.php",
-              data: user,
-              datatype: "json",
-              success: function (response) {
-                  handleSuccess;
-              },
-              error: function (response) {
-                  handleError('Error creating user');
-              }
-            });
+            return $http({
+                method : 'POST',
+                url : '../../02_server/register_a.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: user
+            }).then(handleSuccess, handleError('Error creating user'));
 
         }
 
@@ -57,12 +65,12 @@
         // private functions
 
         function handleSuccess(data) {
-            return data;
+            return data.data;
         }
 
         function handleError(error) {
             return function () {
-                return { success: false, message: error };
+                return { result: false, resultDesc: error };
             };
         }
     }

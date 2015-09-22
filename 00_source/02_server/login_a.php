@@ -21,7 +21,7 @@ if($a){
   $dm ="fuck";
 }
 //userIDはゆくゆくはuserNameに変更by kj
-$b = json_encode(array('result' => $a, 'userID' => $userID, 'resultDesc' => $dm));
+$b = json_encode(array('result' => $a, 'userID' => $userID, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
