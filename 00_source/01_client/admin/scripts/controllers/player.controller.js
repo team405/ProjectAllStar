@@ -5,13 +5,13 @@
         .module('app')
         .controller('PlayerController', PlayerController);
 
-    PlayerController.$inject = ['UserService', '$rootScope'];
-    function PlayerController(UserService, $rootScope) {
-        var vm = this;
+    PlayerController.$inject = ['ContentService', '$rootScope'];
+    function PlayerController(ContentService, $rootScope) {
+        var ct = this;
 
-        vm.user = null;
-        vm.allUsers = [];
-        vm.deleteUser = deleteUser;
+	ct.contents_id = 0;
+	ct.ques_id = 0;
+	ct.contents = [];
 
         initController();
 
@@ -20,25 +20,22 @@
             //loadAllUsers();
         }
 
+	function loadContents(){
+	    ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contents_id, ct.ques_id)
+		.then(function (response) {
+		    if (response.result) {
+			ct.contents = response.contents;
+		    } else {
+			FlashService.Error(response.resultdesc);
+		    }
+		});
+	}
+
         function loadCurrentUser() {
             UserService.GetByUsername($rootScope.globals.currentUser.username)
                 .then(function (user) {
                     vm.user = user;
                 });
-        }
-
-        function loadAllUsers() {
-            UserService.GetAll()
-                .then(function (users) {
-                    vm.allUsers = users;
-                });
-        }
-
-        function deleteUser(id) {
-            UserService.Delete(id)
-            .then(function () {
-                loadAllUsers();
-            });
         }
     }
 
