@@ -12,8 +12,8 @@ $path="";
 $result="false";
 $resultDesc="";
 
-if ($quesID !== "" && $contentID !== "" && $quesID !== "" ) {
-  $path = "data/".$userID.'/'.$contentID.'/'; 
+if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
+  $path = "data/".$userID.'/'.$contentID.'/';
   $now = microtime(true);
   $answer = $quesID. "," . $now. PHP_EOL;
   file_put_contents($path."starttimestamp.csv", $answer, FILE_APPEND);
