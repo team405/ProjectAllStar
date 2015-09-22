@@ -18,7 +18,7 @@ function userEntry($userName,$password) {
     return $userNum;
 }
 function userCheck($userName,$password) {
-    // fileŠÖ”‚Íƒtƒ@ƒCƒ‹‘S‘Ì‚ğ“Ç‚İ‚ñ‚Å”z—ñ‚ÉŠi”[‚·‚é
+    // fileé–¢æ•°ã¯ãƒ•ã‚¡ã‚¤ãƒ«å…¨ä½“ã‚’èª­ã¿è¾¼ã‚“ã§é…åˆ—ã«æ ¼ç´ã™ã‚‹
     $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
         $user = explode(",", $line);
@@ -41,20 +41,20 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
    $password = $_POST["password"];
 }
 
-//ƒ†[ƒU–¼‚ª“ü—Í‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚µ‚ÄA‚ ‚ê‚Îtrue‚É‚·‚é
+//ãƒ¦ãƒ¼ã‚¶åãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã€ã‚ã‚Œã°trueã«ã™ã‚‹
 if ($userName !== "" && $password !== "") {
-  //ƒ†[ƒUƒ`ƒFƒbƒNŠÖ”Às
-  //ƒ†[ƒU‚ª‚È‚¢‚½‚ßV‹Kƒ†[ƒU‚Æ‚µ‚Ä“o˜^(true)
+  //ãƒ¦ãƒ¼ã‚¶ãƒã‚§ãƒƒã‚¯é–¢æ•°å®Ÿè¡Œ
+  //ãƒ¦ãƒ¼ã‚¶ãŒãªã„ãŸã‚æ–°è¦ãƒ¦ãƒ¼ã‚¶ã¨ã—ã¦ç™»éŒ²(true)
   if(userCheck($userName,$password) === 0){
     $a = true;
     $userNum = userEntry($userName,$password);
     $dm = "NewEntry";
-  //ƒ†[ƒU‚ª‚ ‚é‚ª–¼‘O‚ª‚·‚Å‚Ég‚í‚ê‚Ä‚¢‚é(false)
+  //ãƒ¦ãƒ¼ã‚¶ãŒã‚ã‚‹ãŒåå‰ãŒã™ã§ã«ä½¿ã‚ã‚Œã¦ã„ã‚‹(false)
   }else if (userCheck($userName,$password) === 999999){
     $a = false;
     $userNum = userCheck($userName,$password);
     $dm = "This user already exists";
-  //ƒ†[ƒU‚ª‚ ‚éAƒpƒXƒ[ƒhˆê’v‚Ì‚½‚ßƒŠƒ_ƒCƒŒƒNƒg‚Æ‚·‚é(true)
+  //ãƒ¦ãƒ¼ã‚¶ãŒã‚ã‚‹ã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ä¸€è‡´ã®ãŸã‚ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã¨ã™ã‚‹(true)
   }else{
     $a = true;
     $userNum = userCheck($userName,$password);
