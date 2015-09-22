@@ -1,23 +1,36 @@
 <?php
+function maxUserNumber(){
+    $maxVal = 0;
+    $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
+    foreach ($lines as $line) {
+        $user = explode(",", $line);
+        $tmp_num = (int)$user[0];
+        if($maxVal < $tmp_num){
+            $maxVal = $tmp_num;
+        }
+    }
+    return $maxVal;
+}
 function userEntry($userName,$password) {
-    $userNum = 1;
+    $userNum = maxUserNumber() + 1;
     $line = $userNum.",".$userName.",".$password. PHP_EOL;
     file_put_contents("mobile_user.csv", $line, FILE_APPEND);
     return $userNum;
 }
-function userCheck($userName, $password) {
+function userCheck($userName,$password) {
     // file関数はファイル全体を読み込んで配列に格納する
     $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
         $user = explode(",", $line);
-        if($user[1] === $userName && $user[2] === $password){
-            return $user[0];
-        }else if ($user[1] === $userName){
-            return 999999;
-        }else{
-            return 0;
+        if($user[1] === $userName){
+            if($user[2] === $password){
+               return (int)$user[0];
+            }else{
+               return 999999;
+            }
         }
     }
+    return 0;
 }
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){
@@ -40,7 +53,7 @@ if ($userName !== "" && $password !== "") {
   }else if (userCheck($userName,$password) === 999999){
     $a = false;
     $userNum = userCheck($userName,$password);
-    $dm = "already exists";
+    $dm = "This user already exists";
   //ユーザがある、パスワード一致のためリダイレクトとする(true)
   }else{
     $a = true;
@@ -52,7 +65,7 @@ if ($userName !== "" && $password !== "") {
     $userNum="";
     $dm = "fuck";
 }
-$b = json_encode(array('userNumber' => $userNum, 'result' => $a, 'resultdesc' => $dm));
+$b = json_encode(array('userNumber' => $userNum, 'result' => $a, 'resultDesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
