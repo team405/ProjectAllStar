@@ -27,7 +27,7 @@
         function GetByUserId(userid) {
             return $http({
                 method : 'POST',
-                url : '../../02_server/mypage_test.php',
+                url : '../../02_server/mypage.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid},
             }).then(handleSuccess, handleError('Error getting Content'));
