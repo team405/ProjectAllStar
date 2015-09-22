@@ -4,7 +4,7 @@ function write($userNumber,$choice) {
     if($userNumber != ""){
         $now = microtime(true);
         $answer = $userNumber. "," . $choice. "," . $now. PHP_EOL;
-        file_put_contents("data/$userNumber/0/answer.csv", $answer, FILE_APPEND);
+        file_put_contents("data/aaa/0/answer.csv", $answer, FILE_APPEND);
         return true;
     }
     return false;
