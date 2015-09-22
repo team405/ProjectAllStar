@@ -8,38 +8,24 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
    $contentID = $_POST["contentID"];
    $quesID = $_POST["quesID"];
 }
-$preKind="";
-$preText="";
-$quesText="";
-$choiceKind="";
-$choiceText=array();
-$quesSec="";
 $result="false";
 $resultDesc="";
+$b=array();
 
 if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
 
   $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini'; 
   $fileData = file_get_contents($filename);
-  var_dump(json_decode($fileData));
-  //stdClass objectを連想配列にキャスト
-//  foreach($kouan_kyuuka as $value){
-//      $tmp_data[] = (array)$value;
-//  }
-//  $preKind=$tmp_data[preKind];
-//  $preText=$tmp_data[preText]
-//  $quesText=$tmp_data[quesText];
-//  $choiceKind=$tmp_data[choiceKind];
-//  $choiceText=$tmp_data[choiceText];
-//  $quesSec=$tmp_data[quesText];  
-
+  $decode = json_decode($fileData, true);
   $result = "true";
-
+  $arraystatus=array('result' => $result, 'resultDesc' => $resultDesc);
+  $decode += $arraystatus;
+  $b = json_encode($decode);
 } else{
   $resultDesc="fuck";
+  $b = json_decode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
-//$b = json_encode($tmp_data[preKind],$tmp_data[preText],$tmp_data[quesText],$tmp_data[choiceKind],$tmp_data[choiceText],'result' => $auth_check, 'resultdesc' => $auth_message);
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
-//echo $b;
+echo $b;
 ?>
