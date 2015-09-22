@@ -5,21 +5,27 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   $userID = $_POST["userID"]; //浅井追記
 }
 $lines = file("content.csv", FILE_IGNORE_NEW_LINES);
-    foreach ($lines as $line) {
-        $user = explode(",", $line);
-        if ($user[0] === $userID) {
-          $li0 = "true";
-          $li1 = $user[1];
-          $li2 = $user[2];
-          $li3 = "";
-        }else{
-          $li0 = "false";
-          $li1 = "";
-          $li2 = "";
-          $li3 = "fuck";
-        }
-     $b = json_encode(array('result' => $li0, 'contentID' => $li1, 'contentName' => $li2,'resultdesc' => $li3 ));
-     }
+
+$contents_array = array();
+$auth_check = "";
+$auth_message = "";
+
+foreach ($lines as $line) {
+  $line_array = explode(",", $line);
+  $user = $line_array[0];
+  if ($user === $userID) {
+    $auth_check = "true";
+    $auth_message = "";
+    $con = array('contentID' => $line_array[1],'contentName' => $line_array[2]);
+    array_push($contents_array, $con);
+  }else{
+    $auth_check = "false";
+    $auth_message = "fuck";
+  }
+}
+
+$b = json_encode(array('result' => $auth_check, 'resultdesc' => $auth_message, 'contents' => $contents_array));
+
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
