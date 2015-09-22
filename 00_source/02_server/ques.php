@@ -4,8 +4,8 @@ function ques($quesID) {
     $lines = file("data/aaa/0/$quesID/config.ini", FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
         $rule = explode(",", $line);
-        $timestamp = time();
-        $quessec = date(Y/m/d);
+        $Path = "data/aaa/0/$quesID/0";
+        
         return array(true,$rule[0],$rule[1],$rule[2],$rule[3],$rule[4],"");
         }
 
