@@ -1,6 +1,17 @@
 <?php
+function getMaxVal(){
+    $tmpVal=0;
+    $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
+    foreach ($lines as $line){
+      $user = explode(",", $line);
+      if($tmpVal < (int)$user[0]){
+        $tmpVal = (int)$user[0];
+      }
+    }
+    return $tmpVal;
+}
 function userEntry($userName,$password) {
-    $userNum = 1;
+    $userNum = getMaxVal() +1 ;
     $line = $userNum.",".$userName.",".$password. PHP_EOL;
     file_put_contents("mobile_user.csv", $line, FILE_APPEND);
     return $userNum;
@@ -10,14 +21,15 @@ function userCheck($userName, $password) {
     $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
         $user = explode(",", $line);
-        if($user[1] === $userName && $user[2] === $password){
-            return $user[0];
-        }else if ($user[1] === $userName){
-            return 999999;
-        }else{
-            return 0;
-        }
+        if($user[1] === $userName){
+           if($user[2] === $password){
+               return (int)$user[0];
+           }else{
+               return 999999;
+           }
+        } 
     }
+    return 0;
 }
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){
