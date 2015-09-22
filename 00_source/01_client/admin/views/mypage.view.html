@@ -1,4 +1,4 @@
-﻿<div id="headerwrap">
+﻿
   <div class="container">
     <h3>All Events:</h3>
 
@@ -15,8 +15,8 @@
       <tbody>
 	<tr ng-repeat="event in ct.contents">
 	  <td>{{event.contentName}}</td>
-	  <td>●</td>
-	  <td>●</td>
+	  <td><a href=""></a></td>
+	  <td><a ng-click="ct.playContents(event.contentID)">●</a></td>
 	  <td>●</td>
 	  <td>●</td>
 	</tr>
@@ -27,4 +27,3 @@
     <p><a href="#/cont_register" class="btn btn-primary">イベント登録</a>
       <a href="#/player" class="btn btn-primary">再生ページ(暫定)</a></p>
   </div>
-</div>

@@ -5,13 +5,14 @@
         .module('app')
         .controller('MypageController', MypageController);
 
-    MypageController.$inject = ['ContentService', '$rootScope'];
-    function MypageController(ContentService, $rootScope) {
+    MypageController.$inject = ['$location','ContentService', '$rootScope'];
+    function MypageController($location, ContentService, $rootScope) {
         var ct = this;
 
         //ユーザのすべてのコンテンツ
         ct.contents = [];
-        ct.test = null;
+        ct.playContents = playContents;
+
 
         initController();
 
@@ -31,6 +32,17 @@
                     
                 });
         }
+        function playContents(contentid) {
+            console.log(contentid);
+            $rootScope.globals["currentContent"] = {
+                    contentid: contentid
+                };
+                console.log($rootScope.globals);
+
+
+            $location.path('/player');
+        }
+
     }
 
 })();
