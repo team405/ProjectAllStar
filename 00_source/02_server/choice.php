@@ -1,29 +1,28 @@
 <?php
 // 受け取った情報をfileに書き込む
-function write($userID) {
-    if($userID != ""){
-        $register = "$userID" . PHP_EOL;
-        file_put_contents("data/$userID/0/.csv", $register, FILE_APPEND);
+function write($userNumber,$choice) {
+    if($userNumber != ""){
+        $now = microtime(true);
+        $answer = $userNumber. "," . $choice. "," . $now. PHP_EOL;
+        file_put_contents("data/$userNumber/0/answer.csv", $answer, FILE_APPEND);
         return true;
     }
     return false;
 }
 
-$json = file_get_contents("php://input");
-$data = json_decode($json, true);
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){
-  $userID = $_GET["userID"];
-  $password = $_GET["password"];
+  $userNumber = $_GET["userNumber"];
+  $choice = $_GET["choice"];
 }else {
-  $userID = $_POST["userID"]; //浅井追記
-  $password = $_POST["password"];
+  $userNumber = $_POST["userNumber"]; //浅井追記
+  $choice = $_POST["choice"];
 }
 
 //$userID = $_POST["userID"];
 //$password = $_POST["password"];
 $dm = "";
-$a = write($userID, $password);
+$a = write($userNumber, $choice);
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
