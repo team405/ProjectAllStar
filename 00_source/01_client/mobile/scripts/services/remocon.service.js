@@ -27,12 +27,25 @@
         function SendChoice(usernum,choice) {
             return $http({
                 method : 'POST',
-                url : '../../02_server/choice_test.php',
+                url : '../../02_server/choice.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userNumber:usernum,choice:choice},
             }).then(handleSuccess, handleError('Error sending Choice'));
 
         }
+
+        function handleSuccess(data) {
+            return data.data;
+        }
+
+        function handleError(error) {
+            return function () {
+                return { result: false, resultDesc: error };
+            };
+        }
+
     }
+
+
 
 })();

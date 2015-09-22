@@ -5,8 +5,8 @@
         .module('app')
         .controller('ChoiceController', ChoiceController);
 
-    ChoiceController.$inject = ['RemoconService', '$rootScope'];
-    function ChoiceController(RemoconService, $rootScope) {
+    ChoiceController.$inject = ['RemoconService', '$rootScope' ,'FlashService'];
+    function ChoiceController(RemoconService, $rootScope, FlashService) {
         var vm = this;
 
         vm.user = null;
@@ -19,6 +19,7 @@
                 .then(function (response) {
                     if (response.result) {
                         FlashService.Success("Datasend Success");
+                        vm.dataLoading = false;
                     } else {
                         FlashService.Error(response.resultdesc);
                         vm.dataLoading = false;
