@@ -65,12 +65,12 @@
         // private functions
 
         function handleSuccess(data) {
-            return data;
+            return data.data;
         }
 
         function handleError(error) {
             return function () {
-                return { success: false, message: error };
+                return { result: false, resultDesc: error };
             };
         }
     }
