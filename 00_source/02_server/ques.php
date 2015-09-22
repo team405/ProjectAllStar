@@ -5,7 +5,7 @@ function ques($quesID) {
     foreach ($lines as $line) {
         $rule = explode(",", $line);
         $Path = "data/aaa/0/$quesID/0";
-        
+
         return array(true,$rule[0],$rule[1],$rule[2],$rule[3],$rule[4],"");
         }
 
