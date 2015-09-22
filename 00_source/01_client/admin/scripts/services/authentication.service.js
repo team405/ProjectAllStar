@@ -59,7 +59,7 @@ var transform = function(data){
 }
 $http({
     method : 'POST',
-    url : 'http://192.168.0.10:8000/02_server/login_a.php',
+    url : '../../02_server/login_a.php',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
     transformRequest: transform,
     data: { userID: username, password: password }
