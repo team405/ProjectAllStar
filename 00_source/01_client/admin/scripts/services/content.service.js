@@ -21,6 +21,7 @@
         var service = {};
 
         service.GetByUserId = GetByUserId;
+        service.GetQuestion = GetQuestion;
 
         return service;
 
@@ -33,6 +34,18 @@
             }).then(handleSuccess, handleError('Error getting Content'));
 
         }
+
+        function GetQuestion(userid,contentid,quesid) {
+            return $http({
+                method : 'POST',
+                url : '../../02_server/ques_test.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {userID:userid,contentID:contentid,quesID:quesid},
+            }).then(handleSuccess, handleError('Error getting Content'));
+
+        }
+
+
         // private functions
 
         function handleSuccess(data) {
