@@ -1,12 +1,12 @@
 ﻿<div id="headerwrap">
 <div class="container">
-<h2>おはよう{{ct.contents}}!!!</h2>
+<h2>おはよう{{globals.currentUser.username}}!!!</h2>
 <!-- <h1> {{vm.user.firstName}}!</h1> -->
 <p>You're logged in!!</p>
 <h3>All registered users:</h3>
 <ul>
-    <li ng-repeat="user in ct.contents">
-        {{ct.contentName}}
+    <li ng-repeat="user in vm.allUsers">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
         - <a href="#" ng-click="vm.deleteUser(user.id)">Delete</a>
     </li>
 </ul>

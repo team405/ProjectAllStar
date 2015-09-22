@@ -10,20 +10,20 @@
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                controller: 'HomeController',
-                templateUrl: 'home/home.view.html',
+                controller: 'MypageController',
+                templateUrl: 'views/mypage.view.html',
                 controllerAs: 'vm'
             })
 
             .when('/login', {
                 controller: 'LoginController',
-                templateUrl: 'login/login.view.html',
+                templateUrl: 'views/login.view.html',
                 controllerAs: 'vm'
             })
 
-            .when('/register', {
-                controller: 'RegisterController',
-                templateUrl: 'register/register.view.html',
+            .when('/choise', {
+                controller: 'ChoiseController',
+                templateUrl: 'views/choise.view.html',
                 controllerAs: 'vm'
             })
 

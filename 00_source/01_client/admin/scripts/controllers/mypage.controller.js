@@ -5,40 +5,35 @@
         .module('app')
         .controller('MypageController', MypageController);
 
-    MypageController.$inject = ['UserService', '$rootScope'];
-    function MypageController(UserService, $rootScope) {
-        var vm = this;
+    MypageController.$inject = ['ContentService', '$rootScope'];
+    function MypageController(ContentService, $rootScope) {
+        var ct = this;
 
-        vm.user = null;
-        vm.allUsers = [];
-        vm.deleteUser = deleteUser;
+        //現在のコンテンツ
+        //ct.content = null;
+
+        //ユーザのすべてのコンテンツ
+        ct.contents = [];
+        ct.test = null;
 
         initController();
 
         function initController() {
-            //loadCurrentUser();
-            //loadAllUsers();
+            loadContents();
         }
 
-        function loadCurrentUser() {
-            UserService.GetByUsername($rootScope.globals.currentUser.username)
-                .then(function (user) {
-                    vm.user = user;
+        function loadContents() {
+            ContentService.GetByUserId($rootScope.globals.currentUser.username)
+                .then(function (response) {
+                    console.log(response.contents)
+                    if (response.result) {
+                        ct.contents = response.contents;
+                    } else {
+                        FlashService.Error(response.resultdesc);
+                    }
+
+                    
                 });
-        }
-
-        function loadAllUsers() {
-            UserService.GetAll()
-                .then(function (users) {
-                    vm.allUsers = users;
-                });
-        }
-
-        function deleteUser(id) {
-            UserService.Delete(id)
-            .then(function () {
-                loadAllUsers();
-            });
         }
     }
 

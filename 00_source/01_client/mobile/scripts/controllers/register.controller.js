@@ -15,11 +15,11 @@
             vm.dataLoading = true;
             UserService.Create(vm.user)
                 .then(function (response) {
-                    if (response.success) {
+                    if (response.result) {
                         FlashService.Success('Registration successful', true);
                         $location.path('/login');
                     } else {
-                        FlashService.Error(response.message);
+                        FlashService.Error(response.resultDesc);
                         vm.dataLoading = false;
                     }
                 });

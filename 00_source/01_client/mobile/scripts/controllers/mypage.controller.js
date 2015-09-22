@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .controller('HomeController', HomeController);
+        .controller('MypageController', MypageController);
 
-    HomeController.$inject = ['UserService', '$rootScope'];
-    function HomeController(UserService, $rootScope) {
+    MypageController.$inject = ['UserService', '$rootScope'];
+    function MypageController(UserService, $rootScope) {
         var vm = this;
 
         vm.user = null;
@@ -16,8 +16,8 @@
         initController();
 
         function initController() {
-            loadCurrentUser();
-            loadAllUsers();
+            //loadCurrentUser();
+            //loadAllUsers();
         }
 
         function loadCurrentUser() {
