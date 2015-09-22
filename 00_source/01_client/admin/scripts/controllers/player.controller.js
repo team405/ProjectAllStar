@@ -9,8 +9,8 @@
     function PlayerController(ContentService, $rootScope) {
         var ct = this;
 
-	ct.contents_id = 0;
-	ct.ques_id = 0;
+	ct.contentid = $rootScope.globals.currentContent.contentid;
+	ct.quesid = 0;
 	ct.contents = [];
 
         initController();
@@ -22,7 +22,7 @@
         }
 
 	function loadContents(){
-	    ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contents_id, ct.ques_id)
+	    ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
 		.then(function (response) {
 		    if (response.result) {
 			ct.contents = response;
