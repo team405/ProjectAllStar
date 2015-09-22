@@ -1,12 +1,18 @@
 ﻿<?php
 //処理内容は関数に！
-function sampleFunction($var1, $ver2,,,) {
+function sampleFunction($var1, $var2,,,) {
 
 }
 
 //$POST_["name"]的に、普通にPOSTとして受け取れる！
-$var1 = $_POST[0];
-$var2 = $_POST[1];
+//$GETで来ても受け取るように変更by koji
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+  $userNumber = $_GET[0];
+  $choice = $_GET[1];
+}else {
+  $userNumber = $_POST[0]; //浅井追記
+  $choice = $_POST[1];
+}
 
 $dm = "dummy";
 
