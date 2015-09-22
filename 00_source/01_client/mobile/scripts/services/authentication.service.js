@@ -5,8 +5,8 @@
         .module('app')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'RemoconService'];
+    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, RemoconService) {
         var service = {};
 
         service.Login = Login;
@@ -22,10 +22,10 @@ var transform = function(data){
 }
 $http({
     method : 'POST',
-    url : '../../02_server/login_m.php',
+    url : '../../02_server/login_m_test.php',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
     transformRequest: transform,
-    data: { userID: username, password: password }
+    data: { userName: username, password: password }
 }).success(function(data, status, headers, config) {
     callback(data)
 }).error(function(data, status, headers, config) {
@@ -35,11 +35,12 @@ $http({
 
         }
 
-        function SetCredentials(username, password) {
+        function SetCredentials(usernum, username, password) {
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {
                 currentUser: {
+                    usernum: usernum,
                     username: username,
                     authdata: authdata
                 }

@@ -10,20 +10,14 @@
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                controller: 'MypageController',
-                templateUrl: 'views/mypage.view.html',
+                controller: 'ChoiceController',
+                templateUrl: 'views/choice.view.html',
                 controllerAs: 'vm'
             })
 
             .when('/login', {
                 controller: 'LoginController',
                 templateUrl: 'views/login.view.html',
-                controllerAs: 'vm'
-            })
-
-            .when('/choise', {
-                controller: 'ChoiseController',
-                templateUrl: 'views/choise.view.html',
                 controllerAs: 'vm'
             })
 
@@ -40,7 +34,7 @@
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/login']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');
