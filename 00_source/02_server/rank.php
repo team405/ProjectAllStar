@@ -12,48 +12,58 @@ $path="";
 $result="false";
 $resultDesc="";
 
-//answerを並べてる
+//もらったquesIDのtime(start)を取得
 if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
-  $path = "data/".$userID.'/'.$contentID.'/';
-
-  //もらったquesIDのtimeを取得
+    $path = "data/".$userID.'/'.$contentID.'/';
     $starts = file($path."starttimestamp.csv", FILE_IGNORE_NEW_LINES);
     foreach ($starts as $starttimestamp) {
       $start_array = explode(",", $starttimestamp);
-      if($start_array[0] = $quesID){
-          $time = $start_array[1];
-          return true;
-      }else{
-        return false;
+      if($start_array[0] === $quesID){
+          $time_start = $start_array[1];
+          $result="true";
       }
+      }
+    }else{
+      $resultDesc="fuck";
+      echo "fuck_check";
     }
 
-//答えがあってるかの確認のためにっ答えを取得
-$filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
-$fileData = file_get_contents($filename);
-$decode = json_decode($fileData, true);
-$answer_b = $decode[???];
+    //答えがあってるかの確認のために答えを取得
+    $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
+    $fileData = file_get_contents($filename);
+    $decode = json_decode($fileData, true);
+    $correct = $decode["correctNumber"];
+    $quesSec = $decode["quesSec"]
 
-    //取得したtimeとanswer_timeを比較
+    //取得したtime_startとanswer_timeを比較
     $answers = file($path."answer.csv", FILE_IGNORE_NEW_LINES);
     foreach ($answers as $answer) {
       $answer_array = explode(",", $answer);
-      $time_a = $answer_array[3]-$time;
-      if(10 => $time_a　&& $answer_array[2] = $answer_b){
-        echo $answer_array[0], ceil($time_a)*1000;
+      $time_gap = $answer_array[3] - $time_start;
+      if($quesSec => $time_gap　&& $answer_array[2] === $correct){
+        $winner = array($answer_array[0], ceil($time_a*1000));
       }else{
-        return false;
+      $resultDesk = "fuck";
+      echo "fuck_answer";
       }
     }
-    //明日治す…
-  $result = "true";
-} else{
-  $resultDesc="fuck";
-}
 
+//mobileuserから正解者の名前を取得
+    $mobileusers = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
+    foreach ($mobileusers as $mobileuser) {
+      $mobileuser_array = explode(",", $mobileuser);
+      if($mobileuser_array[0] === $winner[0]){
+        $winner_name = $answer_array[2];
+      }else{
+      $resultDesk = "fuck";
+      echo "fuck_mobileuser";
+      }
+    }
 
+//配列作り
+$rank = array($winner_name,);
 
-$b = json_encode(array('result' => $result,'resultDesc' => $resultDesc));
+$b = json_encode(array('result' => $result,'resultDesc' => $resultDesc,'rank' => $rank));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
