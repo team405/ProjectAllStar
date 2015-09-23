@@ -40,7 +40,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
     foreach ($answers as $answer) {
       $answer_array = explode(",", $answer);
       $time_a = $answer_array[2] - $time_start;
-      if($time_a <= $quesSec && $answer_array[1] == $correct){
+      if(0 <= $time_a && $time_a <= $quesSec && $answer_array[1] == $correct){
         $winner[] = array( "userNumber" => (int)$answer_array[0], "ansSec" => $time_a);
       }
     }
@@ -51,7 +51,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
     foreach ($mobileusers as $mobileuser) {
       $mobileuser_array = explode(",", $mobileuser);
       for($i =0; $i < count($winner); $i++){
-        if($mobileuser_array[1] == $winner[$i]["userNumber"]){
+        if($mobileuser_array[0] == $winner[$i]["userNumber"]){
           $tmp_array = array("userName" => $mobileuser_array[1]);
           $winner[$i] = $winner[$i] + $tmp_array;
         }
