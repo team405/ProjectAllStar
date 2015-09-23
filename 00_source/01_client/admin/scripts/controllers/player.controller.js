@@ -16,6 +16,7 @@
     ct.anssum = [];
     ct.quesSec = 0;
     ct.ranks = [];
+    ct.correctChoice = null;
     //前説が0、質問中が1、答え表示中が2
 
     ct.prePicPath="";
@@ -36,6 +37,7 @@
 
     function loadQuestion(){
         ct.prePicPath=ct.choicePicPath0=ct.choicePicPath1=ct.choicePicPath2=ct.choicePicPath3=""
+        ct.correctChoice = null;
         ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
         .then(function (response) {
             if (response.result) {
@@ -76,6 +78,8 @@
         .then(function (response) {
             if (response.result) {
                 ct.anssum = response.ansSum;
+                ct.correctChoice = ct.contents.correctNumber;
+                console.log(ct.correctChoice)
             } else {
             FlashService.Error(response.resultdesc);
             }
