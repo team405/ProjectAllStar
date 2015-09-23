@@ -23,7 +23,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $b = json_encode($decode);
 } else{
   $resultDesc="fuck";
-  $b = json_decode(array('result' => $result, 'resultDesc' => $resultDesc));
+  $b = json_encode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
