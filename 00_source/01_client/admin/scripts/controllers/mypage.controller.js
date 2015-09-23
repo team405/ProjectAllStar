@@ -35,7 +35,8 @@
         function playContents(contentid) {
             console.log(contentid);
             $rootScope.globals["currentContent"] = {
-                    contentid: contentid
+                    contentid: contentid,
+                    quesSum: quesSum
                 };
                 console.log($rootScope.globals);
 

@@ -142,3 +142,36 @@ header.jumbotron h1 {
     padding-top: 50px;
 
 }
+
+.choiceArea{
+    position: relative;
+    width: 400px;
+    height: 250px;
+}
+.choiceArea .answerArea{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+}
+.choiceArea .choicePicArea{
+    width: 100%;
+    height: 100%;
+    /*background-image: url("../../02_server/sample.png");*/
+}
+.choiceArea .choiceTextArea{
+    width: 100%;
+    position: absolute;
+    padding: 25px;
+}
+
+
+#answerArea{
+    
+}
+
+#answerArea div{
+
+}

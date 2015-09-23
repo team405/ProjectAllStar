@@ -38,7 +38,25 @@
         function GetQuestion(userid,contentid,quesid) {
             return $http({
                 method : 'POST',
-                url : '../../02_server/ques_test.php',
+                url : '../../02_server/ques.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {userID:userid,contentID:contentid,quesID:quesid},
+            }).then(handleSuccess, handleError('Error getting Content'));
+
+        }
+        function StartQuestion(userid,contentid,quesid) {
+            return $http({
+                method : 'POST',
+                url : '../../02_server/start.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {userID:userid,contentID:contentid,quesID:quesid},
+            }).then(handleSuccess, handleError('Error getting Content'));
+
+        }
+        function GetAnswer(userid,contentid,quesid) {
+            return $http({
+                method : 'POST',
+                url : '../../02_server/ans.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
             }).then(handleSuccess, handleError('Error getting Content'));

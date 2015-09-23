@@ -11,9 +11,17 @@
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
 	ct.quesid = 0;
-	ct.contents = [];
+	ct.contents = null;
     ct.pre=0;
+    ct.anssum = [];
     //前説が0、質問中が1、答え表示中が2
+
+    ct.prePicPath="";
+    ct.choicePicPath0="";
+    ct.choicePicPath1="";
+    ct.choicePicPath2="";
+    ct.choicePicPath3="";
+
     ct.clickContainer=clickContainer;
 
         initController();
@@ -21,33 +29,99 @@
         function initController() {
             //loadCurrentUser();
             //loadAllUsers();
-	    loadContents();
+	    loadQuestion();
         }
 
-	function loadContents(){
-	    ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
+    function loadQuestion(){
+        ct.prePicPath=ct.choicePicPath0=ct.choicePicPath1=ct.choicePicPath2=ct.choicePicPath3=""
+        ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
+        .then(function (response) {
+            if (response.result) {
+            ct.contents = response;
+                if(response.preKind == "picture"){
+                    ct.prePicPath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/pre.jpg";
+                }
+                if(response.choiceKind == "picture"){
+                    ct.choicePicPath0="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/choicePic0.jpg";
+                    ct.choicePicPath1="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/choicePic1.jpg";
+                    ct.choicePicPath2="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/choicePic2.jpg";
+                    ct.choicePicPath3="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/choicePic3.jpg";
+                }
+
+
+
+            } else {
+            FlashService.Error(response.resultdesc);
+            }
+        });
+    }
+    function startQuestion(){
+        ContentService.StartQuestion($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
+        .then(function (response) {
+            if (response.result) {
+
+            } else {
+            FlashService.Error(response.resultdesc);
+            }
+        });
+    }
+	function getAnswer(){
+	    ContentService.GetAnswer($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
 		.then(function (response) {
 		    if (response.result) {
-			ct.contents = response;
+                ct.anssum = response.ansSum;
 		    } else {
 			FlashService.Error(response.resultdesc);
 		    }
 		});
 	}
 
-        function loadCurrentUser() {
-            UserService.GetByUsername($rootScope.globals.currentUser.username)
-                .then(function (user) {
-                    vm.user = user;
-                });
-        }
 
         function clickContainer() {
-            if(ct.pre){
-                ct.pre=false;
-            }else{
-                ct.pre=true;
+            ct.pre++;
+            switch (ct.pre){
+              case 1://問題画面
+                startQuestion();
+                startCountTimer();
+                break;
+              case 2://解答画面
+                getAnswer();
+
+                break;
+              case 3://前説画面。ランキング画面が実装されたらここはランキング画面
+                ct.quesid++;
+                ct.pre = 0;
+                    if(ct.quesid < $rootScope.globals.currentContent.quesSum){
+                        loadQuestion;
+                    
+                    }else{
+                        $location.path('/mypage');
+                    }
+                break;
+                case 4://前説画面
+                break;
             }
+        }
+
+        function startCountTimer(){
+            var timerID;
+
+            function countstart() {
+                timerID = setInterval('countdown()',1000);
+            }
+
+            function countstop() {
+                clearInterval(timerID);
+            }
+
+            function countdown() {
+                if (ct.contents.quesSec < 0){
+                    countstop();
+                }else{
+                    ct.contents.quesSec--;
+                }
+            }
+
         }
 
     }
