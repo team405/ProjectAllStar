@@ -10,14 +10,14 @@
     <div ng-view></div>
 
     <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
-         <a class="close" data-dismiss="alert" href="#">X</a>
+         <a class="close" data-dismiss="alert" href="javascript:location.reload();">X</a>
          <h4 class="alert-heading">Info</h4>
            <div ng-bind="flash.message"></div>
     </div>
 
     <div class="credits text-center">
         <p>
-            
+
         </p>
     </div>
 
