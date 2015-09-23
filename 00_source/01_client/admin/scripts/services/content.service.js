@@ -22,6 +22,8 @@
 
         service.GetByUserId = GetByUserId;
         service.GetQuestion = GetQuestion;
+        service.StartQuestion = StartQuestion;
+        service.GetAnswer = GetAnswer;
 
         return service;
 

@@ -5,8 +5,8 @@
         .module('app')
         .controller('MypageController', MypageController);
 
-    MypageController.$inject = ['$location','ContentService', '$rootScope'];
-    function MypageController($location, ContentService, $rootScope) {
+    MypageController.$inject = ['$location','ContentService', '$rootScope','FlashService'];
+    function MypageController($location, ContentService, $rootScope,FlashService) {
         var ct = this;
 
         //ユーザのすべてのコンテンツ
@@ -33,13 +33,10 @@
                 });
         }
         function playContents(contentid) {
-            console.log(contentid);
-            $rootScope.globals["currentContent"] = {
+           $rootScope.globals["currentContent"] = {
                     contentid: contentid,
-                    quesSum: quesSum
+                    quesSum: (ct.contents.filter(function(item, index){if (item.contentID == String(contentid)) return true;})[0].quesSum)
                 };
-                console.log($rootScope.globals);
-
 
             $location.path('/player');
         }
@@ -47,3 +44,6 @@
     }
 
 })();
+
+
+

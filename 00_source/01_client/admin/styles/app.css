@@ -89,7 +89,7 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #3498db;
+	background-color: #ff9328;
 	border-color: transparent;
     padding-right: 15px;
     padding-left: 15px;
@@ -125,7 +125,7 @@ i {
 /* HeaderWrap */
 header.jumbotron {
 	/* background: url(../img/bg01.jpg) no-repeat center top; */
-	background-color: #3498db;
+	background-color: #ffbf7f;
 }
 
 header.jumbotron h1 {
@@ -140,7 +140,7 @@ header.jumbotron h1 {
 
 .container {
     padding-top: 50px;
-
+    position: relative;
 }
 
 .choiceArea{
@@ -167,11 +167,14 @@ header.jumbotron h1 {
     padding: 25px;
 }
 
-
-#answerArea{
-    
+.container #questionArea{
+    position: absolute;
 }
 
-#answerArea div{
-
+.container #timerArea{
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    font-size: 60px;
 }
+

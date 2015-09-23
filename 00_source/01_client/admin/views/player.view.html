@@ -1,16 +1,21 @@
 ﻿<div class="container" ng-if="ct.pre == 0" ng-click="ct.clickContainer()">
+<audio src="../sound/allstar_preques.wav" autoplay/>
   <div ng-if="ct.prePicPath">{{ct.contents.preText}}</div>
-  <div width="800px" height="500px">
+  <div id="preArea">
     <div ng-if="!ct.prePicPath">
-      <h2>{{ct.contents.preText}}
-      <h2>
+      <h2>{{ct.contents.preText}}<h2>
     </div>
     <div ng-if="ct.prePicPath">
       <img src="{{ct.prePicPath}}" width="800px" height="500px" />
     </div>
   </div>
 </div>
-<div class="container" ng-if="ct.pre" ng-click="ct.clickContainer()">{{ct.contents.quesText}} {{ct.contents.quesSec}}
+<div class="container" ng-if="ct.pre" ng-click="ct.clickContainer()">
+<audio src="../sound/allstar_ques.wav" autoplay ng-if="ct.pre == 1"/>
+<audio src="../sound/allstar_answer.wav" autoplay ng-if="ct.pre == 2"/>
+<div id="timerArea">{{ct.quesSec}}</div>
+<div id="questionArea">
+<h2>{{ct.contents.quesText}}</h2>
   <table border ="1" width="800px" height="500px">
     <tr>
       <td>
@@ -21,7 +26,7 @@
           <div class="choicePicArea" ng-if="ct.choicePicPath0">
             <img src="{{ct.choicePicPath0}}" width="400px" height="250px"/>
           </div>
-          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[0]}} {{ct.contents.ansSum[0]}}人</div>
+          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[0]}} {{ct.anssum[0]}}人</div>
         </div>
       </td>
       <td>
@@ -32,7 +37,7 @@
           <div class="choicePicArea" ng-if="ct.choicePicPath1">
             <img src="{{ct.choicePicPath1}}" width="400px" height="250px"/>
           </div>
-          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[1]}} {{ct.contents.ansSum[1]}}人</div>
+          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[1]}} {{ct.anssum[1]}}人</div>
         </div>
       </td>
     </tr>
@@ -45,7 +50,7 @@
           <div class="choicePicArea" ng-if="ct.choicePicPath2">
             <img src="{{ct.choicePicPath2}}" width="400px" height="250px"/>
           </div>
-          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[2]}} {{ct.contents.ansSum[2]}}人</div>
+          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[2]}} {{ct.anssum[2]}}人</div>
         </div>
       </td>
       <td>
@@ -56,9 +61,15 @@
           <div class="choicePicArea" ng-if="ct.choicePicPath3">
             <img src="{{ct.choicePicPath3}}" width="400px" height="250px"/>
           </div>
-          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[3]}} {{ct.contents.ansSum[3]}}人</div>
+          <div class="answerArea" ng-if="ct.pre == 2">{{ct.contents.ansText[3]}} {{ct.anssum[3]}}人</div>
         </div>
       </td>
     </tr>
   </table>
+  </div>
 </div>
+          <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
+             <a class="close" data-dismiss="alert" href="#">X</a>
+             <h4 class="alert-heading">Info</h4>
+               <div ng-bind="flash.message"></div>
+        </div>

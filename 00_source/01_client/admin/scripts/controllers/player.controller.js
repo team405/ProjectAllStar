@@ -5,8 +5,8 @@
         .module('app')
         .controller('PlayerController', PlayerController);
 
-    PlayerController.$inject = ['ContentService', '$rootScope'];
-    function PlayerController(ContentService, $rootScope) {
+    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','FlashService'];
+    function PlayerController(ContentService, $rootScope, $interval, FlashService) {
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
@@ -14,6 +14,7 @@
 	ct.contents = null;
     ct.pre=0;
     ct.anssum = [];
+    ct.quesSec = 0;
     //前説が0、質問中が1、答え表示中が2
 
     ct.prePicPath="";
@@ -38,6 +39,7 @@
         .then(function (response) {
             if (response.result) {
             ct.contents = response;
+            ct.quesSec = response.quesSec;
                 if(response.preKind == "picture"){
                     ct.prePicPath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/pre.jpg";
                 }
@@ -104,24 +106,17 @@
         }
 
         function startCountTimer(){
-            var timerID;
 
-            function countstart() {
-                timerID = setInterval('countdown()',1000);
-            }
 
-            function countstop() {
-                clearInterval(timerID);
-            }
-
-            function countdown() {
-                if (ct.contents.quesSec < 0){
-                    countstop();
+            var interval = $interval(function() {
+                if (ct.quesSec < 1){
+                    $interval.cancel(interval);
                 }else{
-                    ct.contents.quesSec--;
+                    ct.quesSec--;
                 }
-            }
+            }, 1000);
 
+        
         }
 
     }
