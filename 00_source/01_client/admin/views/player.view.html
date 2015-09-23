@@ -1,19 +1,18 @@
 ﻿<div class="container" ng-if="ct.pre == 0" ng-click="ct.clickContainer()">
 <audio src="../sound/allstar_preques.wav" autoplay/>
-  <div ng-if="ct.prePicPath">{{ct.contents.preText}}</div>
   <div id="preArea">
+  <div ng-if="ct.prePicPath"><h3>{{ct.contents.preText}}</h3></div>
     <div ng-if="!ct.prePicPath">
-      <h2>{{ct.contents.preText}}<h2>
+      <h1>{{ct.contents.preText}}<h1>
     </div>
     <div ng-if="ct.prePicPath">
       <img src="{{ct.prePicPath}}" width="800px" height="500px" />
     </div>
   </div>
 </div>
-<div class="container" ng-if="ct.pre" ng-click="ct.clickContainer()">
+<div class="container" ng-if="ct.pre == 1 || ct.pre == 2" ng-click="ct.clickContainer()">
 <audio src="../sound/allstar_ques.wav" autoplay ng-if="ct.pre == 1"/>
 <audio src="../sound/allstar_answer.wav" autoplay ng-if="ct.pre == 2"/>
-<div id="timerArea">{{ct.quesSec}}</div>
 <div id="questionArea">
 <h2>{{ct.contents.quesText}}</h2>
   <table border ="1" width="800px" height="500px">
@@ -67,7 +66,30 @@
     </tr>
   </table>
   </div>
+<div id="timerArea">{{ct.quesSec}}</div>
 </div>
+<div class="container" ng-if="ct.pre == 3" ng-click="ct.clickContainer()">
+<audio src="../sound/allstar_rank.wav" autoplay/>
+<div id="rankArea">
+    <h3>Q.{{ct.quesid+1}} Ranking</h3>
+    <table class="table table-striped">
+      <thead>
+  <tr>
+    <th>ニックネーム</th>
+    <th width="200">タイム</th>
+  </tr>
+      </thead>
+      <tbody>
+  <tr ng-repeat="rank in ct.ranks">
+    <td class="animate-show-hide">{{rank.userName}}</td>
+    <td class="animate-show-hide">{{rank.ansSec}}</td>
+  </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
+
+
           <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
              <a class="close" data-dismiss="alert" href="#">X</a>
              <h4 class="alert-heading">Info</h4>

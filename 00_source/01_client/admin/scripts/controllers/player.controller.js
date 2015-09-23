@@ -5,8 +5,8 @@
         .module('app')
         .controller('PlayerController', PlayerController);
 
-    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','FlashService'];
-    function PlayerController(ContentService, $rootScope, $interval, FlashService) {
+    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','FlashService','$location'];
+    function PlayerController(ContentService, $rootScope, $interval, FlashService, $location) {
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
@@ -15,6 +15,7 @@
     ct.pre=0;
     ct.anssum = [];
     ct.quesSec = 0;
+    ct.ranks = [];
     //前説が0、質問中が1、答え表示中が2
 
     ct.prePicPath="";
@@ -40,6 +41,9 @@
             if (response.result) {
             ct.contents = response;
             ct.quesSec = response.quesSec;
+        console.log(ct.quesSec)
+        console.log(ct.quesSec)
+        console.log(ct.quesSec)
                 if(response.preKind == "picture"){
                     ct.prePicPath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/pre.jpg";
                 }
@@ -68,15 +72,26 @@
         });
     }
 	function getAnswer(){
-	    ContentService.GetAnswer($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
+        ContentService.GetAnswer($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
+        .then(function (response) {
+            if (response.result) {
+                ct.anssum = response.ansSum;
+            } else {
+            FlashService.Error(response.resultdesc);
+            }
+        });
+    }
+    function getRanking(){
+        ContentService.GetRanking($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
 		.then(function (response) {
 		    if (response.result) {
-                ct.anssum = response.ansSum;
+                ct.ranks = response.rank;
 		    } else {
 			FlashService.Error(response.resultdesc);
 		    }
 		});
-	}
+
+    }
 
 
         function clickContainer() {
@@ -91,16 +106,18 @@
 
                 break;
               case 3://前説画面。ランキング画面が実装されたらここはランキング画面
+                getRanking();
+
+                break;
+                case 4://前説画面
                 ct.quesid++;
                 ct.pre = 0;
                     if(ct.quesid < $rootScope.globals.currentContent.quesSum){
-                        loadQuestion;
+                        loadQuestion();
                     
                     }else{
-                        $location.path('/mypage');
+                        $location.path('/');
                     }
-                break;
-                case 4://前説画面
                 break;
             }
         }

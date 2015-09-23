@@ -24,6 +24,7 @@
         service.GetQuestion = GetQuestion;
         service.StartQuestion = StartQuestion;
         service.GetAnswer = GetAnswer;
+        service.GetRanking = GetRanking;
 
         return service;
 
@@ -59,6 +60,15 @@
             return $http({
                 method : 'POST',
                 url : '../../02_server/ans.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {userID:userid,contentID:contentid,quesID:quesid},
+            }).then(handleSuccess, handleError('Error getting Content'));
+
+        }
+        function GetRanking(userid,contentid,quesid) {
+            return $http({
+                method : 'POST',
+                url : '../../02_server/rank_test.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
             }).then(handleSuccess, handleError('Error getting Content'));
