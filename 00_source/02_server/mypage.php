@@ -16,7 +16,7 @@ foreach ($lines as $line) {
   if ($user === $userID) {
     $auth_check = "true";
     $auth_message = "";
-    $con = array('contentID' => $line_array[1],'contentName' => $line_array[2]);
+    $con = array('contentID' => $line_array[1],'contentName' => $line_array[2],'quesSum' =>  $line_array[3]);
     array_push($contents_array, $con);
   }else{
     $auth_check = "false";
