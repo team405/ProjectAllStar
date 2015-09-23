@@ -1,4 +1,4 @@
-<?
+<?php
 if($_SERVER["REQUEST_METHOD"] != "POST"){
    $userID = $_GET["userID"];
    $contentID = $_GET["contentID"];
@@ -10,37 +10,46 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 }
 
 $choice = array(0, 0, 0, 0);
-//Še‘I‘ðŽˆ–ˆ‚Ìl”B‰Šú’l‚Í‘S•”0
-
-$fp = fopen('/data/'.$userID.'/'.$contentID.'/answer.csv', "r")
-
-while($oneanswer = fgetcsv($fp)){
-	//$oneanswer 1s‚²‚Æ‚Éanswer.csv‚ðŠi”[
-
-	if($oneanswer[2] - $starttimestamp < $quesSec){
-		//$oneanswer[2]‚Íƒ‚ƒoƒCƒ‹‚ª‰ñ“š‚µ‚½ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-
-		$choice($oneanswer[1])++;
-		//$oneanwer[1]‚Íƒ‚ƒoƒCƒ‹‚ª‰ñ“š‚µ‚½‘I‘ðŽˆ
-	}
-}
-
-fclose($fp);
-
+//å„é¸æŠžè‚¢æ¯Žã®äººæ•°ã€‚åˆæœŸå€¤ã¯å…¨éƒ¨0
 
 if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
 
   $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini'; 
   $fileData = file_get_contents($filename);
   $decode = json_decode($fileData, true);
+  $quesSec = $decode["quesSec"];
 
+  $path = "data/".$userID.'/'.$contentID.'/';
+
+  $getTimeStamp = 0.0;
+  $starts = file($path."starttimestamp.csv", FILE_IGNORE_NEW_LINES);
+  //ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å–å¾—ã™ã‚‹
+  foreach ($starts as $starttimestamp) {
+    $start_array = explode(",", $starttimestamp);
+    if($start_array[0] === $quesID){
+      $getTimeStamp = $start_array[1];
+    }
+  }
+  //å›žç­”ã‚’é›†è¨ˆã™ã‚‹
+  $answers = file($path."answer.csv", FILE_IGNORE_NEW_LINES);
+  foreach ($answers as $userans) {
+    $ans_array = explode(",", $userans);
+    if($ans_array[2] - $getTimeStamp < $quesSec){
+      $ans_num = $ans_array[1];
+      $choice[$ans_num] = $choice[$ans_num] + 1 ;
+    }
+  }
+  $resultDesc="";
   $result = "true";
+  $calresult=array('ansSum' => $choice, 'result' => $result, 'resultDesc' => $resultDesc);
+  $decode += $calresult;
+  $b = json_encode($decode);
 
 } else{
   $resultDesc="fuck";
+  $b = json_decode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
 
-$b = json_encode(array('correctID' => $decode['correctNumber'], 'ansText' => $decode['ansText'], 'ansSum' => $choice), 'result' => $result, 'resultdesc' => $resultDesc);
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
