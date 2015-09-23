@@ -68,7 +68,7 @@
         function GetRanking(userid,contentid,quesid) {
             return $http({
                 method : 'POST',
-                url : '../../02_server/rank_test.php',
+                url : '../../02_server/rank.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
             }).then(handleSuccess, handleError('Error getting Content'));

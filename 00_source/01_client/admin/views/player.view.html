@@ -19,6 +19,7 @@
     <tr>
       <td>
         <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 0}">
+        <div class="choiceNumberArea">①</div>
           <div class="choiceTextArea" ng-if="!ct.choicePicPath0">
             <h1>{{ct.contents.choiceText[0]}}</h1>
           </div>
@@ -30,6 +31,7 @@
       </td>
       <td>
         <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 1}">
+        <div class="choiceNumberArea">②</div>
           <div class="choiceTextArea" ng-if="!ct.choicePicPath1">
             <h1>{{ct.contents.choiceText[1]}}</h1>
           </div>
@@ -43,6 +45,7 @@
     <tr>
       <td>
         <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 2}">
+        <div class="choiceNumberArea">③</div>
           <div class="choiceTextArea" ng-if="!ct.choicePicPath2">
             <h1>{{ct.contents.choiceText[2]}}</h1>
           </div>
@@ -54,6 +57,7 @@
       </td>
       <td>
         <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 3}">
+        <div class="choiceNumberArea">④</div>
           <div class="choiceTextArea" ng-if="!ct.choicePicPath3">
             <h1>{{ct.contents.choiceText[3]}}</h1>
           </div>
