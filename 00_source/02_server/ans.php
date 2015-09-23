@@ -34,7 +34,8 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $answers = file($path."answer.csv", FILE_IGNORE_NEW_LINES);
   foreach ($answers as $userans) {
     $ans_array = explode(",", $userans);
-    if($ans_array[2] - $getTimeStamp < $quesSec){
+    $a = $ans_array[2] - $getTimeStamp;
+    if( 0 <= $a && $a <= $quesSec){
       $ans_num = $ans_array[1];
       $choice[$ans_num] = $choice[$ans_num] + 1 ;
     }
