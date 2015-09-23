@@ -28,9 +28,9 @@ if ($userID !== "" && $contentID !== "") {
           $count++;
         }
       }
-      $list[] = array("userID" => (int) $user_array[0] , "userName" => $user_array[1], "correctSum" => $count, "ansSecSum" => $sumSec);
+      $list[] = array("userNumber" => (int) $user_array[0] , "userName" => $user_array[1], "correctSum" => $count, "ansSecSum" => $sumSec);
     }
-    
+
     //winner配列の順番を変更する
     foreach($list as $key => $row){
       $correctSum[$key] = $row["correctSum"];
