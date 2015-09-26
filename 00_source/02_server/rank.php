@@ -68,10 +68,11 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
       $line = $quesID.",".$winner[$j]["userNumber"].",".$winner[$j]["userName"].",".$winner[$j]["ansSec"].PHP_EOL;
       file_put_contents("answermembers.csv", $line,FILE_APPEND);
     }
+    $result = "true";
     $b = json_encode(array("rank"=> $winner,'result' => $result, 'resultDesc' => $resultDesc));
 
 }else{
-  $resultDesc="fuck";
+  $resultDesc="Error";
   $b = json_encode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
 

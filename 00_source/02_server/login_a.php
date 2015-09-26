@@ -18,7 +18,7 @@ $a = login($userID, $password);
 if($a){
   $dm ="";
 }else{
-  $dm ="fuck";
+  $dm ="Error";
 }
 //userIDはゆくゆくはuserNameに変更by kj
 $b = json_encode(array('result' => $a, 'userID' => $userID, 'resultdesc' => $dm));
