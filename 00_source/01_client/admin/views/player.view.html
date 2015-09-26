@@ -1,7 +1,9 @@
 ﻿<div class="container" ng-if="ct.pre == 0" ng-click="ct.clickContainer()">
 <audio src="../sound/allstar_preques.wav" autoplay/>
   <div id="preArea">
-  <div ng-if="ct.prePicPath"><h3>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h3></div>
+    <div ng-if="ct.prePicPath">
+      <h3>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h3>
+    </div>
     <div ng-if="!ct.prePicPath">
       <h1>Q.{{ct.quesid+1}} {{ct.contents.preText}}<h1>
     </div>
