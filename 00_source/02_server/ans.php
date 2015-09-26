@@ -45,7 +45,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $calresult=array('ansSum' => $choice, 'result' => $result, 'resultDesc' => $resultDesc);
   $b = json_encode($calresult);
 } else{
-  $resultDesc="fuck";
+  $resultDesc="Error";
   $b = json_decode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
 header("Access-Control-Allow-Origin: *");

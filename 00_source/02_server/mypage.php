@@ -20,7 +20,7 @@ foreach ($lines as $line) {
     array_push($contents_array, $con);
   }else{
     $auth_check = "false";
-    $auth_message = "fuck";
+    $auth_message = "Error";
   }
 }
 

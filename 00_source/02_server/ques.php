@@ -22,7 +22,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $decode += $arraystatus;
   $b = json_encode($decode);
 } else{
-  $resultDesc="fuck";
+  $resultDesc="Error";
   $b = json_encode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
 header("Access-Control-Allow-Origin: *");

@@ -62,7 +62,7 @@ if ($userName !== "" && $password !== "") {
 } else {
     $a = false;
     $userNum="";
-    $dm = "fuck";
+    $dm = "Error";
 }
 $b = json_encode(array('userNumber' => $userNum, 'result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");

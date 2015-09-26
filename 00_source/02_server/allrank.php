@@ -41,7 +41,7 @@ if ($userID !== "" && $contentID !== "") {
     $result = "true";
     $b = json_encode(array("allrank"=> $list,'result' => $result, 'resultDesc' => $resultDesc));
 }else{
-  $resultDesc="fuck";
+  $resultDesc="Error";
   $b = json_encode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
 header("Access-Control-Allow-Origin: *");
