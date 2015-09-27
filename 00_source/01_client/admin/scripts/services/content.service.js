@@ -25,6 +25,7 @@
         service.StartQuestion = StartQuestion;
         service.GetAnswer = GetAnswer;
         service.GetRanking = GetRanking;
+        service.GetAllRanking = GetAllRanking;
 
         return service;
 
