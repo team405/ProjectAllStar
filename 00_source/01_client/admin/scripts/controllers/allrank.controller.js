@@ -10,7 +10,7 @@
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
-    ct.ranks = [];
+    ct.allranks = [];
 
 
         initController();
@@ -25,7 +25,7 @@
         ContentService.GetAllRanking($rootScope.globals.currentUser.username, ct.contentid)
 		.then(function (response) {
 		    if (response.result) {
-                ct.ranks = response.allrank;
+                ct.allranks = response.allrank;
 		    } else {
 			FlashService.Error(response.resultdesc);
 		    }

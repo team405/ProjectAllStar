@@ -26,12 +26,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 50px;
+    -webkit-text-stroke: 1px black;
+    color: white;
+    text-shadow: 3px 3px 0 #000,
+     -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: 900;
+}
+
+h2 {
+        font-size: 30px;
+        -webkit-text-stroke: 1px black;
+        color: white;
+        text-shadow: 1.5px 1.5px 0 #000,
+         -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        font-weight: 500;
 }
 
 h3 {
-	color: #95a5a6;
+	color: #000;
 	font-weight: 400;
+    font-size: 20px;
 }
 
 h4 {
@@ -89,7 +104,7 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #ff9328;
+	background-color: #E89603;
 	border-color: transparent;
     padding-right: 15px;
     padding-left: 15px;
@@ -125,17 +140,20 @@ i {
 /* HeaderWrap */
 header.jumbotron {
 	/* background: url(../img/bg01.jpg) no-repeat center top; */
-	background-color: #ffbf7f;
+	background-color: #FFC110;
 }
 
-header.jumbotron h1 {
+header.jumbotron h2 {
 	margin-top: 60px;
 	margin-bottom: 15px;
 	color: white;
-	font-size: 45px;
+	font-size: 30px;
 	font-weight: 300;
 	letter-spacing: 1px;
+
 }
+
+/* Component */
 
 
 .container {
@@ -170,7 +188,6 @@ header.jumbotron h1 {
 .choiceArea .choicePicArea{
     width: 100%;
     height: 100%;
-    /*background-image: url("../../02_server/sample.png");*/
 }
 .choiceArea .choiceTextArea{
     width: 100%;
@@ -187,7 +204,8 @@ header.jumbotron h1 {
     top: 100px;
     right: 0px;
     font-size: 100px;
-
+    font-weight: 900;
+        -webkit-text-stroke: 3px black;
 color: #fff;
 text-shadow:
   0px 0px 1px #666,
