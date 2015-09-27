@@ -71,7 +71,16 @@
                 url : '../../02_server/rank.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
-            }).then(handleSuccess, handleError('Error getting Content'));
+            }).then(handleSuccess, handleError('Error getting Rank'));
+
+        }
+        function GetAllRanking(userid,contentid) {
+            return $http({
+                method : 'POST',
+                url : '../../02_server/allrank.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {userID:userid,contentID:contentid},
+            }).then(handleSuccess, handleError('Error getting Allrank'));
 
         }
 

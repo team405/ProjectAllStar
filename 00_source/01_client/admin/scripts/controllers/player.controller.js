@@ -120,7 +120,7 @@
                         loadQuestion();
                     
                     }else{
-                        $location.path('/');
+                        $location.path('/allrank');
                     }
                 break;
             }

@@ -39,6 +39,12 @@
                 controllerAs: 'ct'
             })
 
+            .when('/allrank', {
+                controller: 'AllrankController',
+                templateUrl: 'views/allrank.view.html',
+                controllerAs: 'ct'
+            })
+
             .otherwise({ redirectTo: '/login' });
     }
 
