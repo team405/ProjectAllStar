@@ -141,7 +141,9 @@
                     case 51:
                     case 52:
                     ct.pre++
-                    getAnswer(Number(e.which) - 49);
+                    var newAnswer = Number(e.which) - 49
+                    ct.contents.correctNumber= newAnswer
+                    getAnswer(newAnswer);
                     break;
                 }
                 break;
