@@ -12,14 +12,14 @@
 	ct.contentid = $rootScope.globals.currentContent.contentid;
 	ct.quesid = 0;
 	ct.contents = null;
-    ct.pre=0;
+    ct.phase=0;
     ct.anssum = [];
     ct.quesSec = 0;
     ct.ranks = [];
     ct.correctChoice = null;
     //前説が0、質問中が1、答え表示中が2
 
-    ct.prePicPath="";
+    ct.prePath="";
     ct.choicePicPath0="";
     ct.choicePicPath1="";
     ct.choicePicPath2="";
@@ -41,19 +41,23 @@
         }
 
     function loadQuestion(){
-        ct.prePicPath=ct.choicePicPath0=ct.choicePicPath1=ct.choicePicPath2=ct.choicePicPath3=""
+        ct.prePath=ct.choicePicPath0=ct.choicePicPath1=ct.choicePicPath2=ct.choicePicPath3=""
         ct.correctChoice = null;
         ContentService.GetQuestion($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
         .then(function (response) {
             if (response.result) {
             ct.contents = response;
+            console.log("aaa")
+            console.log(ct.contents.preKind)
             ct.quesSec = response.quesSec;
-        console.log(ct.quesSec)
-        console.log(ct.quesSec)
-        console.log(ct.quesSec)
                 if(response.preKind == "picture"){
-                    ct.prePicPath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/pre.jpg";
+                    ct.prePath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/pre.jpg";
+                }else if(response.preKind == "intro"){
+                    ct.prePath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/intro.mp3";
+                }else if(response.preKind == "movie"){
+                    ct.prePath="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/intro.mp4";
                 }
+
                 if(response.choiceKind == "picture"){
                     ct.choicePicPath0="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/choicePic0.jpg";
                     ct.choicePicPath1="../../02_server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/choicePic1.jpg";
@@ -104,8 +108,8 @@
 
 
         function clickContainer() {
-            ct.pre++;//次の画面にする
-            switch (ct.pre){
+            ct.phase++;//次の画面にする
+            switch (ct.phase){
               case 1://問題画面
                 startQuestion();
                 startCountTimer();
@@ -120,7 +124,7 @@
                 break;
                 case 4://前説画面
                 ct.quesid++;
-                ct.pre = 0;
+                ct.phase = 0;
                     if(ct.quesid < $rootScope.globals.currentContent.quesSum){
                         loadQuestion();
                     
@@ -131,19 +135,41 @@
             }
         }
         function handleKeyUp(e) {//キーが押されたときに実行
-            console.log(ct.pre)
-            console.log(e.which)
-            switch (ct.pre){//画面で分岐させる。
+            switch (ct.phase){//画面で分岐させる。
+              case 0://前説画面
+                switch (e.which){//数字キーの1から4のとき
+                    case 32:
+                    clickContainer();
+                    break;
+                }
+                break;
               case 1://問題画面
                 switch (e.which){//数字キーの1から4のとき
+                    case 32:
+                    clickContainer();
+                    break;
                     case 49:
                     case 50:
                     case 51:
                     case 52:
-                    ct.pre++
+                    ct.phase++
                     var newAnswer = Number(e.which) - 49
                     ct.contents.correctNumber= newAnswer
                     getAnswer(newAnswer);
+                    break;
+                }
+                break;
+              case 2://回答画面
+                switch (e.which){//数字キーの1から4のとき
+                    case 32:
+                    clickContainer();
+                    break;
+                }
+                break;
+              case 3://ランキング画面
+                switch (e.which){//数字キーの1から4のとき
+                    case 32:
+                    clickContainer();
                     break;
                 }
                 break;

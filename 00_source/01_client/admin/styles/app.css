@@ -248,3 +248,11 @@ text-shadow:
 .animate-show-hide.ng-hide-add {
   opacity:1;
 }
+
+audio {
+    width: 100%;
+    margin-top: 50px;
+}
+video {
+    height: 500px;
+}
