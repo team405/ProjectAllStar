@@ -33,6 +33,11 @@
             //loadCurrentUser();
             //loadAllUsers();
 	    loadQuestion();
+
+        angular.element(window).off('keyup');
+        angular.element(window).on('keyup', function(e) {
+                handleKeyUp(e);
+            });
         }
 
     function loadQuestion(){
@@ -73,8 +78,8 @@
             }
         });
     }
-	function getAnswer(){
-        ContentService.GetAnswer($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
+	function getAnswer(newAnswer){
+        ContentService.GetAnswer($rootScope.globals.currentUser.username, ct.contentid, ct.quesid, newAnswer)
         .then(function (response) {
             if (response.result) {
                 ct.anssum = response.ansSum;
@@ -99,7 +104,7 @@
 
 
         function clickContainer() {
-            ct.pre++;
+            ct.pre++;//次の画面にする
             switch (ct.pre){
               case 1://問題画面
                 startQuestion();
@@ -124,6 +129,24 @@
                     }
                 break;
             }
+        }
+        function handleKeyUp(e) {//キーが押されたときに実行
+            console.log(ct.pre)
+            console.log(e.which)
+            switch (ct.pre){//画面で分岐させる。
+              case 1://問題画面
+                switch (e.which){//数字キーの1から4のとき
+                    case 49:
+                    case 50:
+                    case 51:
+                    case 52:
+                    ct.pre++
+                    getAnswer(Number(e.which) - 49);
+                    break;
+                }
+                break;
+            }
+            console.log(e);
         }
 
         function startCountTimer(){

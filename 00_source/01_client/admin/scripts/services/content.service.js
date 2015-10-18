@@ -57,12 +57,17 @@
             }).then(handleSuccess, handleError('Error getting Content'));
 
         }
-        function GetAnswer(userid,contentid,quesid) {
+        function GetAnswer(userid,contentid,quesid,newAnswer) {
+            var data = {userID:userid,contentID:contentid,quesID:quesid}
+            
+            if(newAnswer != null){
+                data["newAnswer"] = newAnswer;
+            }
             return $http({
                 method : 'POST',
                 url : '../../02_server/ans.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: {userID:userid,contentID:contentid,quesID:quesid},
+                data: data,
             }).then(handleSuccess, handleError('Error getting Content'));
 
         }
