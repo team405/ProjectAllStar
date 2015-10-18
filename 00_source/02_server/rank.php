@@ -37,12 +37,17 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
 
     //正解者一覧を作成する winner(userNumber,Sec)
     $answers = file($path."answer.csv", FILE_IGNORE_NEW_LINES);
+    $ansExistFlag = False;
     foreach ($answers as $answer) {
       $answer_array = explode(",", $answer);
       $time_a = $answer_array[2] - $time_start;
       if(0 <= $time_a && $time_a <= $quesSec && $answer_array[1] == $correct){
         $winner[] = array( "userNumber" => (int)$answer_array[0], "ansSec" => $time_a);
+        $ansExistFlag = True;
       }
+    }
+    if($ansExistFlag == False){
+      $winner[0] =array("userNumber" => 0, "ansSec" =>0);
     }
 
     //mobileuserから正解者の名前を取得
