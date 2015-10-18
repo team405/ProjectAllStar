@@ -3,11 +3,43 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
    $userID = $_GET["userID"];
    $contentID = $_GET["contentID"];
    $quesID = $_GET["quesID"];
+   if(isset($_GET["newAnswer"])){
+    $newAnswer = $_GET["newAnswer"];
+  }
 }else {
    $userID = $_POST["userID"];
    $contentID = $_POST["contentID"];
    $quesID = $_POST["quesID"];
+   if(isset($_POST["newAnswer"])){
+    $newAnswer = $_POST["newAnswer"];
+  }
 }
+
+//キーボード入力での画面遷移の場合はconfig.ini書き換え
+if(isset($newAnswer)){
+  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini'; 
+  $fileData = file_get_contents($filename);
+  $decode = json_decode($fileData, true);
+  $decode["correctNumber"] = (int)$newAnswer;
+  $c = json_encode($decode,JSON_UNESCAPED_UNICODE);
+
+  $fp = fopen($filename, 'wb');
+  //fileopenできなかった場合の処置も必要だよ！
+  if ($fp){
+      if (flock($fp, LOCK_EX)){
+          if (fwrite($fp,  $c) === FALSE){
+  //            print('ファイル書き込みに失敗しました<br>');
+          }
+
+          flock($fp, LOCK_UN);
+      }else{
+  //        print('ファイルロックに失敗しました<br>');
+      }
+  }
+  $flag = fclose($fp);
+} 
+
+
 
 $choice = array(0, 0, 0, 0);
 //各選択肢毎の人数。初期値は全部0

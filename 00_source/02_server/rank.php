@@ -42,6 +42,8 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
       $time_a = $answer_array[2] - $time_start;
       if(0 <= $time_a && $time_a <= $quesSec && $answer_array[1] == $correct){
         $winner[] = array( "userNumber" => (int)$answer_array[0], "ansSec" => $time_a);
+      }else{
+        $winner[0] = array( "userNumber" => 0, "ansSec" => 0);
       }
     }
 
