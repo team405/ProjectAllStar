@@ -15,7 +15,7 @@
 
         return service;
 
-        function Login(username, password, callback) {
+        function Login(username, password, contentid, callback) {
 
 var transform = function(data){
         return $.param(data);
@@ -25,7 +25,7 @@ $http({
     url : '../../02_server/login_m.php',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
     transformRequest: transform,
-    data: { userName: username, password: password }
+    data: { userName: username, password: password,contentid: contentid }
 }).success(function(data, status, headers, config) {
     callback(data)
 }).error(function(data, status, headers, config) {
@@ -35,13 +35,14 @@ $http({
 
         }
 
-        function SetCredentials(usernum, username, password) {
+        function SetCredentials(usernum, username, password, contentid) {
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {
                 currentUser: {
                     usernum: usernum,
                     username: username,
+                    contentid: contentid,
                     authdata: authdata
                 }
             };
