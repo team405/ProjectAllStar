@@ -1,14 +1,21 @@
 <?php
-$con=mysql_connect("localhost","dbsmaq","ufbn516");
-mysql_set_charset('utf8',$con);
-//mysql_query("SET NAMES 'SJIS'",$con);
-mysql_select_db("dbsmaq",$con);
+// mysqliクラスのオブジェクトを作成
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+} else {
+    $mysqli->set_charset("utf8");
+}
 
-$sql=INSERT INTO 'adminUser'(adminUid, adminPass, adminName) VALUE("bbb", "bbc", "bcc");
-mysql_query($sql,$con);
-$sql=SELECT * FROM adminUser WHERE adminUid = "bbb";
-$rs=mysql_query($sql,$con);
-$row=mysql_fetch_assoc($rs);
-echo $row[adminPass];
-echo $row[adminName];
+//ここに処理書くよ
+$sql = "INSERT INTO adminUser VALUES ('bbb','bbb','bbb') ";
+if ( $mysqli->query($sql)) {
+        echo "INSERT成功";
+    // 結果セットを閉じる
+}
+//処理書き終わったよ
+
+// DB接続を閉じる
+$mysqli->close();
 ?>
