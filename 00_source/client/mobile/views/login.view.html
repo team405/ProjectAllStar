@@ -1,0 +1,42 @@
+﻿        <div class="container">
+            
+        <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
+             <a class="close" data-dismiss="alert" href="#">X</a>
+             <h4 class="alert-heading">Info</h4>
+               <div ng-bind="flash.message"></div>
+        </div>
+
+
+
+<div class="row">
+<div class="col-md-4 col-md-offset-2">
+    <h2><img src="../img/SmaQ_logo_1.png" width="120">へようこそ</h2>
+    <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+    <form name="form" ng-submit="vm.login()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            
+            <input type="text" name="username" id="username" class="form-control" placeholder="username" ng-model="vm.username" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">ニックネームを入力してください</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            
+            <input type="password" name="password" id="password" class="form-control" placeholder="password" ng-model="vm.password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">パスワードを入力してください</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.contentid.$dirty && form.contentid.$error.required }">
+            
+            <input type="number" name="contentid" id="contentid" class="form-control" placeholder="contentid" ng-model="vm.contentid" required />
+            <span ng-show="form.contentid.$dirty && form.contentid.$error.required" class="help-block">コンテンツIDを入力してください</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">ログイン</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </form>
+</div>
+
+
+
+</div>
+</div>
+

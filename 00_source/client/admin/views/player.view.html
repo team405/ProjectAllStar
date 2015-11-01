@@ -1,0 +1,124 @@
+﻿<div class="container" ng-if="ct.phase == 0" ng-click="ct.clickContainer()">
+<audio src="../sound/allstar_preques.wav" autoplay/>
+  <div id="preArea">
+
+  <div id="preAreaText" ng-if="ct.contents.preKind == 'text'">
+      <h1>Q.{{ct.quesid+1}} {{ct.contents.preText}}<h1>
+  </div>
+  <div id="preAreaPic" ng-if="ct.contents.preKind == 'picture'">
+      <h2>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h2>
+    <div>
+      <img src="{{ct.prePath}}" width="800px" height="500px" />
+    </div>
+  </div>
+
+  <div id="preAreaIntro" ng-if="ct.contents.preKind == 'intro'">
+      <h1>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h1>
+    <div>
+      <audio src="{{ct.prePath}}" controls />
+    </div>
+  </div>
+
+  <div id="preAreaMovie" ng-if="ct.contents.preKind == 'movie'">
+      <h2>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h2>
+    <div>
+      <video controls >
+      <source src="{{ct.prePath}}" type='video/mp4' />
+      </video>
+    </div>
+  </div>
+
+  </div>
+
+
+  </div>
+</div>
+<div class="container" ng-if="ct.phase == 1 || ct.phase == 2" ng-click="ct.clickContainer()">
+<audio src="../sound/allstar_ques.wav" autoplay ng-if="ct.phase == 1"/>
+<audio src="../sound/allstar_answer.wav" autoplay ng-if="ct.phase == 2"/>
+<div id="questionArea">
+<h2>Q.{{ct.quesid+1}} {{ct.contents.quesText}}</h2>
+  <table border ="1" width="800px" height="500px">
+    <tr>
+      <td>
+        <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 0}" style="background-color:#CCCCFF">
+        <div class="choiceNumberArea">①</div>
+          <div class="choiceTextArea" ng-if="!ct.choicePicPath0">
+            <h1>{{ct.contents.choiceText[0]}}</h1>
+          </div>
+          <div class="choicePicArea" ng-if="ct.choicePicPath0">
+            <img src="{{ct.choicePicPath0}}" width="390px" height="240px"/>
+          </div>
+          <div class="answerArea" ng-if="ct.phase == 2">{{ct.contents.ansText[0]}} {{ct.anssum[0]}}人</div>
+        </div>
+      </td>
+      <td>
+        <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 1}" style="background-color:#CCFFCC">
+        <div class="choiceNumberArea">②</div>
+          <div class="choiceTextArea" ng-if="!ct.choicePicPath1">
+            <h1>{{ct.contents.choiceText[1]}}</h1>
+          </div>
+          <div class="choicePicArea" ng-if="ct.choicePicPath1">
+            <img src="{{ct.choicePicPath1}}" width="390px" height="240px"/>
+          </div>
+          <div class="answerArea" ng-if="ct.phase == 2">{{ct.contents.ansText[1]}} {{ct.anssum[1]}}人</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 2}" style="background-color:#FFFFCC">
+        <div class="choiceNumberArea">③</div>
+          <div class="choiceTextArea" ng-if="!ct.choicePicPath2">
+            <h1>{{ct.contents.choiceText[2]}}</h1>
+          </div>
+          <div class="choicePicArea" ng-if="ct.choicePicPath2">
+            <img src="{{ct.choicePicPath2}}" width="390px" height="240px"/>
+          </div>
+          <div class="answerArea" ng-if="ct.phase == 2">{{ct.contents.ansText[2]}} {{ct.anssum[2]}}人</div>
+        </div>
+      </td>
+      <td>
+        <div class="choiceArea" ng-class="{'correctChoice':ct.correctChoice == 3}" style="background-color:#FFCCCC">
+        <div class="choiceNumberArea">④</div>
+          <div class="choiceTextArea" ng-if="!ct.choicePicPath3">
+            <h1>{{ct.contents.choiceText[3]}}</h1>
+          </div>
+          <div class="choicePicArea" ng-if="ct.choicePicPath3">
+            <img src="{{ct.choicePicPath3}}" width="390px" height="240px"/>
+          </div>
+          <div class="answerArea" ng-if="ct.phase == 2">{{ct.contents.ansText[3]}} {{ct.anssum[3]}}人</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  </div>
+<div id="timerArea">{{ct.quesSec}}</div>
+</div>
+<div class="container" ng-if="ct.phase == 3" ng-click="ct.clickContainer()">
+<audio src="../sound/allstar_rank.wav" autoplay/>
+<div id="rankArea">
+    <h2>Q.{{ct.quesid+1}} Ranking</h2>
+    <table class="table table-striped">
+      <thead>
+  <tr>
+    <th>ニックネーム</th>
+    <th width="200">タイム</th>
+  </tr>
+      </thead>
+      <tbody>
+  <tr ng-repeat="rank in ct.ranks">
+    <td class="animate-show-hide">{{rank.userName}}</td>
+    <td class="animate-show-hide">{{rank.ansSec}}</td>
+  </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
+
+
+          <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
+             <a class="close" data-dismiss="alert" href="#">X</a>
+             <h4 class="alert-heading">Info</h4>
+               <div ng-bind="flash.message"></div>
+        </div>

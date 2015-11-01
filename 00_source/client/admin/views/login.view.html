@@ -1,0 +1,85 @@
+﻿
+        <header class="jumbotron">
+        <div class="container">
+            
+        <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
+             <a class="close" data-dismiss="alert" href="#">X</a>
+             <h4 class="alert-heading">Info</h4>
+               <div ng-bind="flash.message"></div>
+        </div>
+
+
+
+<div class="row">
+<div class="col-md-4 col-md-offset-2">
+    <h2><img src="../img/SmaQ_logo.png" width="120">へようこそ</h2>
+    <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+    <form name="form" ng-submit="vm.login()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            
+            <input type="text" name="username" id="username" class="form-control" placeholder="username" ng-model="vm.username" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">ユーザIDを入力してください</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            
+            <input type="password" name="password" id="password" class="form-control" placeholder="password" ng-model="vm.password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">パスワードを入力してください</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">ログイン</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a href="#/register" class="btn btn-link"><b>登録</b></a>
+        </div>
+    </form>
+</div>
+                <div class="col-md-4">
+                    <img class="img-responsive" src="../img/ipad-hand.png" alt="">
+                </div>
+
+
+
+</div>
+</div>
+
+
+            </header>
+
+
+
+                <div class="container">
+        <div class="row mt centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1><img src="../img/SmaQ_logo_1.png" width="120">とは？</h1>
+                <h3><img src="../img/SmaQ_logo_1.png" width="70">とはイベントで盛り上がれるサービスです。<br>
+                忘年会やパーティ等にもご利用いただけます。</h3>
+            </div>
+        </div><!-- /row -->
+
+        <!-- CAROUSEL -->
+        <div class="row mt centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  </ol>
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="../img/p01.png" alt="">
+                    </div>
+                    <div class="item">
+                      <img src="../img/p02.png" alt="">
+                    </div>
+                    <div class="item">
+                      <img src="../img/p03.png" alt="">
+                    </div>
+                  </div>
+                </div>
+            </div><!-- /col-lg-8 -->
+        </div><!-- /row -->
+
+             </div>

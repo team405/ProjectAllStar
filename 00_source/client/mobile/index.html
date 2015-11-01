@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>SmaQ</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link href="styles/app.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-view></div>
+
+    <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
+         <a class="close" data-dismiss="alert" href="javascript:location.reload();">X</a>
+         <h4 class="alert-heading">Info</h4>
+           <div ng-bind="flash.message"></div>
+    </div>
+
+    <div class="credits text-center">
+        <p>
+
+        </p>
+    </div>
+
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-route.min.js"></script>
+    <script src="../js/angular-cookies.min.js"></script>
+    <!-- <script src="../js/ui-bootstrap-tpls-0.13.4.min.js"></script> -->
+
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/authentication.service.js"></script>
+    <script src="scripts/services/flash.service.js"></script>
+
+    <!-- Real user service that uses an api -->
+    <script src="scripts/services/remocon.service.js"></script>
+
+    <!-- Fake user service for demo that uses local storage
+    <script src="app-services/user.service.local-storage.js"></script> -->
+
+    <script src="scripts/controllers/login.controller.js"></script>
+    <script src="scripts/controllers/choice.controller.js"></script>
+</body>
+</html>

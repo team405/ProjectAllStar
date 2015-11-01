@@ -1,0 +1,30 @@
+<div class="container">
+<audio src="../sound/allstar_rank.wav" autoplay/>
+<div id="rankArea">
+    <h2>ALL Ranking</h2>
+    <table class="table table-striped">
+      <thead>
+  <tr>
+    <th>ニックネーム</th>
+    <th width="200">正解数</th>
+    <th width="200">タイム</th>
+  </tr>
+      </thead>
+      <tbody>
+  <tr ng-repeat="rank in ct.allranks">
+    <td class="animate-show-hide">{{rank.userName}}</td>
+    <td class="animate-show-hide">{{rank.correctSum}}</td>
+    <td class="animate-show-hide">{{rank.ansSecSum}}</td>
+  </tr>
+      </tbody>
+    </table>
+    </div>
+    <p><a href="#/" class="btn btn-primary">マイページへ戻る</a>
+</div>
+
+
+          <div class="alert alert-block" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" >
+             <a class="close" data-dismiss="alert" href="#">X</a>
+             <h4 class="alert-heading">Info</h4>
+               <div ng-bind="flash.message"></div>
+        </div>
