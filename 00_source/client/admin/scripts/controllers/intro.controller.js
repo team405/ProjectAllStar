@@ -23,7 +23,13 @@
             handleKeyUp(e);
         });
 
+        //ごみをクリア
+        for(i=0; i<10; i++)
+        {
+            window.clearInterval(i);
+        }
         $timeout(function(){
+            
             $('#mobileUserList').scrollbox({
               linear: true,
               step: 1,
