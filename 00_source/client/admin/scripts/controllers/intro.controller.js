@@ -12,6 +12,7 @@
 	ct.contentid = $rootScope.globals.currentContent.contentid;
     ct.phase = 0;
     ct.mobileNames = [];
+    var interval
 
     ct.clickContainer=clickContainer;
 
@@ -34,7 +35,7 @@
               linear: true,
               step: 1,
               delay: 0,
-              speed: 100
+              speed: 150
             });
             startCountTimer();
         });  
@@ -68,7 +69,7 @@
 
     function startCountTimer(){
 
-        var interval = $interval(function() {
+        interval = $interval(function() {
             ContentService.GetMobileUserList(ct.contentid)
             .then(function (response) {
                 if (response.result) {
@@ -81,6 +82,12 @@
 
     
     }
+    $rootScope.$on('$destroy',function(){
+        if(interval){
+            $interval.cancel(promiseFromInterval);   
+        }
+    });
+
     }
 
 
