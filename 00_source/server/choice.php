@@ -13,9 +13,8 @@ function write($userNumber,$choice,$contentID) {
                   }
 
 //ここに処理書くよ
-$sql = "INSERT INTO ansTime VALUES('$contentID','$userNumber',$choice,$now)";
+$sql = "INSERT INTO ansTime VALUES('$contentID','$userNumber','$choice','$now')";
 if ( $mysqli->query($sql)) {
-        echo "INSERT成功";
     // 結果セットを閉じる
 }
 //処理書き終わったよ
