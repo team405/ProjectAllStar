@@ -2,8 +2,26 @@
 // 受け取った情報をfileに書き込む
 function write($userID, $password) {
     if($userID != "" && $password != ""){
-        $regster = "$userID,$password" . PHP_EOL;
-        file_put_contents("admin_user.csv", $regster, FILE_APPEND);
+// mysqliクラスのオブジェクトを作成
+      $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+      if ($mysqli->connect_error) {
+        echo $mysqli->connect_error;
+        exit();
+      } else {
+          $mysqli->set_charset("utf8");
+        }
+
+      $sql = "INSERT INTO adminUser VALUES ('$userID','$password','tempolaly') ";
+      if ( $mysqli->query($sql)) {
+// 結果セットを閉じる
+      }
+//処理書き終わったよ
+
+// DB接続を閉じる
+$mysqli->close();
+
+//        $regster = "$userID,$password" . PHP_EOL;
+//        file_put_contents("admin_user.csv", $regster, FILE_APPEND);
         return true;
     }
     return false;

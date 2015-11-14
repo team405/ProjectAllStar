@@ -1,22 +1,69 @@
 <?php
-function getMaxVal(){
-    $tmpVal=0;
-    $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
-    foreach ($lines as $line){
-      $user = explode(",", $line);
-      if($tmpVal < (int)$user[0]){
-        $tmpVal = (int)$user[0];
-      }
-    }
-    return $tmpVal;
-}
+//function getMaxVal(){
+//    $tmpVal=0;
+//    $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
+//    foreach ($lines as $line){
+//      $user = explode(",", $line);
+//      if($tmpVal < (int)$user[0]){
+//        $tmpVal = (int)$user[0];
+//      }
+//    }
+//    return $tmpVal;
+//}
 function userEntry($userName,$password) {
+    $contentID = 0; //<-contentID
+    $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+    if ($mysqli->connect_error) {
+        echo $mysqli->connect_error;
+        exit();
+    } else {
+        $mysqli->set_charset("utf8");
+    }
+
+    $sql = "SELECT * FROM mobileUser";
+    $result = $mysqli->query($sql);
+    $mobileUnum = $result->num_rows;
+    $result->close();
+    $sql = "INSERT INTO mobileUser VALUES('$mobileUnum','$contentID','$userName','$password')";
+    $mysqli->query($sql);
+// 結果セットを閉じる
+//処理書き終わったよ
+
+// DB接続を閉じる
+    $mysqli->close();
+    return $mobileUnum;
+/*
     $userNum = getMaxVal() +1 ;
     $line = $userNum.",".$userName.",".$password. PHP_EOL;
     file_put_contents("mobile_user.csv", $line, FILE_APPEND);
     return $userNum;
+*/
 }
 function userCheck($userName, $password) {
+    $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+    if ($mysqli->connect_error) {
+        echo $mysqli->connect_error;
+        exit();
+    } else {
+        $mysqli->set_charset("utf8");
+    }
+
+    $sql = "SELECT * FROM mobileUser";
+    $result = $mysqli->query($sql);
+    if($row = $result->fetch_assoc()){
+      if($row['mobileName']==$userName){
+        if($row['mobilePass']){
+          return $row['mobileUnum'];
+        }else{
+          return 999999;
+        }
+      }
+    }
+    $result->free();
+// 結果セットを閉じる
+    return 0;
+
+/*
     // file関数はファイル全体を読み込んで配列に格納する
     $lines = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
     foreach ($lines as $line) {
@@ -30,6 +77,7 @@ function userCheck($userName, $password) {
         } 
     }
     return 0;
+*/    
 }
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){

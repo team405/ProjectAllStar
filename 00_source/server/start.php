@@ -8,15 +8,33 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
    $contentID = $_POST["contentID"];
    $quesID = $_POST["quesID"];
 }
-$path="";
 $result="false";
 $resultDesc="";
 
 if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
-  $path = "data/".$userID.'/'.$contentID.'/';
   $now = microtime(true);
-  $answer = $quesID. "," . $now. PHP_EOL;
-  file_put_contents($path."starttimestamp.csv", $answer, FILE_APPEND);
+//  $answer = $quesID. "," . $now. PHP_EOL;
+//  file_put_contents($path."starttimestamp.csv", $answer, FILE_APPEND);
+
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+} else {
+    $mysqli->set_charset("utf8");
+}
+
+//ここに処理書くよ
+$sql = "UPDATE question SET startTimeStamp = $now WHERE contentID = $contentID";
+if ( $mysqli->query($sql)) {
+        echo "INSERT成功";
+    // 結果セットを閉じる
+}
+//処理書き終わったよ
+
+// DB接続を閉じる
+$mysqli->close();
+
   $result = "true";
 } else{
   $resultDesc="fuck";
