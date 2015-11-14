@@ -15,7 +15,7 @@
 
         function sendChoice(choice) {
             vm.dataLoading = true;
-            RemoconService.SendChoice($rootScope.globals.currentUser.usernum,choice)
+            RemoconService.SendChoice($rootScope.globals.currentUser.usernum,$rootScope.globals.currentUser.contentid,choice)
                 .then(function (response) {
                     if (response.result) {
                         FlashService.Success("Datasend Success");

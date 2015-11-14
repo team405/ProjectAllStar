@@ -24,12 +24,12 @@
 
 
 
-        function SendChoice(usernum,choice) {
+        function SendChoice(usernum,contentid,choice) {
             return $http({
                 method : 'POST',
                 url : '../../02_server/choice.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: {userNumber:usernum,choice:choice},
+                data: {userNumber:usernum,contentID:contentid,choice:choice},
             }).then(handleSuccess, handleError('Error sending Choice'));
 
         }
