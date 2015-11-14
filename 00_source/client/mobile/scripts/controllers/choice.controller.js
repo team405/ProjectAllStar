@@ -18,6 +18,7 @@
             RemoconService.SendChoice($rootScope.globals.currentUser.usernum,$rootScope.globals.currentUser.contentid,choice)
                 .then(function (response) {
                     if (response.result) {
+                        alert("解答番号 "+choice+" を送信しました");
                         FlashService.Success("Datasend Success");
                         vm.dataLoading = false;
                     } else {
