@@ -33,6 +33,12 @@
                 controllerAs: 'vm'
             })
 
+            .when('/intro', {
+                controller: 'IntroController',
+                templateUrl: 'views/intro.view.html',
+                controllerAs: 'ct'
+            })
+
             .when('/player', {
                 controller: 'PlayerController',
                 templateUrl: 'views/player.view.html',

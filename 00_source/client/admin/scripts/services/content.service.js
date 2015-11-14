@@ -26,6 +26,7 @@
         service.GetAnswer = GetAnswer;
         service.GetRanking = GetRanking;
         service.GetAllRanking = GetAllRanking;
+        service.GetMobileUserList = GetMobileUserList;
 
         return service;
 
@@ -88,6 +89,15 @@
                 data: {userID:userid,contentID:contentid},
             }).then(handleSuccess, handleError('Error getting Allrank'));
 
+        }
+
+        function GetMobileUserList(contentid) {
+            return $http({
+                method : 'POST',
+                url : '../../server/viewuser.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {contentID:contentid},
+            }).then(handleSuccess, handleError('Error getting Allrank'));
         }
 
 

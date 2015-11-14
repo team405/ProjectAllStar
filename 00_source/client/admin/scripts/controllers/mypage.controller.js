@@ -38,7 +38,7 @@
                     quesSum: (ct.contents.filter(function(item, index){if (item.contentID == String(contentid)) return true;})[0].quesSum)
                 };
 
-            $location.path('/player');
+            $location.path('/intro');
         }
 
     }
