@@ -24,7 +24,7 @@ $userArray = array();
 $sql = "SELECT * FROM mobileUser WHERE contentID = '$contentID'";
 if($sql_result = mysqli_query($link,$sql)){
     while($row = mysqli_fetch_assoc($sql_result)){
-        array_push($userArray, $row['mobileName']);
+        array_push($userArray,array( "mobileName" => $row['mobileName']));
         $result="true";
 }
 }else{
