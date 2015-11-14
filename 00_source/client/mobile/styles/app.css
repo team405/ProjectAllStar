@@ -11,7 +11,7 @@ body {
   background-color: #f2f2f2;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 200%;
     color: #555;
 
     -webkit-font-smoothing: antialiased;
@@ -145,4 +145,26 @@ header.jumbotron h1 {
 .container {
     padding-top: 50px;
 
+}
+
+/* スマホ横画面用 */
+@media screen and (max-width: 480px) {
+  .container{padding:0}
+  div[class^="col-"] {padding:0}
+  .row {margin:0;}
+}
+/* スマホ縦画面用 */
+@media screen and (max-width: 320px) {
+  .container{padding:0}
+  div[class^="col-"] {padding:0}
+  .row {margin:0;}
+}
+
+.btn{
+    font-size: 4em;
+}
+.form-control{
+    font-size: 3em;
+    height: 2em;
+    width: 100%;
 }
