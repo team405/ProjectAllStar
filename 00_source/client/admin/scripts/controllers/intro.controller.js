@@ -24,19 +24,14 @@
             handleKeyUp(e);
         });
 
-        //ごみをクリア
-        for(var i=0; i<10; i++)
-        {
-            window.clearInterval(i);
-        }
         $timeout(function(){
             
-            $('#mobileUserList').scrollbox({
-              linear: true,
-              step: 1,
-              delay: 0,
-              speed: 150
-            });
+            // $('#mobileUserList').scrollbox({
+            //   linear: true,
+            //   step: 1,
+            //   delay: 0,
+            //   speed: 150
+            // });
             startCountTimer();
         });  
 
@@ -44,6 +39,7 @@
 
  
     function startContent(){
+        $interval.cancel(interval);
         $location.path('/player');
     }
 
@@ -74,6 +70,7 @@
             .then(function (response) {
                 if (response.result) {
                     ct.mobileNames = response.user
+                    
                 } else {
                 FlashService.Error(response.resultdesc);
                 }
@@ -82,9 +79,9 @@
 
     
     }
-    $rootScope.$on('$destroy',function(){
+    $rootScope.$on('$routeChangeStart',function(){
         if(interval){
-            $interval.cancel(promiseFromInterval);   
+            $interval.cancel(interval);   
         }
     });
 
