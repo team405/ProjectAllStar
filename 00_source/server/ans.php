@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
 //キーボード入力での画面遷移の場合はconfig.ini書き換え
 if(isset($newAnswer)){
-  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini'; 
+  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
   $fileData = file_get_contents($filename);
   $decode = json_decode($fileData, true);
   $decode["correctNumber"] = (int)$newAnswer;
@@ -37,7 +37,7 @@ if(isset($newAnswer)){
       }
   }
   $flag = fclose($fp);
-} 
+}
 
 
 
@@ -46,7 +46,7 @@ $choice = array(0, 0, 0, 0);
 
 if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
 
-  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini'; 
+  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
   $fileData = file_get_contents($filename);
   $decode = json_decode($fileData, true);
   $quesSec = $decode["quesSec"];

@@ -15,12 +15,10 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   }
 }
 
+echo "OK";
 
 //回答変更ショートカット対応
 if(isset($newAnswer)){
-//  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
-//  $fileData = file_get_contents($filename);
-
 $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
 if ($mysqli->connect_error) {
     echo $mysqli->connect_error;
@@ -29,7 +27,7 @@ if ($mysqli->connect_error) {
     $mysqli->set_charset("utf8");
 }
 //quesIDが一緒のやつのnewAnswerを反映する
-$sql = "UPDATE question SET correctNum = $newAnswer WHERE quesNum = $quesID";
+$sql = "UPDATE question SET correctNum = '$newAnswer' WHERE quesNum = '$quesID'";
 if ( $mysqli->query($sql)) {
         echo "UPDATE成功";
 }
@@ -66,7 +64,7 @@ $result->free()
 //処理書き終わったよ
 // DB接続を閉じる
 $mysqli->close();
-}/*else{
+/*else{
   echo "SELECT失敗";
 }*/
 
