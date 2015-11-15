@@ -29,7 +29,7 @@ if ($mysqli->connect_error) {
     $mysqli->set_charset("utf8");
 }
 //quesIDが一緒のやつのnewAnswerを反映する
-$sql = "UPDATE question SET correctNum = $newAnswer WHERE quesNum = $quesID";
+$sql = "UPDATE question SET correctNum = '$newAnswer' WHERE quesNum = '$quesID'";
 if ( $mysqli->query($sql)) {
         echo "UPDATE成功";
 }
