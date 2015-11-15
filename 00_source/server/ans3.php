@@ -15,8 +15,6 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   }
 }
 
-echo "OK";
-
 //回答変更ショートカット対応
 if(isset($newAnswer)){
 $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
@@ -39,34 +37,7 @@ $mysqli->close();
   echo "UPDATE失敗";
 }
 
-//テーブル：questionから必要な変数を持ってくる
-$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
-if ($mysqli->connect_error) {
-    echo $mysqli->connect_error;
-    exit();
-} else {
-    $mysqli->set_charset("utf8");
-}
-//quesIDが一緒のやつのnewAnswerを反映する
 
-
-
-$sql = "SELECT * FROM question WHERE adminUid = '$userID' AND contentID = '$contentID' AND quesNum = '$quesID'";
-if ( $result = $mysqli->query($sql)) {
-$row = $result->fetch_assoc;
-$getTimeStamp = $row['startTimeStamp'];
-$quesSec = $row['quesSec'];
-$ansNum = $row['correctNum'];
-$result->free()
-//free?rerease?どっちかわからん
-    // 結果セットを閉じる
-}
-//処理書き終わったよ
-// DB接続を閉じる
-$mysqli->close();
-/*else{
-  echo "SELECT失敗";
-}*/
 
 
 $choice = array(0, 0, 0, 0);
@@ -74,15 +45,14 @@ $choice = array(0, 0, 0, 0);
 
 if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
 
+  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
+  $fileData = file_get_contents($filename);
+  $decode = json_decode($fileData, true);
+  $quesSec = $decode["quesSec"];
 
+  $path = "data/".$userID.'/'.$contentID.'/';
 
-
-///  $quesSec = $decode["quesSec"];
-  //前回の$queSec取得
-
-/*
   $getTimeStamp = 0.0;
-  $time = microtime(true);
   $starts = file($path."starttimestamp.csv", FILE_IGNORE_NEW_LINES);
   //タイムスタンプを取得する
   foreach ($starts as $starttimestamp) {
@@ -91,21 +61,6 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
       $getTimeStamp = $start_array[1];
     }
   }
-  */
-  //前回の$getTimeStamp取得
-
-
-
-$sql = "SELECT * FROM ansTime WHERE contentID = '$contentID' AND quesNum = '$quesID'";
-if ( $result = $mysqli->query($sql)) {
-$row = $result->fetch_assoc;
-}
-// DB接続を閉じる
-$mysqli->close();
-}
-
-
-
   //回答を集計する
   $answers = file($path."answer.csv", FILE_IGNORE_NEW_LINES);
   foreach ($answers as $userans) {

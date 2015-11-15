@@ -4,39 +4,27 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 }else {
   $userID = $_POST["userID"]; //浅井追記
 }
+$lines = file("content.csv", FILE_IGNORE_NEW_LINES);
 
 $contents_array = array();
-$result = "false";
-$resultDesc = "";
+$auth_check = "";
+$auth_message = "";
 
-$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
-if ($mysqli->connect_error) {
-    echo $mysqli->connect_error;
-    exit();
+foreach ($lines as $line) {
+  $line_array = explode(",", $line);
+  $user = $line_array[0];
+  if ($user === $userID) {
+    $auth_check = "true";
+    $auth_message = "";
+    $con = array('contentID' => $line_array[1],'contentName' => $line_array[2],'quesSum' =>  $line_array[3]);
+    array_push($contents_array, $con);
+  }else{
+    $auth_check = "false";
+    $auth_message = "Error";
+  }
 }
 
-$link = mysqli_connect("localhost", "dbsmaq", "ufbn516", "dbsmaq");
-
-$contents_array = array();
-
-//ここに処理書くよ
-$sql = "SELECT distinct contentID,contentName,quesLinNum FROM question WHERE adminUid = '$userID' ";
-if($sql_result = mysqli_query($link,$sql)){
-    while($row = mysqli_fetch_assoc($sql_result)){
-        array_push($contents_array,array( "contentID" => $row['contentID'],"contentName" => $row['contentName'],"quesSum" => $row['quesLinNum']));
-        $result="true";
-}
-}else{
-    $resultDesc="error";
-}
-mysqli_free_result($sql_result);
-// 結果セットを閉じる
-// DB接続を閉じる
-mysqli_close($link);
-
-
-
-$b = json_encode(array('result' => $result, 'resultdesc' => $resultDesc, 'contents' => $contents_array));
+$b = json_encode(array('result' => $auth_check, 'resultdesc' => $auth_message, 'contents' => $contents_array));
 
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
