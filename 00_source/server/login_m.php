@@ -20,11 +20,12 @@ function userEntry($userName,$password) {
         $mysqli->set_charset("utf8");
     }
 
+    $now = microtime(true);
     $sql = "SELECT * FROM mobileUser";
     $result = $mysqli->query($sql);
     $mobileUnum = $result->num_rows;
     $result->close();
-    $sql = "INSERT INTO mobileUser VALUES('$mobileUnum','$contentID','$userName','$password')";
+    $sql = "INSERT INTO mobileUser VALUES('$mobileUnum','$contentID','$userName','$password',$now)";
     $mysqli->query($sql);
 // 結果セットを閉じる
 //処理書き終わったよ
@@ -74,10 +75,10 @@ function userCheck($userName, $password) {
            }else{
                return 999999;
            }
-        } 
+        }
     }
     return 0;
-*/    
+*/
 }
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){
@@ -106,7 +107,21 @@ if ($userName !== "" && $password !== "") {
     $a = true;
     $userNum = userCheck($userName,$password);
     $dm = "redirect";
-  }
+    $now = microtime(true);
+
+    $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+    if ($mysqli->connect_error) {
+        echo $mysqli->connect_error;
+        exit();
+    } else {
+        $mysqli->set_charset("utf8");
+    }
+
+
+    $sql = "UPDATE mobileUser SET loginTimeStamp = $now WHERE mobileUnum = '$userNum'";
+    $result = $mysqli->query($sql);
+    $mysqli->close();
+}
 } else {
     $a = false;
     $userNum="";
