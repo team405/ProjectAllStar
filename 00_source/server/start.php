@@ -27,7 +27,6 @@ if ($mysqli->connect_error) {
 //ここに処理書くよ
 $sql = "UPDATE question SET startTimeStamp = $now WHERE contentID = $contentID";
 if ( $mysqli->query($sql)) {
-        echo "INSERT成功";
     // 結果セットを閉じる
 }
 //処理書き終わったよ
