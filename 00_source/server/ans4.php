@@ -55,10 +55,8 @@ if ($mysqli->connect_error) {
 
 //startTimeStamp,quesSec,ansNum取得
 $sql = "SELECT * FROM question WHERE adminUid = '$userID' AND contentID = $contentID AND quesNum = $quesID";
-echo $sql;
 if ( $sqlresult = $mysqli->query($sql)) {
   while($row = $sqlresult->fetch_array()){
-    echo "aaaaaaaaaaaaaaaaa";
     $startTimeStamp = $row['startTimeStamp'];
     $quesSec = $row['quesSec'];
     $ansNum = $row['correctNum'];
