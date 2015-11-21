@@ -40,7 +40,7 @@ order by ansTime
     $i=0;
     while($row = $sqlresult->fetch_array()){
       $winner[$i]["userNumber"] = $row[1];
-      $winner[$i]["UserName"] = $row[4];
+      $winner[$i]["userName"] = $row[4];
       $winner[$i]["ansSec"] = $row[2];
       $i++;
     }
