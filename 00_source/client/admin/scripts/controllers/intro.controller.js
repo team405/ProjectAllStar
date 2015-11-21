@@ -83,6 +83,7 @@
         if(interval){
             $interval.cancel(interval);   
         }
+        angular.element(window).off('keyup');
     });
 
     }

@@ -1,4 +1,4 @@
-﻿<div class="container" ng-click="ct.clickContainer()">
+﻿<div class="container player" ng-click="ct.clickContainer()">
     <div id="introduction">
 
         <div id="titleImage" ng-if="ct.phase == 0" >  
@@ -7,6 +7,7 @@
       
           <div id="introDescription" ng-if="ct.phase == 1">
             <h2>お願い</h2>
+            <p>&nbsp;</p>
             <h3>①スマートフォンあるいは携帯電話で、以下のURLにアクセスして下さい。</h3>
             <p><span style="font-weight: bold;font-size: 2.5em;">smartq.ddo.jp</span></p>
             <h3>②コンテンツIDに「<span style="color: red;font-size: 2em;"><strong>{{globals.currentContent.contentid}}</strong></span>」を入力し、お好きな名前とパスワードを入力して下さい。</h3>
@@ -15,7 +16,7 @@
 
         <div auto-scroll id="mobileUserList">
             <ul>
-                <li ng-repeat="item in ct.mobileNames">{{item.mobileName}}</li>
+                <li ng-repeat="item in ct.mobileNames"><span>{{item.mobileName}}</span></li>
             </ul>
         </div>
 

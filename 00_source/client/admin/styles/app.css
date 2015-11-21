@@ -35,9 +35,31 @@ h1 {
 }
 
 h2 {
-        padding:5px 20px;
-        /*font:bold 28px/1.6 Arial, Helvetica, sans-serif;*/
+        font-size: 30px;
+        -webkit-text-stroke: 1px black;
+        color: white;
+        text-shadow: 1.5px 1.5px 0 #000,
+         -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         font-weight: 500;
+}
+
+h3 {
+	color: #000;
+	font-weight: 400;
+    font-size: 20px;
+}
+
+h4 {
+	color: #95a5a6;
+	font-weight: 400;
+	font-size: 20px;
+}
+
+.player h1 {
+        position: relative;
+        padding:5px 20px;
+        font:bold 28px/1.6 Arial, Helvetica, sans-serif;
+        /*font-weight: 500;*/
         color:#333;
         background:#fff;
         text-shadow:
@@ -79,17 +101,111 @@ h2 {
                 );
         background-size:4px 4px;
 }
-
-h3 {
-	color: #000;
-	font-weight: 400;
-    font-size: 20px;
+ 
+.player h1:before{
+    color: #FFC110;
+    font-weight: bold;
+    font-size: 0.2em;
+    content: "Q";
+    position: absolute;
+    top: 0;
+    left: 0.6em;
+    transform: rotate(-25deg);
+    -moz-transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    -o-transform: rotate(-25deg);
+    -ms-transform: rotate(-25deg);
 }
-
-h4 {
-	color: #95a5a6;
-	font-weight: 400;
-	font-size: 20px;
+ 
+.player h1:after{
+    color: #FFC110;
+    font-weight: bold;
+    font-size: 0.2em;
+    content: "S";
+    position: absolute;
+    top: 0.8em;
+    left: 0;
+    transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+}
+.player h2 {
+        position: relative;
+        padding:5px 20px;
+        font:bold 28px/1.6 Arial, Helvetica, sans-serif;
+        /*font-weight: 500;*/
+        color:#333;
+        background:#fff;
+        text-shadow:
+            1px 1px 0 #fff,
+            2px 2px 0 #999;
+        border-top:#333 solid 3px;
+        border-bottom:#333 solid 3px;
+        background-image: -webkit-gradient(linear, left top, right bottom,
+                from(           rgba(255, 255, 255, 0.0)), 
+                color-stop(0.4, rgba(255, 255, 255, 0.0)), 
+                color-stop(0.4, rgba(0, 0, 0, 0.1)), 
+                color-stop(0.6, rgba(0, 0, 0, 0.1)), 
+                color-stop(0.6, rgba(255, 255, 255, 0.0)),
+                to(             rgba(255, 255, 255, 0.0))
+                );
+        background-image: -webkit-linear-gradient(top -45deg,
+                transparent 40%,
+                rgba(0, 0, 0, 0.1) 40%,
+                rgba(0, 0, 0, 0.1) 60%,
+                transparent 60%
+                );
+        background-image: -moz-linear-gradient(top -45deg,
+                transparent 40%,
+                rgba(0, 0, 0, 0.1) 40%,
+                rgba(0, 0, 0, 0.1) 60%,
+                transparent 60%
+                );
+        background-image: -o-linear-gradient(top -45deg,
+                transparent 40%,
+                rgba(0, 0, 0, 0.1) 40%,
+                rgba(0, 0, 0, 0.1) 60%,
+                transparent 60%
+                );
+        background-image: linear-gradient(to bottom -45deg,
+                transparent 40%,
+                rgba(0, 0, 0, 0.1) 40%,
+                rgba(0, 0, 0, 0.1) 60%,
+                transparent 60%
+                );
+        background-size:4px 4px;
+}
+ 
+.player h2:before{
+    color: #FFC110;
+    font-weight: bold;
+    font-size: 0.5em;
+    content: "Q";
+    position: absolute;
+    top: 0;
+    left: 0.6em;
+    transform: rotate(-25deg);
+    -moz-transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    -o-transform: rotate(-25deg);
+    -ms-transform: rotate(-25deg);
+}
+ 
+.player h2:after{
+    color: #FFC110;
+    font-weight: bold;
+    font-size: 0.5em;
+    content: "S";
+    position: absolute;
+    top: 0.8em;
+    left: 0;
+    transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
 }
 
 /* Paragraph & Typographic */
@@ -199,8 +315,49 @@ header.jumbotron h2 {
 }
 
 #preArea h1{
-    font-size: 50px;
     margin-top: 100px;
+    font:bold 6em Arial, Helvetica, sans-serif;
+    /*font-weight: 500;*/
+    color:#333;
+    background:#fff;
+    text-shadow:
+        1px 1px 0 #fff,
+        2px 2px 0 #999;
+    border-top:#333 solid 3px;
+    border-bottom:#333 solid 3px;
+    background-image: -webkit-gradient(linear, left top, right bottom,
+            from(           rgba(255, 255, 255, 0.0)), 
+            color-stop(0.4, rgba(255, 255, 255, 0.0)), 
+            color-stop(0.4, rgba(0, 0, 0, 0.1)), 
+            color-stop(0.6, rgba(0, 0, 0, 0.1)), 
+            color-stop(0.6, rgba(255, 255, 255, 0.0)),
+            to(             rgba(255, 255, 255, 0.0))
+            );
+    background-image: -webkit-linear-gradient(top -45deg,
+            transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+            );
+    background-image: -moz-linear-gradient(top -45deg,
+            transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+            );
+    background-image: -o-linear-gradient(top -45deg,
+            transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+            );
+    background-image: linear-gradient(to bottom -45deg,
+            transparent 40%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.1) 60%,
+            transparent 60%
+            );
+    background-size:4px 4px;
 }
 
 .choiceArea{
@@ -291,6 +448,20 @@ text-shadow:
     font-size: 1em;
     padding: 0;
 }
+#mobileUserList li{
+    font:bold 1em Arial, Helvetica, sans-serif;
+    -webkit-box-shadow: 0 2px 1px -1px #777;
+       -moz-box-shadow: 0 2px 1px -1px #777;
+            box-shadow: 0 2px 1px -1px #777;
+    margin:2px;
+    padding: 2px;
+    
+}
+#mobileUserList li span{
+    border-left:5px #F4A460 solid;
+    padding-left:10px;
+    
+}
 
 
 .animate-show-hide.ng-hide-add,
@@ -323,14 +494,14 @@ video {
 
 /* ngAnimate */
 .animeFadein.ng-enter {
- -webkit-transition: 3s linear all;
- transition: 3s linear all;
+ -webkit-transition: 2s linear all;
+ transition: 2s linear all;
  opacity: 0;
  font-size:1em;
 }
 .animeFadein.ng-enter.ng-enter-active { 
  opacity: 1;
- font-size:3em;
+ font-size:2em;
 }
 
 
