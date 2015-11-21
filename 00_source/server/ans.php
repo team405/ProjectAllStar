@@ -15,53 +15,84 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   }
 }
 
-//キーボード入力での画面遷移の場合はconfig.ini書き換え
+//回答変更ショートカット対応
 if(isset($newAnswer)){
-  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
-  $fileData = file_get_contents($filename);
-  $decode = json_decode($fileData, true);
-  $decode["correctNumber"] = (int)$newAnswer;
-  $c = json_encode($decode,JSON_UNESCAPED_UNICODE);
-
-  $fp = fopen($filename, 'wb');
-  //fileopenできなかった場合の処置も必要だよ！
-  if ($fp){
-      if (flock($fp, LOCK_EX)){
-          if (fwrite($fp,  $c) === FALSE){
-  //            print('ファイル書き込みに失敗しました<br>');
-          }
-
-          flock($fp, LOCK_UN);
-      }else{
-  //        print('ファイルロックに失敗しました<br>');
-      }
-  }
-  $flag = fclose($fp);
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+} else {
+    $mysqli->set_charset("utf8");
+}
+//quesIDが一緒のやつのnewAnswerを反映する
+$sql = "UPDATE question SET correctNum = '$newAnswer' WHERE quesNum = '$quesID'";
+if ( $mysqli->query($sql)) {
+        echo "UPDATE成功";
+}
+    // 結果セットを閉じる
+//処理書き終わったよ
+// DB接続を閉じる
+$mysqli->close();
+}else{
+  echo "UPDATE失敗";
 }
 
 
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+}
 
+$link = mysqli_connect("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+
+//ここに処理書くよ
+//startTimestamp,quessec,correctNum取得
+$sql = "SELECT * FROM question WHERE adminUid = '$userID' AND contentID = '$contentID' AND quesNum = '$quesID' ";
+if($sql_result = mysqli_query($link,$sql)){
+    while($row = mysqli_fetch_assoc($sql_result)){
+        $starttimestamp = $row['startTimeStamp'];
+        $quessec = $row['quesSec']
+        $correctNum = $row['correctNum'];
+        //array_push($quesArray,array( "preKind" => $row['preKind'],"preText" => $row['preText'],"quesText" => $row['quesText'],"choiceKind"=> $row['quesKind'],"choice"=>$choices,"quesSec"=>$row['quesSec'],"ansText"=>$corrects,"correctNumber"=>$row['correctNum']));
+        $result="true";
+}
+}else{
+    $resultDesc="error";
+}
+mysqli_free_result($sql_result);
+// 結果セットを閉じる
+// DB接続を閉じる
+mysqli_close($link);
+
+$quesEndsec = $starttimestamp + $quessec;
 $choice = array(0, 0, 0, 0);
 //各選択肢毎の人数。初期値は全部0
 
-if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+}
 
-  $filename = "data/".$userID.'/'.$contentID.'/'.$quesID.'/'.'config.ini';
-  $fileData = file_get_contents($filename);
-  $decode = json_decode($fileData, true);
-  $quesSec = $decode["quesSec"];
+$link = mysqli_connect("localhost", "dbsmaq", "ufbn516", "dbsmaq");
 
-  $path = "data/".$userID.'/'.$contentID.'/';
+//ここに処理書くよ
+$sql = "SELECT * FROM ansTime WHERE contentID = '$contentID' AND answeTimeStamp >= '$starttimestamp' AND answeTimeStamp =< '$quesEndsec' ";
+if($sql_result = mysqli_query($link,$sql)){
+    while($row = mysqli_fetch_assoc($sql_result)){
 
-  $getTimeStamp = 0.0;
-  $starts = file($path."starttimestamp.csv", FILE_IGNORE_NEW_LINES);
-  //タイムスタンプを取得する
-  foreach ($starts as $starttimestamp) {
-    $start_array = explode(",", $starttimestamp);
-    if($start_array[0] === $quesID){
-      $getTimeStamp = $start_array[1];
-    }
-  }
+
+        $result="true";
+}
+}else{
+    $resultDesc="error";
+}
+mysqli_free_result($sql_result);
+// 結果セットを閉じる
+// DB接続を閉じる
+mysqli_close($link);
+
   //回答を集計する
   $answers = file($path."answer.csv", FILE_IGNORE_NEW_LINES);
   foreach ($answers as $userans) {
@@ -80,6 +111,11 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $resultDesc="Error";
   $b = json_decode(array('result' => $result, 'resultDesc' => $resultDesc));
 }
+
+
+//$b = json_encode(array('preKind' => $preKind,'preText' => $preText,'quesText' => $quesText,'choiceKind'=> $choiceKind,'choiceText'=>$choices,'quesSec'=>$quesSec,'ansText'=>$corrects,'correctNumber'=>$correctNumber,'result' => $result, 'resultdesc' => $resultDesc,));
+
+
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
