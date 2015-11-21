@@ -191,6 +191,10 @@
         
         }
 
+        $rootScope.$on('$routeChangeStart',function(){
+            angular.element(window).off('keyup');
+        });
+
     }
 
 

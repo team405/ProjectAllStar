@@ -1,20 +1,22 @@
 <div class="container">
-<audio src="../sound/allstar_rank.wav" autoplay/>
+<!-- <audio src="../sound/allstar_rank.wav" autoplay/> -->
 <div id="rankArea">
     <h2>ALL Ranking</h2>
     <table class="table table-striped">
       <thead>
   <tr>
+    <th>順位</th>
     <th>ニックネーム</th>
     <th width="200">正解数</th>
     <th width="200">タイム</th>
   </tr>
       </thead>
       <tbody>
-  <tr ng-repeat="rank in ct.allranks">
-    <td class="animate-show-hide">{{rank.userName}}</td>
-    <td class="animate-show-hide">{{rank.correctSum}}</td>
-    <td class="animate-show-hide">{{rank.ansSecSum}}</td>
+  <tr id="allrankTable" class="animeFadein" ng-repeat="rank in ct.allranks">
+    <td ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.ranknum}}</td>
+    <td ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.userName}}</td>
+    <td ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.correctSum}}</td>
+    <td ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.ansSecSum}}</td>
   </tr>
       </tbody>
     </table>

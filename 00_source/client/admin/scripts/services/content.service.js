@@ -14,6 +14,8 @@
         }
     });
 
+    var dir="server";
+
 
 
     ContentService.$inject = ['$http'];
@@ -33,7 +35,7 @@
         function GetByUserId(userid) {
             return $http({
                 method : 'POST',
-                url : '../../server/mypage.php',
+                url : '../../'+dir+'/mypage.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid},
             }).then(handleSuccess, handleError('Error getting Content'));
@@ -43,7 +45,7 @@
         function GetQuestion(userid,contentid,quesid) {
             return $http({
                 method : 'POST',
-                url : '../../server/ques.php',
+                url : '../../'+dir+'/ques.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
             }).then(handleSuccess, handleError('Error getting Content'));
@@ -52,7 +54,7 @@
         function StartQuestion(userid,contentid,quesid) {
             return $http({
                 method : 'POST',
-                url : '../../server/start.php',
+                url : '../../'+dir+'/start.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
             }).then(handleSuccess, handleError('Error getting Content'));
@@ -66,7 +68,7 @@
             }
             return $http({
                 method : 'POST',
-                url : '../../server/ans.php',
+                url : '../../'+dir+'/ans.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: data,
             }).then(handleSuccess, handleError('Error getting Content'));
@@ -75,7 +77,7 @@
         function GetRanking(userid,contentid,quesid) {
             return $http({
                 method : 'POST',
-                url : '../../server/rank.php',
+                url : '../../'+dir+'/rank.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid,quesID:quesid},
             }).then(handleSuccess, handleError('Error getting Rank'));
@@ -84,7 +86,7 @@
         function GetAllRanking(userid,contentid) {
             return $http({
                 method : 'POST',
-                url : '../../server/allrank.php',
+                url : '../../'+dir+'/allrank.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {userID:userid,contentID:contentid},
             }).then(handleSuccess, handleError('Error getting Allrank'));
@@ -94,7 +96,7 @@
         function GetMobileUserList(contentid) {
             return $http({
                 method : 'POST',
-                url : '../../server/viewuser.php',
+                url : '../../'+dir+'/viewuser.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {contentID:contentid},
             }).then(handleSuccess, handleError('Error getting Allrank'));
