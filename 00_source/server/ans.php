@@ -73,7 +73,8 @@ $quesEndsec = $startTimeStamp + $quesSec;
 $choice = array(0, 0, 0, 0);
 
 //ここに処理書くよ
-$sql = "SELECT * FROM ansTime WHERE contentID = $contentID AND answeTimeStamp >= $startTimeStamp AND answeTimeStamp =< $quesEndsec";
+//$sql = "SELECT * FROM ansTime WHERE contentID = $contentID AND answerTimeStamp >= $startTimeStamp AND answerTimeStamp <= $quesEndsec";
+$sql = "SELECT * FROM ansTime WHERE contentID = $contentID AND answerTimeStamp >= $startTimeStamp AND answerTimeStamp <= $quesEndsec";
 if ( $sqlresult = $mysqli->query($sql)) {
   while($row = $sqlresult->fetch_array()){
     $choice[$row["answerNum"]]++;

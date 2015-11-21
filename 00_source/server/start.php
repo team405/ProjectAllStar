@@ -25,7 +25,7 @@ if ($mysqli->connect_error) {
 }
 
 //ここに処理書くよ
-$sql = "UPDATE question SET startTimeStamp = $now WHERE contentID = $contentID";
+$sql = "UPDATE question SET startTimeStamp = $now WHERE contentID = $contentID AND quesNum = $quesID";
 if ( $mysqli->query($sql)) {
     // 結果セットを閉じる
 }
