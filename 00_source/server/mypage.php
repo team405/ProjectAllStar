@@ -20,7 +20,7 @@ $link = mysqli_connect("localhost", "dbsmaq", "ufbn516", "dbsmaq");
 $contents_array = array();
 
 //ここに処理書くよ
-$sql = "SELECT distinct contentID,contentName,quesLinNum FROM question WHERE adminUid = '$userID' ";
+$sql = "SELECT contentID,contentName,quesLinNum FROM content WHERE adminUid = '$userID' ";
 if($sql_result = mysqli_query($link,$sql)){
     while($row = mysqli_fetch_assoc($sql_result)){
         array_push($contents_array,array( "contentID" => $row['contentID'],"contentName" => $row['contentName'],"quesSum" => $row['quesLinNum']));
