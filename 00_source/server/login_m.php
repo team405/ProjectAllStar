@@ -39,7 +39,7 @@ function userEntry($userName,$password,$contentID) {
     return $userNum;
 */
 }
-function userCheck($userName, $password) {
+function userCheck($userName, $password,$contentID) {
     $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
     if ($mysqli->connect_error) {
         echo $mysqli->connect_error;
@@ -48,20 +48,21 @@ function userCheck($userName, $password) {
         $mysqli->set_charset("utf8");
     }
 
-    $sql = "SELECT * FROM mobileUser";
+    $sql = "SELECT * FROM mobileUser WHERE mobileName = '$userName' AND contentID = $contentID";
     $result = $mysqli->query($sql);
     if($row = $result->fetch_assoc()){
-      if($row['mobileName']==$userName){
-        if($row['mobilePass']){
-          return $row['mobileUnum'];
-        }else{
-          return 999999;
-        }
+      if($row['mobilePass']==$password){
+        return $row['mobileUnum'];
+      }else{
+        return "UnmatchPass";
       }
+    }else{
+      return "new";
     }
     $result->free();
+}
+
 // 結果セットを閉じる
-    return 0;
 
 /*
     // file関数はファイル全体を読み込んで配列に格納する
@@ -78,7 +79,6 @@ function userCheck($userName, $password) {
     }
     return 0;
 */
-}
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){
    $userName = $_GET["userName"];
@@ -91,22 +91,22 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 }
 
 //ユーザ名が入力されているかどうかをチェックして、あればtrueにする
-if ($userName !== "" && $password !== "") {
+if ($userName !== "" && $password !== "" && $contentID !=="") {
   //ユーザチェック関数実行
+$check = userCheck($userName,$password,$contentID);
   //ユーザがないため新規ユーザとして登録(true)
-  if(userCheck($userName,$password) === 0){
+  if($check === "new"){
     $a = true;
     $userNum = userEntry($userName,$password,$contentID);
     $dm = "NewEntry";
-  //ユーザがあるが名前がすでに使われている(false)
-  }else if (userCheck($userName,$password) === 999999){
+  //ユーザがあるが名前,パスワードがすでに使われている(false)
+  }else if ($check === "UnmatchPass"){
     $a = false;
-    $userNum = userCheck($userName,$password);
-    $dm = "already exists";
+    $dm = "Password Unmatch";
   //ユーザがある、パスワード一致のためリダイレクトとする(true)
   }else{
     $a = true;
-    $userNum = userCheck($userName,$password);
+    $userNum = $check;
     $dm = "redirect";
     $now = microtime(true);
 
