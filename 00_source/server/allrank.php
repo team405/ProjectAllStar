@@ -26,7 +26,7 @@ if ($userID !== "" && $contentID !== "") {
   $sql = "
 select a.mobileName,sum(a.ansTime) AS 'ansSecSum', sum(a.counter) AS 'correctSum'
 from dbsmaq.question q,
-  (select $contentID counter,ans.contentID, ans.mobileUnum, ans.answerNum, ques.quesNum, min(ans.answerTimeStamp)-ques.startTimeStamp ansTime, user.mobileName 
+  (select '1' counter,ans.contentID, ans.mobileUnum, ans.answerNum, ques.quesNum, min(ans.answerTimeStamp)-ques.startTimeStamp ansTime, user.mobileName 
   from    dbsmaq.ansTime ans, dbsmaq.question ques, dbsmaq.mobileUser user
   where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec)
   and     ans.contentId = ques.contentId
