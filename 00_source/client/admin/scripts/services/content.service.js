@@ -18,8 +18,8 @@
 
 
 
-    ContentService.$inject = ['$http'];
-    function ContentService($http) {
+    ContentService.$inject = ['$http','Upload'];
+    function ContentService($http, Upload) {
         var service = {};
 
         service.GetByUserId = GetByUserId;
@@ -29,6 +29,7 @@
         service.GetRanking = GetRanking;
         service.GetAllRanking = GetAllRanking;
         service.GetMobileUserList = GetMobileUserList;
+        service.UploadContent = UploadContent;
 
         return service;
 
@@ -100,6 +101,25 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {contentID:contentid},
             }).then(handleSuccess, handleError('Error getting Allrank'));
+        }
+
+        function UploadContent(titlePic,contentName,adminID){
+            Upload.upload({
+                url: '../../'+dir+'/content_create.php',
+                data: {titlePic: titlePic, contentName: contentName,adminID: adminID}
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                ct.result = resp.data;
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+                if (resp.status > 0){
+                  ct.errorMsg = resp.status + ': ' + resp.data;
+                }
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
         }
 
 

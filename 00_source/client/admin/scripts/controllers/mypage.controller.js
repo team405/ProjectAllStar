@@ -12,6 +12,7 @@
         //ユーザのすべてのコンテンツ
         ct.contents = [];
         ct.playContents = playContents;
+        ct.goAllrank = goAllrank;
 
 
         initController();
@@ -39,6 +40,14 @@
                 };
 
             $location.path('/intro');
+        }
+        function goAllrank(contentid) {
+           $rootScope.globals["currentContent"] = {
+                    contentid: contentid,
+                    quesSum: (ct.contents.filter(function(item, index){if (item.contentID == String(contentid)) return true;})[0].quesSum)
+                };
+
+            $location.path('/allrank');
         }
 
     }

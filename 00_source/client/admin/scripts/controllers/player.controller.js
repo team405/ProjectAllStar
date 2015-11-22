@@ -96,6 +96,7 @@
         });
     }
     function getRanking(){
+        ct.ranks = [];
         ContentService.GetRanking($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
 		.then(function (response) {
 		    if (response.result) {

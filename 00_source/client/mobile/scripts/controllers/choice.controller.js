@@ -9,8 +9,7 @@
     function ChoiceController(RemoconService, $rootScope, FlashService) {
         var vm = this;
 
-        vm.user = null;
-        //vm.sendChoice = sendChoice;
+        vm.username = $rootScope.globals.currentUser.username
         vm.sendChoice = sendChoice;
 
         function sendChoice(choice) {

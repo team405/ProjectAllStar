@@ -511,3 +511,28 @@ video {
     font-size:1.2em;
     font-weight: bold;
 }
+
+.thumb {
+    height: 500px;
+    width: auto;
+    margin: 20px;
+    padding: 2px;
+    background-color: #000;
+}
+
+form .progress {
+    line-height: 15px;
+}
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}

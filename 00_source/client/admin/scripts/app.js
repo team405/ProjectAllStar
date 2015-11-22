@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngCookies', 'ngAnimate'])
+        .module('app', ['ngRoute', 'ngCookies', 'ngAnimate','ngFileUpload'])
         .config(config)
         .run(run);
 
@@ -30,7 +30,7 @@
             .when('/cont_register', {
                 controller: 'ContRegisterController',
                 templateUrl: 'views/cont_register.view.html',
-                controllerAs: 'vm'
+                controllerAs: 'ct'
             })
 
             .when('/intro', {
