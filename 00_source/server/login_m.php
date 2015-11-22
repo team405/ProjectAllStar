@@ -96,7 +96,7 @@ if ($userName !== "" && $password !== "") {
   //ユーザがないため新規ユーザとして登録(true)
   if(userCheck($userName,$password) === 0){
     $a = true;
-    $userNum = userEntry($userName,$password);
+    $userNum = userEntry($userName,$password,$contentID);
     $dm = "NewEntry";
   //ユーザがあるが名前がすでに使われている(false)
   }else if (userCheck($userName,$password) === 999999){
