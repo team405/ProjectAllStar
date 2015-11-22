@@ -67,7 +67,7 @@ if ( $sqlresult = $mysqli->query($sql)) {
 }
 
 //quesEndsec
-$quesEndsec = $startTimeStamp + $quesSec;
+$quesEndsec = $startTimeStamp + $quesSec + 1;
 
 //各選択肢毎の人数。初期値は全部0
 $choice = array(0, 0, 0, 0);

@@ -28,7 +28,7 @@ select a.mobileName,sum(a.ansTime) AS 'ansSecSum', sum(a.counter) AS 'correctSum
 from dbsmaq.question q,
   (select '1' counter,ans.contentID, ans.mobileUnum, ans.answerNum, ques.quesNum, min(ans.answerTimeStamp)-ques.startTimeStamp ansTime, user.mobileName 
   from    dbsmaq.ansTime ans, dbsmaq.question ques, dbsmaq.mobileUser user
-  where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec)
+  where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec + 1)
   and     ans.contentId = ques.contentId
   and     ques.contentId = $contentID
   and     ans.mobileUnum = user.mobileUnum
