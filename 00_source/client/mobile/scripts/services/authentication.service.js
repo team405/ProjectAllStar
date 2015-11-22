@@ -25,7 +25,7 @@ $http({
     url : '../../server_test/login_m.php',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
     transformRequest: transform,
-    data: { userName: username, password: password,contentid: contentid }
+    data: { userName: username, password: password,contentID: contentid }
 }).success(function(data, status, headers, config) {
     callback(data)
 }).error(function(data, status, headers, config) {
