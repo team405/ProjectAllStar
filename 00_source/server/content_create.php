@@ -32,7 +32,6 @@ $quesLinNum = 0;
 // DB接続を閉じる
     $mysqli->close();
 
-echo $contentID;
 $path = "data/$userID/$contentID";
 
 //ディレクトリ作成
@@ -43,7 +42,7 @@ mkdir($path,0777);
     if(is_uploaded_file($_FILES['titlePic']['tmp_name'])){
 
         //一字ファイルを保存ファイルにコピーできたか
-        if(move_uploaded_file($_FILES['titlePic']['tmp_name'],"$path"."/".$_FILES['titlePic']['name'])){
+        if(move_uploaded_file($_FILES['titlePic']['tmp_name'],"$path"."/title.jpg")){
 
             //正常
             echo "uploaded";
