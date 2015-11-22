@@ -78,6 +78,7 @@ $sql = "SELECT * FROM ansTime WHERE contentID = $contentID AND answerTimeStamp >
 if ( $sqlresult = $mysqli->query($sql)) {
   while($row = $sqlresult->fetch_array()){
     $choice[$row["answerNum"]]++;
+
   }
   $result=true;
   $sqlresult->free();
@@ -86,8 +87,6 @@ if ( $sqlresult = $mysqli->query($sql)) {
 }
 // 結果セットを閉じる
 $mysqli->close();
-
-$choice[0]++;
 
   $resultDesc="";
   $result = "true";
