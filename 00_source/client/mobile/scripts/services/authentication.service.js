@@ -22,7 +22,7 @@ var transform = function(data){
 }
 $http({
     method : 'POST',
-    url : '../../server_test/login_m.php',
+    url : '../../server/login_m.php',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
     transformRequest: transform,
     data: { userName: username, password: password,contentID: contentid }
