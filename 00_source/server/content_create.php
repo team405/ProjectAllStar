@@ -33,10 +33,10 @@ $quesLinNum = 0;
     $mysqli->close();
 
 echo $contentID;
-$path = "data/$userID/$contentID"
+$path = "data/$userID/$contentID";
 
 //ディレクトリ作成
-mkdir($path,0700);
+mkdir($path,0777);
 
 
 //画面側から送られてきた画像を保存
