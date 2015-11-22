@@ -10,8 +10,7 @@
 //    }
 //    return $tmpVal;
 //}
-function userEntry($userName,$password) {
-    $contentID = 0; //<-contentID
+function userEntry($userName,$password,$contentID) {
     $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
     if ($mysqli->connect_error) {
         echo $mysqli->connect_error;
@@ -84,9 +83,11 @@ function userCheck($userName, $password) {
 if($_SERVER["REQUEST_METHOD"] != "POST"){
    $userName = $_GET["userName"];
    $password = $_GET["password"];
+   $contentID = $_GET["contentID"];
 }else {
    $userName = $_POST["userName"];
    $password = $_POST["password"];
+   $contentID = $_POST["contentID"];
 }
 
 //ユーザ名が入力されているかどうかをチェックして、あればtrueにする

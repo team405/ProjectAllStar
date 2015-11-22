@@ -27,7 +27,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $sql = "
 select ans.contentID, ans.mobileUnum, ans.answerNum, min(ans.answerTimeStamp)-ques.startTimeStamp ansTime, user.mobileName 
 from    dbsmaq.ansTime ans, dbsmaq.question ques, dbsmaq.mobileUser user
-where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec)
+where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec + 1)
 and     ans.contentId = ques.contentId
 and     ques.contentId = $contentID
 and     ques.quesNum = $quesID
