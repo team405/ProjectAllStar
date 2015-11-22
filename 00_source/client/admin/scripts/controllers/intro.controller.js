@@ -12,6 +12,7 @@
 	ct.contentid = $rootScope.globals.currentContent.contentid;
     ct.phase = 0;
     ct.mobileNames = [];
+    ct.titlePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/title.jpg"
     var interval
 
     ct.clickContainer=clickContainer;
