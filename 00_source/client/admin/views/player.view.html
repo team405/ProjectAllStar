@@ -1,4 +1,4 @@
-﻿<div class="container player" ng-if="ct.phase == 0" ng-click="ct.clickContainer()">
+﻿<div class="container player" ng-if="ct.phase == 0">
 <audio src="../sound/allstar_preques.wav" autoplay/>
   <div id="preArea">
 
@@ -33,7 +33,7 @@
 
   </div>
 </div>
-<div class="container player" ng-if="ct.phase == 1 || ct.phase == 2" ng-click="ct.clickContainer()">
+<div class="container player" ng-if="ct.phase == 1 || ct.phase == 2">
 <audio src="../sound/allstar_ques.wav" autoplay ng-if="ct.phase == 1"/>
 <audio src="../sound/allstar_answer.wav" autoplay ng-if="ct.phase == 2"/>
 <div id="questionArea">
@@ -95,7 +95,7 @@
   </div>
 <div id="timerArea">{{ct.quesSec}}</div>
 </div>
-<div class="container player" ng-if="ct.phase == 3" ng-click="ct.clickContainer()">
+<div class="container player" ng-if="ct.phase == 3">
 <audio src="../sound/allstar_rank.wav" autoplay/>
 <div id="rankArea">
     <h2>Q.{{ct.quesid+1}} Ranking</h2>
