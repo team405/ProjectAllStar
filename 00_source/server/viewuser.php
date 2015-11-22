@@ -20,8 +20,10 @@ $link = mysqli_connect("localhost", "dbsmaq", "ufbn516", "dbsmaq");
 
 $userArray = array();
 
+$now = microtime(true);
+
 //ここに処理書くよ
-$sql = "SELECT * FROM mobileUser WHERE contentID = '$contentID'";
+$sql = "SELECT * FROM mobileUser WHERE contentID = '$contentID' and ($now - loginTimeStamp) < 3600";
 if($sql_result = mysqli_query($link,$sql)){
     while($row = mysqli_fetch_assoc($sql_result)){
         array_push($userArray,array( "mobileName" => $row['mobileName']));
