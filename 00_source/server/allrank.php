@@ -12,6 +12,49 @@ $resultDesc="";
 
 if ($userID !== "" && $contentID !== "") {
 
+
+
+  //DBオープン
+  $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+  if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+  } else {
+    $mysqli->set_charset("utf8");
+  }
+
+  $sql = "
+select a.mobileName,sum(a.ansTime) AS 'ansSecSum', sum(a.counter) AS 'correctSum'
+from dbsmaq.question q,
+  (select $contentID counter,ans.contentID, ans.mobileUnum, ans.answerNum, ques.quesNum, min(ans.answerTimeStamp)-ques.startTimeStamp ansTime, user.mobileName 
+  from    dbsmaq.ansTime ans, dbsmaq.question ques, dbsmaq.mobileUser user
+  where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec)
+  and     ans.contentId = ques.contentId
+  and     ques.contentId = $contentID
+  and     ans.mobileUnum = user.mobileUnum
+  group by ans.contentID, ans.mobileUnum, ques.quesNum
+  order by ques.quesNum,ansTime) a
+where q.quesNum = a.quesNum and a.answerNum = q.correctNum
+group by a.mobileUnum
+order by sum(a.counter) DESC, sum(a.ansTime)
+  ";
+  if ( $sqlresult = $mysqli->query($sql)) {
+    $i=0;
+    while($row = $sqlresult->fetch_array()){
+///      $list[$i]["userNumber"] = 111;
+      $list[$i]["userName"] = $row[0];
+      $list[$i]["correctSum"] = $row["correctSum"];
+      $list[$i]["ansSecSum"] = $row["ansSecSum"];
+      $i++;
+    }
+    $sqlresult->free();
+  }
+  $mysqli->close();
+
+
+
+
+/*
     $path = "data/".$userID.'/'.$contentID.'/';
     $ans_mem = file("answermembers.csv", FILE_IGNORE_NEW_LINES);
     $mobile_user = file("mobile_user.csv", FILE_IGNORE_NEW_LINES);
@@ -37,6 +80,7 @@ if ($userID !== "" && $contentID !== "") {
       $ansSecSum[$key] = $row["ansSecSum"];
     }
     array_multisort($correctSum,SORT_DESC,$ansSecSum,SORT_ASC,$list);
+*/
 
     $result = "true";
     $b = json_encode(array("allrank"=> $list,'result' => $result, 'resultDesc' => $resultDesc));
