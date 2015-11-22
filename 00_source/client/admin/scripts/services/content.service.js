@@ -106,7 +106,7 @@
         function UploadContent(titlePic,contentName,adminID){
             Upload.upload({
                 url: '../../'+dir+'/content_create.php',
-                data: {titlePic: titlePic, contentName: contentName,adminID: adminID}
+                data: {titlePic: titlePic, contentName: contentName,userID: userID}
             }).then(function (resp) {
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
                 ct.result = resp.data;
