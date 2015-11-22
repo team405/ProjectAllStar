@@ -29,7 +29,6 @@
         ct.uploadPic = uploadPic;
 
         function uploadPic(titlePic) {
-            alert("start")
             ContentService.UploadContent(titlePic, ct.contentname, $rootScope.globals.currentUser.username, function (response) {
                 if (response.result) {
                     // ContentService.SetCredentials(ct.username, ct.password);

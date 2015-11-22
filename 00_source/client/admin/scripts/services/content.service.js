@@ -103,7 +103,7 @@
             }).then(handleSuccess, handleError('Error getting Allrank'));
         }
 
-        function UploadContent(titlePic,contentName,adminID){
+        function UploadContent(titlePic,contentName,userID){
             Upload.upload({
                 url: '../../'+dir+'/content_create.php',
                 data: {titlePic: titlePic, contentName: contentName,userID: userID}
