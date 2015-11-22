@@ -15,6 +15,7 @@
     ct.phase=0;
     ct.anssum = [];
     ct.quesSec = 0;
+    var ranksdata = [];
     ct.ranks = [];
     ct.correctChoice = null;
     //前説が0、質問中が1、答え表示中が2
@@ -98,7 +99,20 @@
         ContentService.GetRanking($rootScope.globals.currentUser.username, ct.contentid, ct.quesid)
 		.then(function (response) {
 		    if (response.result) {
-                ct.ranks = response.rank;
+                ranksdata = response.rank;
+                for (var i = 0; i < ranksdata.length; i++) {
+                    ranksdata[i].ranknum = i+1;
+                };
+
+                var interval = $interval(function() {
+                    if(ranksdata.length > 0){
+                        ct.ranks.unshift(ranksdata.pop())
+                        $rootScope.$apply()
+                    }else{                    
+                        $interval.cancel(interval);
+                    }
+                }, 300);
+
 		    } else {
 			FlashService.Error(response.resultdesc);
 		    }

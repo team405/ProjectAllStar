@@ -102,14 +102,16 @@
     <table class="table table-striped">
       <thead>
   <tr>
+    <th width="100">順位</th>
     <th>ニックネーム</th>
     <th width="200">タイム</th>
   </tr>
       </thead>
       <tbody>
-  <tr ng-repeat="rank in ct.ranks">
-    <td class="animate-show-hide">{{rank.userName}}</td>
-    <td class="animate-show-hide">{{rank.ansSec}}</td>
+  <tr class="animeFadein" ng-repeat="rank in ct.ranks">
+    <td ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.ranknum}}</td>
+    <td ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.userName}}</td>
+    <td  ng-class="(rank.ranknum==1) ? 'gold' : ((rank.ranknum==2) ? 'silver' : ((rank.ranknum==3) ? 'bronze' : ''))">{{rank.ansSec}}</td>
   </tr>
       </tbody>
     </table>
