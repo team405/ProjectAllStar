@@ -156,10 +156,10 @@ switch ($preKind) {
 
 switch ($quesKind) {
 //しょうみif文でいい。textの場合は特に処理なしのはず。
-//    case 'text':
+    case 'text':
 //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
 //    $mysqli->query($sql);
-//        break;
+        break;
 
     case 'picture':
         $file = $_FILES['choicePic1']['name'];
