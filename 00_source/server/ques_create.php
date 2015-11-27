@@ -80,7 +80,7 @@ $remove = 0;
     }
 
 //quesNum発番
-    $sql = "SELECT * FROM question";
+    $sql = "SELECT * FROM question WHERE contentID = '$contentID'";
     $result = $mysqli->query($sql);
     $quesNum = $result->num_rows;
     $result->close();
