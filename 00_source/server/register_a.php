@@ -1,7 +1,13 @@
 <?php
-// 受け取った情報をfileに書き込む
-function NewEntry($userID, $password) {
-    if($userID != "" && $password != ""){
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+  $userID = $_GET["userID"];
+  $password = $_GET["password"];
+}else {
+  $userID = $_POST["userID"]; //浅井追記
+  $password = $_POST["password"];
+}
+
+
 // mysqliクラスのオブジェクトを作成
       $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
       if ($mysqli->connect_error) {
@@ -13,8 +19,10 @@ function NewEntry($userID, $password) {
 
 $adminName = "tempolaly"
 
+echo $userID;
       $sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
       $mysqli->query($sql);
+
     $sql = "SELECT * FROM adminUser";
     $result = $mysqli->query($sql);
     $account = $result->num_rows;
@@ -29,26 +37,18 @@ mkdir($path,0777);
 
 //        $regster = "$userID,$password" . PHP_EOL;
 //        file_put_contents("admin_user.csv", $regster, FILE_APPEND);
-        return true;
+        $a = "true";
+    }else{
+          $a = "false";
     }
-    return false;
 }
 
-$json = file_get_contents("php://input");
-$data = json_decode($json, true);
 
-if($_SERVER["REQUEST_METHOD"] != "POST"){
-  $userID = $_GET["userID"];
-  $password = $_GET["password"];
-}else {
-  $userID = $_POST["userID"]; //浅井追記
-  $password = $_POST["password"];
-}
 
 //$userID = $_POST["userID"];
 //$password = $_POST["password"];
 $dm = "";
-$a = NewEntry($userID, $password);
+$a = true
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
