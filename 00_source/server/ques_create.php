@@ -10,6 +10,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   $quesText = $_GET["quesText"];
   $quesSec = $_GET["quesSec"];
   $correctNum = $_GET["correctNum"];
+  $demo =  $_GET["demo"];
      if($quesKind = "text"){
     $ansText1 = $_GET["ansText1"];
     $ansText2 = $_GET["ansText2"];
@@ -41,6 +42,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   $quesText = $_POST["quesText"];
   $quesSec = $_POST["quesSec"];
   $correctNum = $_POST["correctNum"];
+  $demo =  $_POST["demo"];
      if($quesKind = "text"){
     $ansText1 = $_POST["ansText1"];
     $ansText2 = $_POST["ansText2"];
@@ -66,6 +68,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
 //NULLだとエラー吐くかも
 $startTimeStamp = "";
+$remove = 0;
 
 //quesを作る
     $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
@@ -82,7 +85,7 @@ $startTimeStamp = "";
     $quesNum = $result->num_rows;
     $result->close();
     //questionテーブルのcontentNameとquesLinNumは消去している想定。
-    $sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp')";
+    $sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp','$demo',$remove)";
     $mysqli->query($sql);
 
 $path = "data/$userID/$contentID/$quesNum";
@@ -96,8 +99,8 @@ switch ($preKind) {
 //        break;
 
     case 'picture':
-        $preText = "以下の画像を御覧ください"
-        $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+        $preText = "以下の画像を御覧ください";
+        $sql = "UPDATE question SET preText = '$preText' WHERE quesNum = '$quesNum'";
         $mysqli->query($sql);
         $file = $_FILES['prePic']['name'];//もしかしたらこれいらんかも
         //画面側から送られてきたファイルを保存
@@ -114,7 +117,7 @@ switch ($preKind) {
         break;
 
     case 'intro':
-        $preText = "次の音楽をお聴きください"
+        $preText = "次の音楽をお聴きください";
         $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
         $mysqli->query($sql);
         $file = $_FILES['preIntro']['name'];
@@ -132,7 +135,7 @@ switch ($preKind) {
         break;
 
     case 'movie':
-        $preText = "以下の動画をご覧ください"
+        $preText = "以下の動画をご覧ください";
         $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
         $mysqli->query($sql);
         $file = $_FILES['preMovie']['name'];
@@ -149,6 +152,7 @@ switch ($preKind) {
         }
         break;
 }
+    $mysqli->close();
 
 switch ($quesKind) {
 //しょうみif文でいい。textの場合は特に処理なしのはず。
