@@ -87,6 +87,7 @@ $remove = 0;
     //questionテーブルのcontentNameとquesLinNumは消去している想定。
     $sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp','$demo',$remove)";
     $mysqli->query($sql);
+    echo $quesKind;
 
 $path = "data/$userID/$contentID/$quesNum";
 //ディレクトリ作成
@@ -170,7 +171,7 @@ switch ($quesKind) {
             echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+        echo "file not uploaded.choicePic1";//そもそもファイルが来ていない。
         }
         $file = $_FILES['choicePic2']['name'];
         if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
@@ -180,7 +181,7 @@ switch ($quesKind) {
             echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+        echo "file not uploaded.choicePic2";//そもそもファイルが来ていない。
         }
         $file = $_FILES['choicePic3']['name'];
         if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
@@ -190,7 +191,7 @@ switch ($quesKind) {
             echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+        echo "file not uploaded.choicePic3";//そもそもファイルが来ていない。
         }
         $file = $_FILES['choicePic4']['name'];
         if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
@@ -200,7 +201,7 @@ switch ($quesKind) {
             echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+        echo "file not uploaded.choicePic4";//そもそもファイルが来ていない。
         }
         break;
 }
