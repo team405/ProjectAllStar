@@ -3,44 +3,52 @@
     <div ng-show="ct.error" class="alert alert-danger">{{ct.error}}</div>
     <form name="form" role="form">
     
+<p>このページでは、コンテンツに問題の追加を行います。</p>
 
     <div>
         
         <input type="checkbox" name="demo" ng-model="ct.demo">
         <label for="demo">デモ</label>
+        <p>デモとしてスコアカウントを行わない問題の場合はチェックを入れてください</p>
+
+
     </div>
 
     <div>
-        <label for="preKind">前説明種類</label>
+        <label for="preKind">前説種別</label>
         <select name="preKind" ng-model="ct.preKind"> <!-- ng-change="change()" -->
             <option value="text">テキスト</option>
             <option value="picture">画像</option>
             <option value="intro">イントロ</option>
             <option value="movie">動画</option>
         </select>
+        <p>問題の前に表示するテキストあるいは画像等を指定してください。</p>
     </div>
     <div ng-show="ct.preKind=='text'">
-        <label for="preText">前説明テキスト</label>
+        <label for="preText">前説テキスト</label>
         <input type="text" name="preText" ng-model="ct.preText" size="100%">
+        <p>前説として表示するテキストを選択してください。</p>
     </div>
 
 
     <div ng-show="ct.preKind=='picture'">
-        <label>前説明画像</label>
+        <label>前説画像</label>
         <input type="file" ngf-select ng-model="ct.prePic" name="prePic"    
                accept="image/*" ngf-max-size="2MB">
         <i ng-show="form.prePic.$error.maxSize">ファイルサイズが大きすぎます。
             {{ct.prePic.size / 1000000|number:1}}MB: max 2M</i>
         <img ng-show="form.prePic.$valid" ngf-thumbnail="ct.prePic" class="thumb">
+        <p>前説として表示する画像を選択してください。</p>
     </div>
 
 
     <div>
-        <label for="choiceKind">前説明種類</label>
+        <label for="choiceKind">問題種別</label>
         <select name="choiceKind" ng-model="ct.choiceKind"> <!-- ng-change="change()" -->
             <option value="text">テキスト</option>
             <option value="picture">画像</option>
         </select>
+        <p>問題の種別を選択してください。</p>
     </div>
 
     <div>
