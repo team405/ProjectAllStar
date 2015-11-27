@@ -11,19 +11,19 @@ function NewEntry($userID, $password) {
           $mysqli->set_charset("utf8");
         }
 
-      $sql = "INSERT INTO adminUser VALUES ('$userID','$password','tempolaly') ";
-      if ( $mysqli->query($sql)) {
-// 結果セットを閉じる
-      }
+$adminName = "tempolaly"
+
+      $sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
+      $mysqli->query($sql);
     $sql = "SELECT * FROM adminUser";
     $result = $mysqli->query($sql);
-    $count = $result->num_rows;
+    $account = $result->num_rows;
     $result->close();
 //処理書き終わったよ
 // DB接続を閉じる
 $mysqli->close();
 
-$path = "data/$count";
+$path = "data/$account";
 //ディレクトリ作成
 mkdir($path,0777);
 
