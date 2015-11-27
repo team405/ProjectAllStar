@@ -33,6 +33,12 @@
                 controllerAs: 'ct'
             })
 
+            .when('/ques_register', {
+                controller: 'QuesRegisterController',
+                templateUrl: 'views/ques_register.view.html',
+                controllerAs: 'ct'
+            })
+
             .when('/intro', {
                 controller: 'IntroController',
                 templateUrl: 'views/intro.view.html',

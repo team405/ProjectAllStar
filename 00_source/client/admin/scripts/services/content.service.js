@@ -30,6 +30,7 @@
         service.GetAllRanking = GetAllRanking;
         service.GetMobileUserList = GetMobileUserList;
         service.UploadContent = UploadContent;
+        service.UploadQuestion = UploadQuestion;
 
         return service;
 
@@ -121,6 +122,56 @@
                 ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         }
+
+        function UploadQuestion(demo,preKind,preText,prePic,preIntro,preMovie,quesText,choiceKind,choiceText1,choiceText2,choiceText3,choiceText4,quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ansText1,ansText2,ansText3,ansText4,correctNum,contentid,username,password){
+            var sendObj = {demo:demo, preKind: preKind, preText: preText, quesText: quesText, choiceKind: choiceKind, quesSec: quesSec, ansText1: ansText1, ansText2: ansText2, ansText3: ansText3, ansText4: ansText4,correctNum: correctNum,contentID: contentid,userID: username,password: password}
+            switch(preKind){
+                case "text":
+                break;
+                case "picture":
+                sendObj.prePic = prePic;
+                break;
+                case "intro":
+                sendObj.preIntro = preIntro;
+                break;
+                case "movie":
+                sendObj.preMovie = preMovie;
+                break;
+            }
+            switch(choiceKind){
+                case "text":
+                sendObj.choiceText1 = choiceText1;
+                sendObj.choiceText2 = choiceText2;
+                sendObj.choiceText3 = choiceText3;
+                sendObj.choiceText4 = choiceText4;
+                break;
+                case "picture":
+                sendObj.choicePic1 = choicePic1;
+                sendObj.choicePic2 = choicePic2;
+                sendObj.choicePic3 = choicePic3;
+                sendObj.choicePic4 = choicePic4;
+                break;
+            }
+            Upload.upload({
+                url: '../../'+dir+'/ques_create.php',
+                data: sendObj
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                ct.result = resp.data;
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+                if (resp.status > 0){
+                  ct.errorMsg = resp.status + ': ' + resp.data;
+                }
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+        }
+
+        //preKind,preText,prePic,preIntro,preMovie,quesText,choiceKind,choiceKind,choiceText1,choiceText2,choiceText3,choiceText4,quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ansText1,ansText2,ansText3,ansText4,correctNum,$rootScope.globals.currentContent.contentid, $rootScope.globals.currentUser.username, $rootScope.globals.currentUser.password
+
 
 
         // private functions
