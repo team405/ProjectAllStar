@@ -1,6 +1,6 @@
 <?php
 // 受け取った情報をfileに書き込む
-function write($userID, $password) {
+function NewEntry($userID, $password) {
     if($userID != "" && $password != ""){
 // mysqliクラスのオブジェクトを作成
       $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
@@ -15,10 +15,17 @@ function write($userID, $password) {
       if ( $mysqli->query($sql)) {
 // 結果セットを閉じる
       }
+    $sql = "SELECT * FROM adminUser";
+    $result = $mysqli->query($sql);
+    $count = $result->num_rows;
+    $result->close();
 //処理書き終わったよ
-
 // DB接続を閉じる
 $mysqli->close();
+
+$path = "data/$count";
+//ディレクトリ作成
+mkdir($path,0777);
 
 //        $regster = "$userID,$password" . PHP_EOL;
 //        file_put_contents("admin_user.csv", $regster, FILE_APPEND);
@@ -41,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 //$userID = $_POST["userID"];
 //$password = $_POST["password"];
 $dm = "";
-$a = write($userID, $password);
+$a = NewEntry($userID, $password);
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
