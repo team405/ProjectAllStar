@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   $quesSec = $_GET["quesSec"];
   $correctNum = $_GET["correctNum"];
   $demo =  $_GET["demo"];
-     if($quesKind = "text"){
+     if($quesKind == "text"){
     $ansText1 = $_GET["ansText1"];
     $ansText2 = $_GET["ansText2"];
     $ansText3 = $_GET["ansText3"];
@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     $correctText3 = "";
     $correctText4 = "";
 }
-     if($quesKind = "picture"){
+     if($quesKind == "picture"){
     $correctText1 = $_GET["choiceText1"];
     $correctText2 = $_GET["choiceText2"];
     $correctText3 = $_GET["choiceText3"];
@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   $quesSec = $_POST["quesSec"];
   $correctNum = $_POST["correctNum"];
   $demo =  $_POST["demo"];
-     if($quesKind = "text"){
+     if($quesKind == "text"){
     $ansText1 = $_POST["ansText1"];
     $ansText2 = $_POST["ansText2"];
     $ansText3 = $_POST["ansText3"];
@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     $correctText3 = "";
     $correctText4 = "";
 }
-     if($quesKind = "picture"){
+     if($quesKind == "picture"){
     $correctText1 = $_POST["choiceText1"];
     $correctText2 = $_POST["choiceText2"];
     $correctText3 = $_POST["choiceText3"];
