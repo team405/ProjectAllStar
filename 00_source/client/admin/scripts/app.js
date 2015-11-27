@@ -74,6 +74,8 @@
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');
+            }else if(!$rootScope.globals.currentContent){
+                $location.path('/');
             }
         });
     }
