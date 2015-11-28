@@ -32,6 +32,7 @@ from dbsmaq.question q,
   and     ans.contentId = ques.contentId
   and     ques.contentId = $contentID
   and     ans.mobileUnum = user.mobileUnum
+  and     ques.demo = 0
   group by ans.contentID, ans.mobileUnum, ques.quesNum
   order by ques.quesNum,ansTime) a
 where q.quesNum = a.quesNum and a.answerNum = q.correctNum and a.contentID = q.contentID
