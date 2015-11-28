@@ -26,8 +26,8 @@ if(!isset($_POST["status"])){
 	//後はその$jsonをつかって良い
 
 	if($json["resultdesc"] == "NewEntry" || $json["resultdesc"] == "redirect"){
-		echo "ようこそ　$userName さん<br /><br />";
 		$userNumber = $json["userNumber"];
+		echo "ようこそ　$userName $userNumber さん<br /><br />";
 		require("choice.php");
 	}else if($json["resultdesc"] == "Password Unmatch"){
 		echo "パスワードが違います <br /><br />";
