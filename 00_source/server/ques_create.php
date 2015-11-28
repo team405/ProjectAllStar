@@ -69,6 +69,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 //NULLだとエラー吐くかも
 $startTimeStamp = "";
 $remove = 0;
+$a = false;
 
 //quesを作る
     $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
@@ -86,9 +87,10 @@ $remove = 0;
     $result->close();
     //questionテーブルのcontentNameとquesLinNumは消去している想定。
     $sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp','$demo',$remove)";
-    $mysqli->query($sql);
-    echo $quesKind;
-
+    if($mysqli->query($sql)){
+        $a = true;
+        $dm = "Questionframe Create Succes!";
+    }
 //quesLinNum発番
     $sql = "SELECT * FROM question WHERE contentID = '$contentID'";
     $result = $mysqli->query($sql);
@@ -116,12 +118,13 @@ switch ($preKind) {
         if(is_uploaded_file($_FILES['prePic']['tmp_name'])){
         //一時ファイルを保存ファイルにコピーできたか
         if(move_uploaded_file($_FILES['prePic']['tmp_name'],"$path"."/pre.jpg")){
-            echo "uploaded";//正常
+            $a = true;//正常
+            $dm = "Qustion Create Success!!";
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+//そもそもファイルが来ていない。
         }
         break;
 
@@ -134,12 +137,13 @@ switch ($preKind) {
         if(is_uploaded_file($_FILES['preIntro']['tmp_name'])){
         //一時ファイルを保存ファイルにコピーできたか
         if(move_uploaded_file($_FILES['preIntro']['tmp_name'],"$path"."/intro.mp3")){
-            echo "uploaded";//正常
+            $a = true;//正常
+            $dm = "Qustion Create Success!!";
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+        //そもそもファイルが来ていない。
         }
         break;
 
@@ -152,12 +156,14 @@ switch ($preKind) {
         if(is_uploaded_file($_FILES['preMovie']['tmp_name'])){
         //一時ファイルを保存ファイルにコピーできたか
         if(move_uploaded_file($_FILES['preMovie']['tmp_name'],"$path"."/intro.mp4")){
-            echo "uploaded";//正常
+            $a = true;//正常
+            $dm = "Qustion Create Success!!";
+//正常
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.";//そもそもファイルが来ていない。
+        //そもそもファイルが来ていない。
         }
         break;
 }
@@ -174,44 +180,49 @@ switch ($quesKind) {
         $file = $_FILES['choicePic1']['name'];
         if(is_uploaded_file($_FILES['choicePic1']['tmp_name'])){
         if(move_uploaded_file($_FILES['choicePic1']['tmp_name'],"$path"."/choicePic0.jpg")){
-            echo "uploaded";
+            $a = true;//正常
+            $dm = "Qustion Create Success!!";
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.choicePic1";//そもそもファイルが来ていない。
+        //そもそもファイルが来ていない。
         }
         $file = $_FILES['choicePic2']['name'];
         if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
         if(move_uploaded_file($_FILES['choicePic2']['tmp_name'],"$path"."/choicePic1.jpg")){
-            echo "uploaded";
+
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.choicePic2";//そもそもファイルが来ていない。
+        //そもそもファイルが来ていない。
         }
         $file = $_FILES['choicePic3']['name'];
         if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
         if(move_uploaded_file($_FILES['choicePic3']['tmp_name'],"$path"."/choicePic2.jpg")){
-            echo "uploaded";
+
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.choicePic3";//そもそもファイルが来ていない。
+        //そもそもファイルが来ていない。
         }
         $file = $_FILES['choicePic4']['name'];
         if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
         if(move_uploaded_file($_FILES['choicePic4']['tmp_name'],"$path"."/choicePic3.jpg")){
-            echo "uploaded";
+
         }else{
-            echo "error while saving.";//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
         }
         }else{
-        echo "file not uploaded.choicePic4";//そもそもファイルが来ていない。
+        $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
         }
         break;
 }
 
+$b = json_encode('result' => $a, 'resultdesc' => $dm));
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json; charset=utf-8');
+echo $b;
 ?>
