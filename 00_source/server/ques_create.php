@@ -86,7 +86,7 @@ $result = $mysqli->query($sql);
 $quesNum = $result->num_rows;
 $result->close();
     //questionテーブルのcontentNameとquesLinNumは消去している想定。
-$sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp','$demo',$remove)";
+$sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp',b'$demo',$remove)";
 if($mysqli->query($sql)){
     $a = true;
     $dm = "Question Create Succes!";
