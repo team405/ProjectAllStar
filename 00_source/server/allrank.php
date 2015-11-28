@@ -34,7 +34,7 @@ from dbsmaq.question q,
   and     ans.mobileUnum = user.mobileUnum
   group by ans.contentID, ans.mobileUnum, ques.quesNum
   order by ques.quesNum,ansTime) a
-where q.quesNum = a.quesNum and a.answerNum = q.correctNum
+where q.quesNum = a.quesNum and a.answerNum = q.correctNum and a.contentID = q.contentID
 group by a.mobileUnum
 order by sum(a.counter) DESC, sum(a.ansTime)
   ";
