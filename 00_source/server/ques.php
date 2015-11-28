@@ -37,6 +37,7 @@ if($sql_result = mysqli_query($link,$sql)){
         $choiceKind = $row['quesKind'];
         $quesSec = (int)$row['quesSec'];
         $correctNumber = (int)$row['correctNum'];
+        $demo = $row['demo'];
         //array_push($quesArray,array( "preKind" => $row['preKind'],"preText" => $row['preText'],"quesText" => $row['quesText'],"choiceKind"=> $row['quesKind'],"choice"=>$choices,"quesSec"=>$row['quesSec'],"ansText"=>$corrects,"correctNumber"=>$row['correctNum']));
         $result="true";
 }
@@ -48,7 +49,7 @@ mysqli_free_result($sql_result);
 // DB接続を閉じる
 mysqli_close($link);
 
-$b = json_encode(array('preKind' => $preKind,'preText' => $preText,'quesText' => $quesText,'choiceKind'=> $choiceKind,'choiceText'=>$choices,'quesSec'=>$quesSec,'ansText'=>$corrects,'correctNumber'=>$correctNumber,'result' => $result, 'resultdesc' => $resultDesc,));
+$b = json_encode(array('preKind' => $preKind,'preText' => $preText,'quesText' => $quesText,'choiceKind'=> $choiceKind,'choiceText'=>$choices,'quesSec'=>$quesSec,'ansText'=>$corrects,'correctNumber'=>$correctNumber,'demo'=>$demo,'result' => $result, 'resultdesc' => $resultDesc,));
 
 
 header("Access-Control-Allow-Origin: *");
