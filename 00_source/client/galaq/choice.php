@@ -11,9 +11,7 @@ if(isset($_POST["choice"])){
 	//結果を$jsonにいれる
 	$json = json_decode($contents, true);
 	//後はその$jsonをつかって良い
-
 }
-
 
 
 $hiddenInfo = '
