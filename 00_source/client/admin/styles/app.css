@@ -439,6 +439,7 @@ text-shadow:
     font-size: 1em;
     padding: 0;
     overflow-y:scroll;
+    height: 500px;
 }
 #mobileUserList li{
     font:bold 1em Arial, Helvetica, sans-serif;
