@@ -3,27 +3,28 @@
   <div id="preArea">
 
   <div id="preAreaText" ng-if="ct.contents.preKind == 'text'">
-      <h1>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h1>
+      <h1 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h1>
+      <h1 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h1>
   </div>
   <div id="preAreaPic" ng-if="ct.contents.preKind == 'picture'">
-      <h2 nf-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h2>
-      <h2 nf-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h2>
+      <h2 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h2>
+      <h2 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h2>
     <div>
       <img src="{{ct.prePath}}" width="800px" height="500px" />
     </div>
   </div>
 
   <div id="preAreaIntro" ng-if="ct.contents.preKind == 'intro'">
-      <h1 nf-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h1>
-      <h1 nf-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h1>
+      <h1 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h1>
+      <h1 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h1>
     <div>
       <audio src="{{ct.prePath}}" controls />
     </div>
   </div>
 
   <div id="preAreaMovie" ng-if="ct.contents.preKind == 'movie'">
-      <h2 nf-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h2>
-      <h2 nf-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h2>
+      <h2 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.preText}}</h2>
+      <h2 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.preText}}</h2>
     <div>
       <video controls >
       <source src="{{ct.prePath}}" type='video/mp4' />
@@ -40,8 +41,8 @@
 <audio src="../sound/allstar_ques.wav" autoplay ng-if="ct.phase == 1"/>
 <audio src="../sound/allstar_answer.wav" autoplay ng-if="ct.phase == 2"/>
 <div id="questionArea">
-<h2 nf-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.quesText}}</h2>
-<h2 nf-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.quesText}}</h2>
+<h2 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} {{ct.contents.quesText}}</h2>
+<h2 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} {{ct.contents.quesText}}</h2>
   <table border ="1" width="800px" height="500px">
     <tr>
       <td>
@@ -102,8 +103,8 @@
 <div class="container player" ng-if="ct.phase == 3">
 <audio src="../sound/allstar_rank.wav" autoplay/>
 <div id="rankArea">
-    <h2 nf-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} Ranking</h2>
-    <h2 nf-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} Ranking</h2>
+    <h2 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} Ranking</h2>
+    <h2 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} Ranking</h2>
     <table class="table table-striped">
       <thead>
   <tr>
