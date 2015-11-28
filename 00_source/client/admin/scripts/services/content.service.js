@@ -111,7 +111,7 @@
             }).then(handleSuccess, handleError('Error Upload')
             , function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                console.log('progress: ' + progressPercentage + '% ');
                 //ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         }

@@ -3,24 +3,24 @@
   <div id="preArea">
 
   <div id="preAreaText" ng-if="ct.contents.preKind == 'text'">
-      <h1>Q.{{ct.quesid+1}}<br/>{{ct.contents.preText}}</h1>
+      <h1>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h1>
   </div>
   <div id="preAreaPic" ng-if="ct.contents.preKind == 'picture'">
-      <h2>Q.{{ct.quesid+1}}<br/>{{ct.contents.preText}}</h2>
+      <h2>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h2>
     <div>
       <img src="{{ct.prePath}}" width="800px" height="500px" />
     </div>
   </div>
 
   <div id="preAreaIntro" ng-if="ct.contents.preKind == 'intro'">
-      <h1>Q.{{ct.quesid+1}}<br/>{{ct.contents.preText}}</h1>
+      <h1>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h1>
     <div>
       <audio src="{{ct.prePath}}" controls />
     </div>
   </div>
 
   <div id="preAreaMovie" ng-if="ct.contents.preKind == 'movie'">
-      <h2>Q.{{ct.quesid+1}}<br/>{{ct.contents.preText}}</h2>
+      <h2>Q.{{ct.quesid+1}} {{ct.contents.preText}}</h2>
     <div>
       <video controls >
       <source src="{{ct.prePath}}" type='video/mp4' />
