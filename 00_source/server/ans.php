@@ -74,7 +74,7 @@ $choice = array(0, 0, 0, 0);
 
 //ここに処理書くよ
 //$sql = "SELECT * FROM ansTime WHERE contentID = $contentID AND answerTimeStamp >= $startTimeStamp AND answerTimeStamp <= $quesEndsec";
-$sql = "SELECT mobileUnum, answerNum, MIN(answerTimeStamp) FROM ansTime WHERE contentID = $contentID AND answerTimeStamp >= $startTimeStamp AND answerTimeStamp <= $quesEndsec" group by mobileUnum;
+$sql = "SELECT mobileUnum, answerNum, MIN(answerTimeStamp) FROM ansTime WHERE contentID = $contentID AND answerTimeStamp >= $startTimeStamp AND answerTimeStamp <= $quesEndsec group by mobileUnum";
 if ( $sqlresult = $mysqli->query($sql)) {
   while($row = $sqlresult->fetch_array()){
     $choice[$row["answerNum"]]++;
