@@ -23,7 +23,8 @@ $dm = "";
 
 $sqla = "SELECT * FROM adminUser WHERE '$userID' = adminUid";
 $result = $mysqli->query($sqla);
-if($result){
+$adminuser = $result->num_rows;
+if($adminuser != 0 ){
  $dm = "User Already";
  $a = false;
 }else{
