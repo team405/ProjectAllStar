@@ -41,6 +41,25 @@
         <p>前説として表示する画像を選択してください。</p>
     </div>
 
+    <div ng-show="ct.preKind=='intro'">
+        <label>前説イントロ</label>
+        <input type="file" ngf-select ng-model="ct.preIntro" name="preIntro"    
+               accept="audio/mp3" ngf-max-size="5MB">
+        <i ng-show="form.preIntro.$error.maxSize">ファイルサイズが大きすぎます。
+            {{ct.preIntro.size / 1000000|number:1}}MB: max 5M</i>
+        <p>前説として表示する画像を選択してください。</p>
+    </div>
+
+    <div ng-show="ct.preKind=='movie'">
+        <label>前説動画</label>
+        <input type="file" ngf-select ng-model="ct.preMovie" name="preMovie"    
+               accept="video/mp4" ngf-max-size="5MB">
+        <i ng-show="form.preMovie.$error.maxSize">ファイルサイズが大きすぎます。
+            {{ct.preMovie.size / 1000000|number:1}}MB: max 5M</i>
+        <p>前説として表示する画像を選択してください。</p>
+    </div>
+
+
 
     <div>
         <label for="choiceKind">問題種別</label>
