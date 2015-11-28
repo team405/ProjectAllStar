@@ -10,27 +10,31 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   $file = $_FILES['titlePic']['name'];
 }
 
-    $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
-    if ($mysqli->connect_error) {
-        echo $mysqli->connect_error;
-        exit();
-    } else {
-        $mysqli->set_charset("utf8");
-    }
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+    echo $mysqli->connect_error;
+    exit();
+} else {
+    $mysqli->set_charset("utf8");
+}
 
 $quesLinNum = 0;
+$a = false;
 
-    $sql = "SELECT * FROM content";
-    $result = $mysqli->query($sql);
-    $contentID = $result->num_rows;
-    $result->close();
-    $sql = "INSERT INTO content VALUES('$userID','$contentID','$contentName','$quesLinNum')";
-    $mysqli->query($sql);
+$sql = "SELECT * FROM content";
+$result = $mysqli->query($sql);
+$contentID = $result->num_rows;
+$result->close();
+$sql = "INSERT INTO content VALUES('$userID','$contentID','$contentName','$quesLinNum')";
+if($mysqli->query($sql)){
+    $a = true;
+    $dm = "DB INSERT Sccess!"
+}
 // 結果セットを閉じる
 //処理書き終わったよ
 
 // DB接続を閉じる
-    $mysqli->close();
+$mysqli->close();
 
 $path = "data/$userID/$contentID";
 
@@ -39,25 +43,30 @@ mkdir($path,0777);
 
 
 //画面側から送られてきた画像を保存
-    if(is_uploaded_file($_FILES['titlePic']['tmp_name'])){
+if(is_uploaded_file($_FILES['titlePic']['tmp_name'])){
 
         //一字ファイルを保存ファイルにコピーできたか
-        if(move_uploaded_file($_FILES['titlePic']['tmp_name'],"$path"."/title.jpg")){
+    if(move_uploaded_file($_FILES['titlePic']['tmp_name'],"$path"."/title.jpg")){
 
             //正常
-            echo "uploaded";
-
-        }else{
-
-            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
-            echo "error while saving.";
-        }
+        $dm = "uploaded";
 
     }else{
 
-        //そもそもファイルが来ていない。
-        echo "file not uploaded.";
-
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+        $dm = "error while saving.";
     }
+
+}else{
+
+        //そもそもファイルが来ていない。
+    $dm = "file not uploaded.";
+
+}
+
+$b = json_encode(array('result' => $a, 'resultdesc' => $dm));
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json; charset=utf-8');
+echo $b;
 
 ?>
