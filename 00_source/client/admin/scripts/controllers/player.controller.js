@@ -10,7 +10,10 @@
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
-	ct.quesid = 0;
+	//サーバに問い合わせる際のカウンタ。
+    ct.quesid = 0;
+    //でも用のカウンタ。
+    ct.quesdemoid =0;
 	ct.contents = null;
     ct.phase=0;
     ct.anssum = [];
@@ -48,9 +51,10 @@
         .then(function (response) {
             if (response.result) {
             ct.contents = response;
-            console.log("aaa")
-            console.log(ct.contents.preKind)
             ct.quesSec = response.quesSec;
+                if(response.demo == true){
+                    ct.quesdemoid++;
+                }
                 if(response.preKind == "picture"){
                     ct.prePath="../../server/data/"+$rootScope.globals.currentUser.username+"/"+ct.contentid+"/"+ct.quesid+"/pre.jpg";
                 }else if(response.preKind == "intro"){
