@@ -1,9 +1,9 @@
 <?php
 if(isset($choice)) require("../../server/choice.php");
 $hiddenInfo = '
-<input type="hidden" name "userNumber" value="'.$userNumber.'">
-<input type="hidden" name "userName" value="'.$userName.'">
-<input type="hidden" name "contentID" value="'.$contentID.'">
+<input type="hidden" name="userNumber" value="'.$userNumber.'">
+<input type="hidden" name="userName" value="'.$userName.'">
+<input type="hidden" name="contentID" value="'.$contentID.'">
 ';
 echo '
 回答時は以下のボタンを選択してください
@@ -18,6 +18,7 @@ for ($count = 0; $count < 4; $count++){
 	echo $hiddenInfo;
 	echo '<input type="hidden" name="choice" value="'.$count.'" />
 <input type="submit" value="'.($count+1).'">
+<input type="hidden" name="status" value="choice" />
 </form>
 </td>
 ';

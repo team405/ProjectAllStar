@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 */
 if(!isset($_POST["status"]) || $_POST["status"] == "login"){
 	require("login.php");
-}else if($_POST["status"] == "choise"){
+}else if($_POST["status"] == "choice"){
 	require("choice.php");
 }else if($_POST["status"] == "logoff"){
 	echo 'ログオフしました<br /><br />';
