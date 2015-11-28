@@ -23,8 +23,8 @@ echo $userID;
       $sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
       $mysqli->query($sql);
 
-    $sql = "SELECT * FROM adminUser";
-    $result = $mysqli->query($sql);
+    $sqla = "SELECT * FROM adminUser";
+    $result = $mysqli->query($sqla);
     $account = $result->num_rows;
     $result->close();
 //処理書き終わったよ
