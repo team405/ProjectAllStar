@@ -105,21 +105,14 @@
         }
 
         function UploadContent(titlePic,contentName,userID){
-            Upload.upload({
+            return Upload.upload({
                 url: '../../'+dir+'/content_create.php',
                 data: {titlePic: titlePic, contentName: contentName,userID: userID}
-            }).then(function (resp) {
-                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                ct.result = resp.data;
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-                if (resp.status > 0){
-                  ct.errorMsg = resp.status + ': ' + resp.data;
-                }
-            }, function (evt) {
+            }).then(handleSuccess, handleError('Error Upload')
+            , function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                //ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         }
 
@@ -152,21 +145,14 @@
                 sendObj.choicePic4 = choicePic4;
                 break;
             }
-            Upload.upload({
+            return Upload.upload({
                 url: '../../'+dir+'/ques_create.php',
                 data: sendObj
-            }).then(function (resp) {
-                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-                ct.result = resp.data;
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-                if (resp.status > 0){
-                  ct.errorMsg = resp.status + ': ' + resp.data;
-                }
-            }, function (evt) {
+            }).then(handleSuccess, handleError('Error Upload')
+            , function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                console.log('progress: ' + progressPercentage + '% ' );
+                //ct.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         }
 

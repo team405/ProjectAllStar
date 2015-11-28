@@ -22,22 +22,21 @@
         };
 
 //        ct.progress = "";
-        ct.result = "";
+        ct.result= null;
         ct.errorMsg = "";
         ct.contentname = "";
         ct.picFile = null;
         ct.uploadPic = uploadPic;
 
         function uploadPic(titlePic) {
-            ContentService.UploadContent(titlePic, ct.contentname, $rootScope.globals.currentUser.username, function (response) {
-                if (response.result) {
-                    // ContentService.SetCredentials(ct.username, ct.password);
-                    // $location.path('/');
-                } else {
-                    // FlashService.Error(response.resultdesc);
-                    
-                }
-            });
+            ContentService.UploadContent(titlePic, ct.contentname, $rootScope.globals.currentUser.username)
+                .then(function (response) {
+                    if (response.result) {
+                        $location.path('/ques_register');
+                    } else {
+                        FlashService.Error(response.resultdesc);
+                    }
+                });
             
         };
 
