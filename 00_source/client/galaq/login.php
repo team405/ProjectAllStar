@@ -17,6 +17,7 @@ if(!isset($_POST["status"])){
 	ob_start();
 	//rank.phpを読み込む
 	include ("../../server/login_m.php");
+	header('Content-Type:text/html; charset=UTF-8');
 	$contents = ob_get_contents();
 	//出力バッファリングを終了
 	ob_end_clean();
