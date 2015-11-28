@@ -1,5 +1,14 @@
 <?php
-if(isset($_POST["choice"])) require("../../server/choice.php");
+if(isset($_POST["choice"])){
+	//出力バッファリングを開始
+	ob_start();
+	//rank.phpを読み込む
+	require ("../../server/choice.php");
+	//$contents = ob_get_contents();
+	//出力バッファリングを終了
+	ob_end_clean();
+	echo $_POST["choice"]."を回答しました。<br /><br />";
+}
 $hiddenInfo = '
 <input type="hidden" name="userNumber" value="'.$_POST["userNumber"].'">
 <input type="hidden" name="userName" value="'.$_POST["userName"].'">
