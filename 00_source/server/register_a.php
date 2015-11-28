@@ -25,11 +25,11 @@ $sqla = "SELECT * FROM adminUser WHERE '$userID' = adminUid";
 $result = $mysqli->query($sqla);
 if($result){
  $dm = "User Already";
- $a = false; 
+ $a = false;
 }else{
   $sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
   $mysqli->query($sql);
-  $a = true;
+  $a= true;
   $path = "data/$userID";
 //ディレクトリ作成
   mkdir($path,0777);
@@ -41,8 +41,8 @@ if($result){
 // $account = $result->num_rows;
 // $result->close();
 // //処理書き終わったよ
-// // DB接続を閉じる
-// $mysqli->close();
+//DB接続を閉じる
+$mysqli->close();
 
 
 
