@@ -13,7 +13,7 @@ function write($userNumber,$choice,$contentID) {
                   }
 
 //ここに処理書くよ
-$sql = "INSERT INTO ansTime VALUES('$contentID','$userNumber','$choice','$now')";
+$sql = "INSERT INTO ansTime VALUES($contentID,'$userNumber','$choice','$now')";
 if ( $mysqli->query($sql)) {
     // 結果セットを閉じる
 }

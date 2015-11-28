@@ -89,6 +89,14 @@ $remove = 0;
     $mysqli->query($sql);
     echo $quesKind;
 
+//quesLinNum発番
+    $sql = "SELECT * FROM question WHERE contentID = '$contentID'";
+    $result = $mysqli->query($sql);
+    $quesLinNum = $result->num_rows;
+    $result->close();
+    $sql = "UPDATE content SET quesLinNum = '$quesLinNum' WHERE contentID = '$contentID'";
+    $mysqli->query($sql);
+
 $path = "data/$userID/$contentID/$quesNum";
 //ディレクトリ作成
 mkdir($path,0777);
