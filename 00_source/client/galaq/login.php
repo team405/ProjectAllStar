@@ -3,7 +3,7 @@ $loginForm = '
 <form action="index.php" method="post">
 username:<input type="text" name="userName" size="14" maxlength="12" /> <br />
 password:<input type="password" name="password" size="14" maxlength="12" /> <br />
-contentID:<input type="text" name="contentID" size="14" maxlength="12" /> <br />
+contentID:<input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br />
 <input type="hidden" name="status" value="login" />
 <input type="submit">
 </form>
