@@ -32,7 +32,7 @@
             ContentService.UploadContent(titlePic, ct.contentname, $rootScope.globals.currentUser.username)
                 .then(function (response) {
                     if (response.result) {
-                        $location.path('/ques_register');
+                        $location.path('/');
                     } else {
                         FlashService.Error(response.resultdesc);
                     }
