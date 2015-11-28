@@ -28,7 +28,7 @@ $result->close();
 $sql = "INSERT INTO content VALUES('$userID','$contentID','$contentName','$quesLinNum')";
 if($mysqli->query($sql)){
     $a = true;
-    $dm = "DB INSERT Sccess!"
+    $dm = "DB INSERT Sccess!";
 }
 // 結果セットを閉じる
 //処理書き終わったよ
