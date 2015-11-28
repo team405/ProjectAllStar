@@ -221,7 +221,7 @@ switch ($quesKind) {
         break;
 }
 
-$b = json_encode('result' => $a, 'resultdesc' => $dm));
+$b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 echo $b;
