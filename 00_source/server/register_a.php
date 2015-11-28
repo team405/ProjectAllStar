@@ -9,24 +9,24 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
 
 // mysqliクラスのオブジェクトを作成
-    $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
-    if ($mysqli->connect_error) {
-        echo $mysqli->connect_error;
-        exit();
-    } else {
-        $mysqli->set_charset("utf8");
-    }
+$mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
+if ($mysqli->connect_error) {
+  echo $mysqli->connect_error;
+  exit();
+} else {
+  $mysqli->set_charset("utf8");
+}
 
-$adminName = "tempolaly"
+$adminName = "tempolaly";
 
 echo $userID;
-      $sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
-      $mysqli->query($sql);
+$sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
+$mysqli->query($sql);
 
-    $sqla = "SELECT * FROM adminUser";
-    $result = $mysqli->query($sqla);
-    $account = $result->num_rows;
-    $result->close();
+$sqla = "SELECT * FROM adminUser";
+$result = $mysqli->query($sqla);
+$account = $result->num_rows;
+$result->close();
 //処理書き終わったよ
 // DB接続を閉じる
 $mysqli->close();
@@ -37,18 +37,18 @@ mkdir($path,0777);
 
 //        $regster = "$userID,$password" . PHP_EOL;
 //        file_put_contents("admin_user.csv", $regster, FILE_APPEND);
-        $a = "true";
-    }else{
-          $a = "false";
-    }
-}
+$a = "true";
+// }else{
+//   $a = "false";
+// }
+// }
 
 
 
 //$userID = $_POST["userID"];
 //$password = $_POST["password"];
 $dm = "";
-$a = true
+$a = true;
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
