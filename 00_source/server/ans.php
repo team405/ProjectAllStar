@@ -13,9 +13,9 @@ function setNewAnswer($userID, $contentID, $quesID, $newAnswer) {
     //quesIDが一緒のやつのnewAnswerを反映する
     $sql = "UPDATE question SET correctNum = '$newAnswer' WHERE adminUid = '$userID' AND contentID = '$contentID' AND quesNum = '$quesID'";
     if ( $mysqli->query($sql)) {
-      echo "UPDATE成功";
+      $dm = "UPDATE成功";
     }else{
-      echo "UPDATE失敗";
+      $dm = "UPDATE失敗";
     }
     // DB接続を閉じる
     $mysqli->close();
@@ -88,13 +88,13 @@ if ( $sqlresult = $mysqli->query($sql)) {
 // 結果セットを閉じる
 $mysqli->close();
 
-  $resultDesc="";
+  $resultDesc= $dm;
   $result = "true";
-  $calresult=array('ansSum' => $choice, 'result' => $result, 'resultDesc' => $resultDesc);
+  $calresult=array('ansSum' => $choice, 'result' => $result, 'resultdesc' => $resultDesc);
   $b = json_encode($calresult);
 } else{
   $resultDesc="Error";
-  $b = json_decode(array('result' => $result, 'resultDesc' => $resultDesc));
+  $b = json_decode(array('result' => $result, 'resultdesc' => $resultDesc));
 }
 
 
