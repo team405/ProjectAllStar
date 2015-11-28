@@ -1,9 +1,9 @@
 <?php
-if(isset($choice)) require("../../server/choice.php");
+if(isset($_POST["choice"])) require("../../server/choice.php");
 $hiddenInfo = '
-<input type="hidden" name="userNumber" value="'.$userNumber.'">
-<input type="hidden" name="userName" value="'.$userName.'">
-<input type="hidden" name="contentID" value="'.$contentID.'">
+<input type="hidden" name="userNumber" value="'.$_POST["userNumber"].'">
+<input type="hidden" name="userName" value="'.$_POST["userName"].'">
+<input type="hidden" name="contentID" value="'.$_POST["contentID"].'">
 ';
 echo '
 回答時は以下のボタンを選択してください
