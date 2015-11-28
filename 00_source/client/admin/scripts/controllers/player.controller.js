@@ -52,7 +52,8 @@
             if (response.result) {
             ct.contents = response;
             ct.quesSec = response.quesSec;
-                if(response.demo == true){
+            ct.contents.demo = Number(ct.contents.demo);
+                if(ct.contents.demo){
                     ct.quesdemoid++;
                 }
                 if(response.preKind == "picture"){
