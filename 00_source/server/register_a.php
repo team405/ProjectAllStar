@@ -18,26 +18,36 @@ if ($mysqli->connect_error) {
 }
 
 $adminName = "tempolaly";
+$dm = "";
 
-echo $userID;
-$sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
-$mysqli->query($sql);
 
-$sqla = "SELECT * FROM adminUser";
+$sqla = "SELECT * FROM adminUser WHERE '$userID' = adminUid";
 $result = $mysqli->query($sqla);
-$account = $result->num_rows;
-$result->close();
-//処理書き終わったよ
-// DB接続を閉じる
-$mysqli->close();
-
-$path = "data/$account";
+if($result){
+ $dm = "User Already";
+ $a = false; 
+}else{
+  $sql = "INSERT INTO adminUser VALUES ('$userID','$password','$adminName') ";
+  $mysqli->query($sql);
+  $a = true;
+  $path = "data/$userID";
 //ディレクトリ作成
-mkdir($path,0777);
+  mkdir($path,0777);
+}
+
+
+// $sqla = "SELECT * FROM adminUser";
+// $result = $mysqli->query($sqla);
+// $account = $result->num_rows;
+// $result->close();
+// //処理書き終わったよ
+// // DB接続を閉じる
+// $mysqli->close();
+
+
 
 //        $regster = "$userID,$password" . PHP_EOL;
 //        file_put_contents("admin_user.csv", $regster, FILE_APPEND);
-$a = "true";
 // }else{
 //   $a = "false";
 // }
@@ -47,8 +57,7 @@ $a = "true";
 
 //$userID = $_POST["userID"];
 //$password = $_POST["password"];
-$dm = "";
-$a = true;
+
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
