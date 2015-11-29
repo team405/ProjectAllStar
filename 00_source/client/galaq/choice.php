@@ -11,7 +11,7 @@ if(isset($_POST["choice"])){
 	//結果を$jsonにいれる
 	$json = json_decode($contents, true);
 	//後はその$jsonをつかって良い
-	echo ($_POST["choice"]+1).' を送信しました。<br />';
+	echo ($_POST["choice"]+1).' を送信しました。';
 	echo 'ようこそ '.($_POST["userName"]).' さん<br />';
 }
 
