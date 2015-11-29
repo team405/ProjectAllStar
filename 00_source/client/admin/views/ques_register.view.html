@@ -47,7 +47,7 @@
                accept="audio/mp3" ngf-max-size="5MB">
         <i ng-show="form.preIntro.$error.maxSize">ファイルサイズが大きすぎます。
             {{ct.preIntro.size / 1000000|number:1}}MB: max 5M</i>
-            <audio controls ngf-src="preIntro"></audio>
+            <audio controls ngf-src="ct.preIntro"></audio>
         <p>前説として再生する音楽(mp3)を選択してください。</p>
     </div>
 
@@ -57,6 +57,7 @@
                accept="video/mp4" ngf-max-size="5MB">
         <i ng-show="form.preMovie.$error.maxSize">ファイルサイズが大きすぎます。
             {{ct.preMovie.size / 1000000|number:1}}MB: max 5M</i>
+            <video controls ngf-src="ct.preMovie"></video>
         <p>前説として表示する動画(mp4)を選択してください。</p>
     </div>
 
