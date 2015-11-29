@@ -11,6 +11,8 @@ if(isset($_POST["choice"])){
 	//結果を$jsonにいれる
 	$json = json_decode($contents, true);
 	//後はその$jsonをつかって良い
+	echo ($_POST["choice"]+1).' を送信しました。<br />';
+	echo 'ようこそ '.($_POST["userName"]).' さん<br />';
 }
 
 
@@ -20,7 +22,8 @@ $hiddenInfo = '
 <input type="hidden" name="contentID" value="'.$_POST["contentID"].'">
 ';
 echo '
-回答時は以下のボタンを選択してください
+回答時は以下のボタンを選択してください。<br />
+ダイヤルキーでも送信できます。
 ';
 echo '<br />
 <table>
@@ -31,7 +34,7 @@ for ($count = 0; $count < 4; $count++){
 <form name="form'.$count.'" action="index.php" method="post">';
 	echo $hiddenInfo;
 	echo '<input type="hidden" name="choice" value="'.$count.'" />
-<input type="submit" value="'.($count+1).'">
+<input style="font-size:150px;" size="20" type="submit" value="'.($count+1).'">
 <input type="hidden" name="status" value="choice" />
 </form>
 </td>
