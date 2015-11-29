@@ -54,9 +54,9 @@
     <div ng-show="ct.preKind=='movie'">
         <label>前説動画</label>
         <input type="file" ngf-select ng-model="ct.preMovie" name="preMovie"    
-               accept="video/mp4" ngf-max-size="5MB">
+               accept="video/mp4" ngf-max-size="10MB">
         <i ng-show="form.preMovie.$error.maxSize">ファイルサイズが大きすぎます。
-            {{ct.preMovie.size / 1000000|number:1}}MB: max 5M</i>
+            {{ct.preMovie.size / 1000000|number:1}}MB: max 10M</i>
             <video controls ngf-src="ct.preMovie"></video>
         <p>前説として表示する動画(mp4)を選択してください。</p>
     </div>
