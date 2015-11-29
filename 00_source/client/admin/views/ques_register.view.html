@@ -47,6 +47,7 @@
                accept="audio/mp3" ngf-max-size="5MB">
         <i ng-show="form.preIntro.$error.maxSize">ファイルサイズが大きすぎます。
             {{ct.preIntro.size / 1000000|number:1}}MB: max 5M</i>
+            <audio controls ngf-src="preIntro"></audio>
         <p>前説として再生する音楽(mp3)を選択してください。</p>
     </div>
 
