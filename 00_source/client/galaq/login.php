@@ -1,9 +1,9 @@
 <?php
 $loginForm = '
 <form action="index.php" method="post">
-お名前:<input type="text" name="userName" size="14" maxlength="12" /> <br />
-パスワード:<input type="password" name="password" size="14" maxlength="12" /> <br />
-コンテンツID:<input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br />
+お名前:<br /><input type="text" name="userName" size="14" maxlength="12" /> <br />
+パスワード:<br /><input type="password" name="password" size="14" maxlength="12" /> <br />
+コンテンツID:<br /><input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br />
 <input type="hidden" name="status" value="login" />
 <input type="submit">
 </form>
