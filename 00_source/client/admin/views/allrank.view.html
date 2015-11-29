@@ -1,8 +1,17 @@
 <div class="container player">
 <!-- <audio src="../sound/allstar_rank.wav" autoplay/> -->
+<audio src="../sound/pastel_color1.mp3" autoplay/><!-- Music is VFR -->
+<audio id="drumroll1" src="../sound/drum1.mp3" preload="auto"/><!-- Music is VFR -->
+<audio id="drumroll2" src="../sound/drum2.mp3" preload="auto"/><!-- Music is VFR -->
+<audio id="drumroll3" src="../sound/drum3.mp3" preload="auto"/><!-- Music is VFR -->
 <div id="rankArea">
     <h2>Total Ranking</h2>
-    <table class="table table-striped">
+    <div ng-show="ct.showendtitle">
+    <p>&nbsp;</p>
+      <h1 style="font-size: 7em;">&nbsp;ランキング発表</h1>
+            
+    </div>
+    <table class="table table-striped" ng-show="!ct.showendtitle">
       <thead>
   <tr>
     <th width="100">順位</th>
@@ -21,7 +30,7 @@
       </tbody>
     </table>
     </div>
-    <p><a href="#/" class="btn btn-primary">マイページへ戻る</a>
+    <p><a href="#/" class="btn btn-primary" ng-show="ct.backbutton">マイページへ戻る</a>
 </div>
 
 

@@ -57,7 +57,7 @@
         }
         function handleKeyUp(e) {//キーが押されたときに実行
                 switch (e.which){
-                    case 32:
+                    case 13:
                     clickContainer();
                     break;
                 }

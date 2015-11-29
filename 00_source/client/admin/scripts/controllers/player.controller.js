@@ -158,14 +158,14 @@
             switch (ct.phase){//画面で分岐させる。
               case 0://前説画面
                 switch (e.which){//数字キーの1から4のとき
-                    case 32:
+                    case 13:
                     clickContainer();
                     break;
                 }
                 break;
               case 1://問題画面
                 switch (e.which){//数字キーの1から4のとき
-                    case 32:
+                    case 13:
                     clickContainer();
                     break;
                     case 49:
@@ -181,14 +181,14 @@
                 break;
               case 2://回答画面
                 switch (e.which){//数字キーの1から4のとき
-                    case 32:
+                    case 13:
                     clickContainer();
                     break;
                 }
                 break;
               case 3://ランキング画面
                 switch (e.which){//数字キーの1から4のとき
-                    case 32:
+                    case 13:
                     clickContainer();
                     break;
                 }
