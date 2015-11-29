@@ -48,20 +48,20 @@ if($quesKind == "picture"){
     $ansText2 = $_POST["choiceText2"];
     $ansText3 = $_POST["choiceText3"];
     $ansText4 = $_POST["choiceText4"];
-    $correctText1 = "";
-    $correctText2 = "";
-    $correctText3 = "";
-    $correctText4 = "";
+    $correctText1 = $_POST["ansText1"];
+    $correctText2 = $_POST["ansText2"];
+    $correctText3 = $_POST["ansText3"];
+    $correctText4 = $_POST["ansText4"];
 }
 if($quesKind == "picture"){
     $correctText1 = $_POST["ansText1"];
     $correctText2 = $_POST["ansText2"];
     $correctText3 = $_POST["ansText3"];
     $correctText4 = $_POST["ansText4"];
-    $ansText1 = "";
-    $ansText2 = "";
-    $ansText3 = "";
-    $ansText4 = "";
+    $ansText1 = $_POST["choiceText1"];
+    $ansText2 = $_POST["choiceText2"];
+    $ansText3 = $_POST["choiceText3"];
+    $ansText4 = $_POST["choiceText4"];
 }
 //  $file = $_FILES['titlePic']['name'];
 }
