@@ -168,3 +168,6 @@ header.jumbotron h1 {
     height: 2em;
     width: 100%;
 }
+.notice{
+    font-size: 2em;
+}
