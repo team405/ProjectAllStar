@@ -26,7 +26,7 @@
     </div>
     <div>
         <label for="preText">前説テキスト</label>
-        <input type="text" name="preText" ng-model="ct.preText" size="100%">
+        <input type="text" name="preText" ng-model="ct.preText" size="100%" class="ng-invalid ng-invalid-required">
         <p>前説として表示するテキストを選択してください。</p>
     </div>
 
@@ -74,7 +74,7 @@
 
     <div>
         <label for="quesText">問題タイトル</label>
-        <input type="text" name="quesText" ng-model="ct.quesText" size="100%">]
+        <input type="text" name="quesText" ng-model="ct.quesText" size="100%" class="ng-invalid ng-invalid-required">]
         <p>問題の上に表示するタイトルを表示してください。</p>
     </div>
 
@@ -84,7 +84,7 @@
 
      <div ng-show="ct.choiceKind=='text'">
          <label for="preText1">回答1</label>
-         <input type="text" name="preText1" ng-model="ct.choiceText1" size="50%">
+         <input type="text" name="preText1" ng-model="ct.choiceText1" size="50%" class="ng-invalid ng-invalid-required">
      </div>
      <div ng-show="ct.choiceKind=='picture'">
          <label>画像1</label>
@@ -97,14 +97,14 @@
 
      <div>
          <label for="ansText1">解答1</label>
-         <input type="text" name="ansText1" ng-model="ct.ansText1" size="50%">
+         <input type="text" name="ansText1" ng-model="ct.ansText1" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
      </td><td>
 
      <div ng-show="ct.choiceKind=='text'">
          <label for="preText2">回答2</label>
-         <input type="text" name="preText2" ng-model="ct.choiceText2" size="50%">
+         <input type="text" name="preText2" ng-model="ct.choiceText2" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
      <div ng-show="ct.choiceKind=='picture'">
@@ -118,7 +118,7 @@
 
      <div>
          <label for="ansText2">解答2</label>
-         <input type="text" name="ansText2" ng-model="ct.ansText2" size="50%">
+         <input type="text" name="ansText2" ng-model="ct.ansText2" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
 
@@ -127,7 +127,7 @@
 
      <div ng-show="ct.choiceKind=='text'">
          <label for="preText3">回答3</label>
-         <input type="text" name="preText3" ng-model="ct.choiceText3" size="50%">
+         <input type="text" name="preText3" ng-model="ct.choiceText3" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
      <div ng-show="ct.choiceKind=='picture'">
@@ -141,7 +141,7 @@
 
      <div>
          <label for="ansText3">解答3</label>
-         <input type="text" name="ansText3" ng-model="ct.ansText3" size="50%">
+         <input type="text" name="ansText3" ng-model="ct.ansText3" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
 
@@ -149,7 +149,7 @@
 
      <div ng-show="ct.choiceKind=='text'">
          <label for="preText3">回答4</label>
-         <input type="text" name="preText4" ng-model="ct.choiceText4" size="50%">
+         <input type="text" name="preText4" ng-model="ct.choiceText4" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
      <div ng-show="ct.choiceKind=='picture'">
@@ -163,7 +163,7 @@
 
      <div>
          <label for="ansText4">解答4</label>
-         <input type="text" name="ansText4" ng-model="ct.ansText4" size="50%">
+         <input type="text" name="ansText4" ng-model="ct.ansText4" size="50%" class="ng-invalid ng-invalid-required">
      </div>
 
 
