@@ -1,1 +1,1 @@
-<meta http-equiv="Refresh" content="1;URL=http://smartq.ddo.jp/01_client/mobile/" />
+<meta http-equiv="Refresh" content="1;URL=/client/mobile/" />
