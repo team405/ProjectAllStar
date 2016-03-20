@@ -14,7 +14,7 @@
         }
     });
 
-    var dir="server";
+    var dir="server_test";
 
 
 
