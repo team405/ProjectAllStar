@@ -75,9 +75,9 @@ $a = false;
 $updKind = "";
 
 if($quesID==""){
-    $updKind="create";
+    $updKind = "create";
 }else{
-    $updKind="update";
+    $updKind = "update";
 }
 
 //quesを作る
@@ -231,8 +231,7 @@ if ($updKind == "create"){
         }
         break;
     }
-}
-else if ($updKind == "update"){
+}else{
     //更新処理
     $sql = "
     UPDATE question 
