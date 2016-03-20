@@ -18,7 +18,6 @@
         ct.errorMsg = "";
         ct.ques = null;
         ct.choiceques = 0;
-        ct.nowques =null;
 
         // ct.demo = false;
         // ct.preText = "";
@@ -52,7 +51,7 @@
                 	ct.result = true;
                     ct.ques = response.ques;
                     initializeForm();
-                    //angular.copy(ct.ques[ct.choiceques],ct.nowques)
+                    //angular.copy(ct.ques[ct.choiceques],ct.choiceques)
                 } else {
                 FlashService.Error(response.resultdesc);
                 }
@@ -63,7 +62,7 @@
             console.log("test")
             ct.demo = (ct.ques[ct.choiceques].demo==1?true:false);
             ct.preText = ct.ques[ct.choiceques].preText;
-            ct.prePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.nowques+"/pre.jpg";
+            ct.prePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/pre.jpg";
             ct.prePic = null;
             ct.preIntro = null;
             ct.preMovie = null;
@@ -78,13 +77,13 @@
             ct.ansText2 = ct.ques[ct.choiceques].ansText[1];
             ct.ansText3 = ct.ques[ct.choiceques].ansText[2];
             ct.ansText4 = ct.ques[ct.choiceques].ansText[3];
-            ct.choicePic1Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.nowques+"/choicePic0.jpg";
+            ct.choicePic1Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic0.jpg";
             ct.choicePic1 = null;
-            ct.choicePic2Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.nowques+"/choicePic1.jpg";
+            ct.choicePic2Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic1.jpg";
             ct.choicePic2 = null;
-            ct.choicePic3Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.nowques+"/choicePic2.jpg";
+            ct.choicePic3Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic2.jpg";
             ct.choicePic3 = null;
-            ct.choicePic4Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.nowques+"/choicePic3.jpg";
+            ct.choicePic4Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic3.jpg";
             ct.choicePic4 = null;
             ct.correctNum = ct.ques[ct.choiceques].correctNum+1;
             ct.quesSec = ct.ques[ct.choiceques].quesSec;

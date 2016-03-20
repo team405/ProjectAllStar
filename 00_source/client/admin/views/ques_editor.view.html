@@ -170,7 +170,7 @@
          <i ng-show="form.choicePic4.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic4.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic4.$valid" ngf-thumbnail="ct.choicePic4" class="thumb">
-         <img ng-show="!form.choicePic4.$valid" src="ct.choicePic4Path" class="thumb">
+         <img ng-show="!form.choicePic4.$valid" src="{{ct.choicePic4Path}}" class="thumb">
      </div>
 
      <div>
