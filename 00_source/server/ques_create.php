@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     $ansText3 = $_POST["choiceText3"];
     $ansText4 = $_POST["choiceText4"];
   }
-    $quesID = $_POST["quesID"];
+  $quesID = $_POST["quesID"];
 //  $file = $_FILES['titlePic']['name'];
 }
 
@@ -251,7 +251,7 @@ if ($updKind == "create"){
         correctText4 = '$correctText4',
         demo         = '$demo',
         remove       = '$remove'
-    WHERE adminUid = '$userID' and contentID = '$contentID' and quesNum = '$quesNum'
+    WHERE adminUid = '$userID' and contentID = '$contentID' and quesNum = '$quesID'
     ";
     if($mysqli->query($sql)){
         $a = true;
@@ -260,17 +260,17 @@ if ($updKind == "create"){
     $mysqli->query($sql);
 
     $mysqli->close();
-    $path = "data/$userID/$contentID/$quesNum";
+    $path = "data/$userID/$contentID/$quesID";
 
     switch ($preKind) {
     //    case 'text':
-    //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+    //    $sql = "UPDATE quesiton preText = '$preText' where quesID = '$quesID'";
     //    $mysqli->query($sql);
     //        break;
 
         case 'picture':
             // $preText = "以下の画像を御覧ください";
-            // $sql = "UPDATE question SET preText = '$preText' WHERE quesNum = '$quesNum'";
+            // $sql = "UPDATE question SET preText = '$preText' WHERE quesID = '$quesID'";
             // $mysqli->query($sql);
             $file = $_FILES['prePic']['name'];//もしかしたらこれいらんかも
             //画面側から送られてきたファイルを保存
@@ -289,7 +289,7 @@ if ($updKind == "create"){
 
         case 'intro':
             // $preText = "次の音楽をお聴きください";
-            // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+            // $sql = "UPDATE quesiton preText = '$preText' where quesID = '$quesID";
             // $mysqli->query($sql);
         $file = $_FILES['preIntro']['name'];
             //画面側から送られてきたファイルを保存
@@ -308,7 +308,7 @@ if ($updKind == "create"){
 
         case 'movie':
             // $preText = "以下の動画をご覧ください";
-            // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+            // $sql = "UPDATE quesiton preText = '$preText' where quesID = '$quesID'";
             // $mysqli->query($sql);
         $file = $_FILES['preMovie']['name'];
             //画面側から送られてきたファイルを保存
@@ -331,7 +331,7 @@ if ($updKind == "create"){
     switch ($quesKind) {
     //しょうみif文でいい。textの場合は特に処理なしのはず。
         case 'text':
-    //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+    //    $sql = "UPDATE quesiton preText = '$preText' where quesID = '$quesID'";
     //    $mysqli->query($sql);
         break;
 
@@ -378,8 +378,7 @@ if ($updKind == "create"){
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
         }else{
-            $a  = true;
-            $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
+            //そもそもファイルが来ていない。
         }
         break;
     }
