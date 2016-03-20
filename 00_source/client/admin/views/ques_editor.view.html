@@ -45,7 +45,7 @@
         <i ng-show="form.prePic.$error.maxSize">ファイルサイズが大きすぎます。
             {{ct.prePic.size / 1000000|number:1}}MB: max 2M</i>
         <img ng-show="form.prePic.$valid" ngf-thumbnail="ct.prePic" class="thumb">
-        <img ng-show="!form.prePic.$valid" src="{{ct.prePicPath}}" class="thumb">
+        <img src="{{ct.prePicPath}}" class="thumb">
         <p>前説として表示する画像を選択してください。</p>
     </div>
 
@@ -101,7 +101,7 @@
          <i ng-show="form.choicePic1.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic1.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic1.$valid" ngf-thumbnail="ct.choicePic1" class="thumb">
-         <img ng-show="!form.choicePic1" src="{{ct.choicePic1Path}}" class="thumb">
+         <img src="{{ct.choicePic1Path}}" class="thumb">
      </div>
 
      <div>
@@ -123,7 +123,7 @@
          <i ng-show="form.choicePic2.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic2.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic2.$valid" ngf-thumbnail="ct.choicePic2" class="thumb">
-         <img ng-show="!form.choicePic2" src="{{ct.choicePic2Path}}" class="thumb">
+         <img src="{{ct.choicePic2Path}}" class="thumb">
      </div>
 
      <div>
@@ -147,7 +147,7 @@
          <i ng-show="form.choicePic3.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic3.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic3.$valid" ngf-thumbnail="ct.choicePic3" class="thumb">
-         <img ng-show="!form.choicePic3" src="{{ct.choicePic3Path}}" class="thumb">
+         <img src="{{ct.choicePic3Path}}" class="thumb">
      </div>
 
      <div>
@@ -170,7 +170,7 @@
          <i ng-show="form.choicePic4.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic4.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic4.$valid" ngf-thumbnail="ct.choicePic4" class="thumb">
-         <img ng-show="!form.choicePic4" src="{{ct.choicePic4Path}}" class="thumb">
+         <img src="{{ct.choicePic4Path}}" class="thumb">
      </div>
 
      <div>
