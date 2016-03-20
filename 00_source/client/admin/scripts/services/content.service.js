@@ -131,13 +131,19 @@
                 case "text":
                 break;
                 case "picture":
-                sendObj.prePic = prePic;
+                if(prePic){
+                    sendObj.prePic = prePic;
+                }
                 break;
                 case "intro":
-                sendObj.preIntro = preIntro;
+                if(preIntro){
+                    sendObj.preIntro = preIntro;            
+                }
                 break;
                 case "movie":
-                sendObj.preMovie = preMovie;
+                if(preMovie){
+                    sendObj.preMovie = preMovie;
+                }
                 break;
             }
             switch(choiceKind){
@@ -148,10 +154,18 @@
                 sendObj.choiceText4 = choiceText4;
                 break;
                 case "picture":
-                sendObj.choicePic1 = choicePic1;
-                sendObj.choicePic2 = choicePic2;
-                sendObj.choicePic3 = choicePic3;
-                sendObj.choicePic4 = choicePic4;
+                if(choicePic1){
+                    sendObj.choicePic1 = choicePic1;
+                }
+                if(choicePic2){
+                    sendObj.choicePic2 = choicePic2;
+                }
+                if(choicePic3){
+                    sendObj.choicePic3 = choicePic3;
+                }
+                if(choicePic4){
+                    sendObj.choicePic4 = choicePic4;
+                }
                 break;
             }
             return Upload.upload({
