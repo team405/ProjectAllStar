@@ -204,7 +204,6 @@
 
         function handleKeyDown(e) {//キーが押されたときに実行。バックスペース制御用
             if (e.which == 8){
-                alert("aaabc")
                 e.preventDefault();
             }
         }
