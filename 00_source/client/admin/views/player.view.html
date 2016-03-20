@@ -103,8 +103,8 @@
 <div class="container player" ng-if="ct.phase == 3">
 <audio src="../sound/kibun_issin3.mp3" autoplay/><!-- Music is VFR -->
 <div id="rankArea">
-    <h2 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} Ranking</h2>
-    <h2 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} Ranking</h2>
+    <h2 ng-show="!ct.contents.demo">Q.{{ct.quesid+1-ct.quesdemoid}} Ranking (Top20)</h2>
+    <h2 ng-show="ct.contents.demo">DEMO.{{ct.quesdemoid}} Ranking (Top20)</h2>
     <table class="table table-striped">
       <thead>
   <tr>
