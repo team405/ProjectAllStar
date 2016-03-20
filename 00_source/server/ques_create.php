@@ -351,7 +351,8 @@ else if ($updKind == "update"){
         $file = $_FILES['choicePic2']['name'];
         if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic2']['tmp_name'],"$path"."/choicePic1.jpg")){
-
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -361,7 +362,8 @@ else if ($updKind == "update"){
         $file = $_FILES['choicePic3']['name'];
         if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic3']['tmp_name'],"$path"."/choicePic2.jpg")){
-
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -371,11 +373,13 @@ else if ($updKind == "update"){
         $file = $_FILES['choicePic4']['name'];
         if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic4']['tmp_name'],"$path"."/choicePic3.jpg")){
-
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
         }else{
+            $a  = true;
             $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
         }
         break;
