@@ -11,6 +11,7 @@
 
         //ユーザのすべてのコンテンツ
         ct.contents = [];
+        ct.addContents = addContents;
         ct.editContents = editContents;
         ct.playContents = playContents;
         ct.goAllrank = goAllrank;
@@ -34,12 +35,19 @@
                     
                 });
         }
-        function editContents(contentid) {
+        function addContents(contentid) {
            $rootScope.globals["currentContent"] = {
                     contentid: contentid
                 };
 
             $location.path('/ques_register');
+        }
+        function editContents(contentid) {
+           $rootScope.globals["currentContent"] = {
+                    contentid: contentid
+                };
+
+            $location.path('/ques_editor');
         }
         function playContents(contentid) {
            $rootScope.globals["currentContent"] = {
