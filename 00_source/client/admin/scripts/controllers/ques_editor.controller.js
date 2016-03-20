@@ -17,7 +17,7 @@
         ct.result = null;
         ct.errorMsg = "";
         ct.ques = null;
-        ct.choiceques = 1;
+        ct.choiceques = 0;
 
         // ct.demo = false;
         // ct.preText = "";
@@ -92,7 +92,7 @@
         }
 
         function uploadQuestion(prePic,preIntro,preMovie,choicePic1,choicePic2,choicePic3,choicePic4) {
-            ContentService.UploadQuestion((ct.demo?1:0), ct.preKind,ct.preText,prePic,ct.preIntro,ct.preMovie,ct.quesText,ct.choiceKind,ct.choiceText1,ct.choiceText2,ct.choiceText3,ct.choiceText4,ct.quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ct.ansText1,ct.ansText2,ct.ansText3,ct.ansText4,(ct.correctNum-1),$rootScope.globals.currentContent.contentid, $rootScope.globals.currentUser.username, $rootScope.globals.currentUser.password)
+            ContentService.UploadQuestion((ct.demo?1:0), ct.preKind,ct.preText,prePic,ct.preIntro,ct.preMovie,ct.quesText,ct.choiceKind,ct.choiceText1,ct.choiceText2,ct.choiceText3,ct.choiceText4,ct.quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ct.ansText1,ct.ansText2,ct.ansText3,ct.ansText4,(ct.correctNum-1),$rootScope.globals.currentContent.contentid, ct.choiceques,$rootScope.globals.currentUser.username, $rootScope.globals.currentUser.password)
             .then(function (response) {
                 if (response.result) {
                     ct.result = true;
