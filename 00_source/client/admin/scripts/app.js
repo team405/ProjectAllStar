@@ -39,6 +39,12 @@
                 controllerAs: 'ct'
             })
 
+            .when('/ques_editor', {
+                controller: 'QuesEditorController',
+                templateUrl: 'views/ques_editor.view.html',
+                controllerAs: 'ct'
+            })
+
             .when('/intro', {
                 controller: 'IntroController',
                 templateUrl: 'views/intro.view.html',

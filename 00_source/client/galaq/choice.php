@@ -11,7 +11,7 @@ if(isset($_POST["choice"])){
 	//結果を$jsonにいれる
 	$json = json_decode($contents, true);
 	//後はその$jsonをつかって良い
-	echo ($_POST["choice"]+1).' を送信しました。';
+	echo '<font size="7" color="red">'.($_POST["choice"]+1).'</font> を送信しました。<br />';
 	echo 'ようこそ '.($_POST["userName"]).' さん<br />';
 }
 
@@ -22,7 +22,7 @@ $hiddenInfo = '
 <input type="hidden" name="contentID" value="'.$_POST["contentID"].'">
 ';
 echo '
-回答時は以下のボタンを選択してください。<br />
+以下のボタンから回答してください。<br />
 ダイヤルキーでも送信できます。
 ';
 echo '<br />

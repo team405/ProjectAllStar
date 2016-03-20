@@ -1,9 +1,12 @@
 <?php
 $loginForm = '
 <form action="index.php" method="post">
-お名前:<br /><input type="text" name="userName" size="14" maxlength="12" /> <br />
-パスワード:<br /><input type="password" name="password" size="14" maxlength="12" /> <br />
-コンテンツID:<br /><input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br />
+お名前:<br /><input type="text" name="userName" size="14" maxlength="12" /> <br/>
+<font size="2" color="gray">例：スマキュー太郎</font><br /><br />
+生月日:<br /><input type="password" name="password" size="14" maxlength="12" /> <br/>
+<font size="2" color="gray">例：0402</font><br /><br />
+コンテンツID:<br /><input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br/>
+<font size="2" color="gray">例：9</font><br /><br />
 <input type="hidden" name="status" value="login" />
 <input type="submit">
 </form>

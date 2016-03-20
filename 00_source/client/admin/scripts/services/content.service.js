@@ -29,6 +29,7 @@
         service.GetRanking = GetRanking;
         service.GetAllRanking = GetAllRanking;
         service.GetMobileUserList = GetMobileUserList;
+        service.GetQuestionList = GetQuestionList;
         service.UploadContent = UploadContent;
         service.UploadQuestion = UploadQuestion;
 
@@ -101,7 +102,15 @@
                 url : '../../'+dir+'/viewuser.php',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: {contentID:contentid},
-            }).then(handleSuccess, handleError('Error getting Allrank'));
+            }).then(handleSuccess, handleError('Error getting UserList'));
+        }
+        function GetQuestionList(contentid,userID) {
+            return $http({
+                method : 'POST',
+                url : '../../'+dir+'/viewques.php',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {contentID:contentid,userID: userID},
+            }).then(handleSuccess, handleError('Error getting quesList'));
         }
 
         function UploadContent(titlePic,contentName,userID){

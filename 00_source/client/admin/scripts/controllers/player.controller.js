@@ -42,7 +42,12 @@
         angular.element(window).on('keyup', function(e) {
                 handleKeyUp(e);
             });
+        angular.element(window).off('keydown');
+        angular.element(window).on('keydown', function(e) {
+                handleKeyDown(e);
+            });
         }
+
 
     function loadQuestion(){
         ct.prePath=ct.choicePicPath0=ct.choicePicPath1=ct.choicePicPath2=ct.choicePicPath3=""
@@ -195,6 +200,12 @@
                 break;
             }
             console.log(e);
+        }
+
+        function handleKeyDown(e) {//キーが押されたときに実行。バックスペース制御用
+            if (e.which == 8){
+                e.preventDefault();
+            }
         }
 
         function startCountTimer(){
