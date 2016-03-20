@@ -31,6 +31,7 @@ where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp
 and     ans.contentId = ques.contentId
 and     ques.contentId = $contentID
 and     ques.quesNum = $quesID
+and     ques.adminUid = '$userID'
 and     ans.mobileUnum = user.mobileUnum
 group by ans.contentID, ans.mobileUnum
 having ans.answerNum = (select correctNum from dbsmaq.question where contentID = $contentID and quesNum= $quesID)
