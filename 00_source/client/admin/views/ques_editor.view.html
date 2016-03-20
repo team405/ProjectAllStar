@@ -1,5 +1,5 @@
 ﻿<div class="container player">
-    <h2>Regist Question</h2>
+    <h2>Edit Question</h2>
     <div ng-show="ct.error" class="alert alert-danger">{{ct.error}}</div>
     <form name="form" role="form">
     
@@ -14,7 +14,7 @@
     </div>
     <div>
         
-        <!-- <input type="checkbox" name="demo" ng-model="ct.demo"> -->
+        <input type="checkbox" name="demo" ng-model="ct.demo">
         <label for="demo">デモ</label>
         <p>デモの場合はチェックを入れてください。</p>
 
@@ -101,7 +101,7 @@
          <i ng-show="form.choicePic1.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic1.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic1.$valid" ngf-thumbnail="ct.choicePic1" class="thumb">
-         <img src="{{ct.choicePic1Path}}" class="thumb">
+         <img ng-show="!ct.choicePic1" src="{{ct.choicePic1Path}}" class="thumb">
      </div>
 
      <div>
@@ -123,7 +123,7 @@
          <i ng-show="form.choicePic2.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic2.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic2.$valid" ngf-thumbnail="ct.choicePic2" class="thumb">
-         <img src="{{ct.choicePic2Path}}" class="thumb">
+         <img ng-show="!ct.choicePic2" src="{{ct.choicePic2Path}}" class="thumb">
      </div>
 
      <div>
@@ -147,7 +147,7 @@
          <i ng-show="form.choicePic3.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic3.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic3.$valid" ngf-thumbnail="ct.choicePic3" class="thumb">
-         <img src="{{ct.choicePic3Path}}" class="thumb">
+         <img ng-show="!ct.choicePic3" src="{{ct.choicePic3Path}}" class="thumb">
      </div>
 
      <div>
@@ -170,7 +170,7 @@
          <i ng-show="form.choicePic4.$error.maxSize">ファイルサイズが大きすぎます。
              {{ct.choicePic4.size / 1000000|number:1}}MB: max 2M</i>
          <img ng-show="form.choicePic4.$valid" ngf-thumbnail="ct.choicePic4" class="thumb">
-         <img src="{{ct.choicePic4Path}}" class="thumb">
+         <img ng-show="!ct.choicePic4" src="{{ct.choicePic4Path}}" class="thumb">
      </div>
 
      <div>
@@ -195,15 +195,15 @@
 
     <div>
         <br>
-        <button class="btn btn-primary" ng-disabled="!form.$valid" 
-                ng-click="ct.uploadQuestion(ct.prePic,null,null,ct.choicePic1,ct.choicePic2,ct.choicePic3,ct.choicePic4)">登録</button>
+        <button class="btn btn-primary" 
+                ng-click="ct.uploadQuestion(ct.prePic,null,null,ct.choicePic1,ct.choicePic2,ct.choicePic3,ct.choicePic4)">更新</button>
         <p><a href="#/" class="btn btn-primary">マイページへ戻る</a>
 
 <!--         <span class="progress" ng-show="ct.progress >= 0">
           <div style="width:{{ct.progress}}%" 
               ng-bind="ct.progress + '%'"></div>
         </span> -->
-        <span ng-show="ct.result">登録に成功しました。</span>
+        <span ng-show="ct.result">更新に成功しました。</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </div>
     </form>

@@ -125,19 +125,25 @@
             });
         }
 
-        function UploadQuestion(demo,preKind,preText,prePic,preIntro,preMovie,quesText,choiceKind,choiceText1,choiceText2,choiceText3,choiceText4,quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ansText1,ansText2,ansText3,ansText4,correctNum,contentid,username,password){
-            var sendObj = {demo:demo, preKind: preKind, preText: preText, quesText: quesText, choiceKind: choiceKind, quesSec: quesSec, ansText1: ansText1, ansText2: ansText2, ansText3: ansText3, ansText4: ansText4,correctNum: correctNum,contentID: contentid,userID: username,password: password}
+        function UploadQuestion(demo,preKind,preText,prePic,preIntro,preMovie,quesText,choiceKind,choiceText1,choiceText2,choiceText3,choiceText4,quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ansText1,ansText2,ansText3,ansText4,correctNum,contentid,quesid,username,password){
+            var sendObj = {demo:demo, preKind: preKind, preText: preText, quesText: quesText, choiceKind: choiceKind, quesSec: quesSec, ansText1: ansText1, ansText2: ansText2, ansText3: ansText3, ansText4: ansText4,correctNum: correctNum,contentID: contentid,quesID:quesid,userID: username,password: password}
             switch(preKind){
                 case "text":
                 break;
                 case "picture":
-                sendObj.prePic = prePic;
+                if(prePic){
+                    sendObj.prePic = prePic;
+                }
                 break;
                 case "intro":
-                sendObj.preIntro = preIntro;
+                if(preIntro){
+                    sendObj.preIntro = preIntro;            
+                }
                 break;
                 case "movie":
-                sendObj.preMovie = preMovie;
+                if(preMovie){
+                    sendObj.preMovie = preMovie;
+                }
                 break;
             }
             switch(choiceKind){
@@ -148,10 +154,18 @@
                 sendObj.choiceText4 = choiceText4;
                 break;
                 case "picture":
-                sendObj.choicePic1 = choicePic1;
-                sendObj.choicePic2 = choicePic2;
-                sendObj.choicePic3 = choicePic3;
-                sendObj.choicePic4 = choicePic4;
+                if(choicePic1){
+                    sendObj.choicePic1 = choicePic1;
+                }
+                if(choicePic2){
+                    sendObj.choicePic2 = choicePic2;
+                }
+                if(choicePic3){
+                    sendObj.choicePic3 = choicePic3;
+                }
+                if(choicePic4){
+                    sendObj.choicePic4 = choicePic4;
+                }
                 break;
             }
             return Upload.upload({

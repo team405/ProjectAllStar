@@ -34,6 +34,7 @@ if ($userID !== "" && $contentID !== "") {
       $choices = array();
       $corrects = array();
       $eventList[$i]["demo"] = (int)$row['demo'];
+      $eventList[$i]["quesID"] = (int)$row['quesNum'];
       $eventList[$i]["preKind"] = $row['preKind'];
       $eventList[$i]["preText"] = $row['preText'];
       $eventList[$i]["quesText"] = $row['quesText'];
