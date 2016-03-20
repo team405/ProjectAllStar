@@ -63,7 +63,7 @@
             console.log("test")
             ct.demo = (ct.ques[ct.choiceques].demo==1?true:false);
             ct.preText = ct.ques[ct.choiceques].preText;
-            ct.prePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/pre.jpg";
+            ct.prePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/pre.jpg?rnd="+ Math.floor( Math.random() * 1000000 )";
             ct.prePic = null;
             ct.preIntro = null;
             ct.preMovie = null;
@@ -78,13 +78,13 @@
             ct.ansText2 = ct.ques[ct.choiceques].ansText[1];
             ct.ansText3 = ct.ques[ct.choiceques].ansText[2];
             ct.ansText4 = ct.ques[ct.choiceques].ansText[3];
-            ct.choicePic1Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic0.jpg";
+            ct.choicePic1Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic0.jpg?rnd="+ Math.floor( Math.random() * 1000000 );
             ct.choicePic1 = null;
-            ct.choicePic2Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic1.jpg";
+            ct.choicePic2Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic1.jpg?rnd="+ Math.floor( Math.random() * 1000000 );
             ct.choicePic2 = null;
-            ct.choicePic3Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic2.jpg";
+            ct.choicePic3Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic2.jpg?rnd="+ Math.floor( Math.random() * 1000000 );
             ct.choicePic3 = null;
-            ct.choicePic4Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic3.jpg";
+            ct.choicePic4Path = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/choicePic3.jpg?rnd="+ Math.floor( Math.random() * 1000000 );
             ct.choicePic4 = null;
             ct.correctNum = ct.ques[ct.choiceques].correctNum+1;
             ct.quesSec = ct.ques[ct.choiceques].quesSec;
