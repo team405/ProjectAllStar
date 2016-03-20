@@ -38,8 +38,8 @@ if ($userID !== "" && $contentID !== "") {
       $eventList[$i]["preText"] = $row['preText'];
       $eventList[$i]["quesText"] = $row['quesText'];
       $eventList[$i]["choiceKind"] = $row['quesKind'];
-      $eventList[$i]["correctNum"] = $row['correctNum'];
-      $eventList[$i]["quesSec"] = $row['quesSec'];
+      $eventList[$i]["correctNum"] = (int)$row['correctNum'];
+      $eventList[$i]["quesSec"] = (int)$row['quesSec'];
       array_push($choices,$row['ansText1'],$row['ansText2'],$row['ansText3'],$row['ansText4']);
       $eventList[$i]["choiceText"] = $choices;
       array_push($corrects,$row['correctText1'],$row['correctText2'],$row['correctText3'],$row['correctText4']);
