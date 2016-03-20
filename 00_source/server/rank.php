@@ -27,7 +27,7 @@ if ($userID !== "" && $contentID !== "" && $quesID !== "" ) {
   $sql = "
 select ans.contentID, ans.mobileUnum, ans.answerNum, min(ans.answerTimeStamp)-ques.startTimeStamp ansTime, user.mobileName 
 from    dbsmaq.ansTime ans, dbsmaq.question ques, dbsmaq.mobileUser user
-where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec + 1)
+where   ans.answerTimeStamp between ques.startTimeStamp and (ques.startTimeStamp + ques.quesSec)
 and     ans.contentId = ques.contentId
 and     ques.contentId = $contentID
 and     ques.quesNum = $quesID
@@ -35,6 +35,7 @@ and     ans.mobileUnum = user.mobileUnum
 group by ans.contentID, ans.mobileUnum
 having ans.answerNum = (select correctNum from dbsmaq.question where contentID = $contentID and quesNum= $quesID)
 order by ansTime
+limit 20
   ";
   if ( $sqlresult = $mysqli->query($sql)) {
     $i=0;
