@@ -20,8 +20,8 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     $correctText2 = "";
     $correctText3 = "";
     $correctText4 = "";
-}
-if($quesKind == "picture"){
+  }
+  if($quesKind == "picture"){
     $correctText1 = $_GET["choiceText1"];
     $correctText2 = $_GET["choiceText2"];
     $correctText3 = $_GET["choiceText3"];
@@ -30,7 +30,8 @@ if($quesKind == "picture"){
     $ansText2 = "";
     $ansText3 = "";
     $ansText4 = "";
-}
+  }
+  $quesID = $_GET["quesID"];
 //  $file = $_FILES['titlePic']['name'];
 }else {
   $userID = $_POST["userID"];
@@ -52,8 +53,8 @@ if($quesKind == "picture"){
     $correctText2 = $_POST["ansText2"];
     $correctText3 = $_POST["ansText3"];
     $correctText4 = $_POST["ansText4"];
-}
-if($quesKind == "picture"){
+  }
+  if($quesKind == "picture"){
     $correctText1 = $_POST["ansText1"];
     $correctText2 = $_POST["ansText2"];
     $correctText3 = $_POST["ansText3"];
@@ -62,7 +63,8 @@ if($quesKind == "picture"){
     $ansText2 = $_POST["choiceText2"];
     $ansText3 = $_POST["choiceText3"];
     $ansText4 = $_POST["choiceText4"];
-}
+  }
+    $quesID = $_POST["quesID"];
 //  $file = $_FILES['titlePic']['name'];
 }
 
@@ -70,6 +72,13 @@ if($quesKind == "picture"){
 $startTimeStamp = "";
 $remove = 0;
 $a = false;
+$updKind = "";
+
+if($quesID==""){
+    $updKind="create";
+}else{
+    $updKind="update";
+}
 
 //quesを作る
 $mysqli = new mysqli("localhost", "dbsmaq", "ufbn516", "dbsmaq");
@@ -80,146 +89,297 @@ if ($mysqli->connect_error) {
     $mysqli->set_charset("utf8");
 }
 
-//quesNum発番
-$sql = "SELECT * FROM question WHERE contentID = '$contentID'";
-$result = $mysqli->query($sql);
-$quesNum = $result->num_rows;
-$result->close();
-    //questionテーブルのcontentNameとquesLinNumは消去している想定。
-$sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp',b'$demo',$remove)";
-if($mysqli->query($sql)){
-    $a = true;
-    $dm = "Question Create Succes!";
-}
-//quesLinNum発番
-$sql = "SELECT * FROM question WHERE contentID = '$contentID'";
-$result = $mysqli->query($sql);
-$quesLinNum = $result->num_rows;
-$result->close();
-$sql = "UPDATE content SET quesLinNum = '$quesLinNum' WHERE contentID = '$contentID'";
-$mysqli->query($sql);
-
-$mysqli->close();
-$path = "data/$userID/$contentID/$quesNum";
-//ディレクトリ作成
-mkdir($path,0777);
-
-switch ($preKind) {
-//    case 'text':
-//    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
-//    $mysqli->query($sql);
-//        break;
-
-    case 'picture':
-        // $preText = "以下の画像を御覧ください";
-        // $sql = "UPDATE question SET preText = '$preText' WHERE quesNum = '$quesNum'";
-        // $mysqli->query($sql);
-        $file = $_FILES['prePic']['name'];//もしかしたらこれいらんかも
-        //画面側から送られてきたファイルを保存
-        if(is_uploaded_file($_FILES['prePic']['tmp_name'])){
-        //一時ファイルを保存ファイルにコピーできたか
-            if(move_uploaded_file($_FILES['prePic']['tmp_name'],"$path"."/pre.jpg")){
-            $a = true;//正常
-            $dm = "Qustion Create Success!!";
-        }else{
-//コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
-        }
-    }else{
-//そもそもファイルが来ていない。
+if ($updKind == "create"){
+    //quesNum発番
+    $sql = "SELECT * FROM question WHERE contentID = '$contentID'";
+    $result = $mysqli->query($sql);
+    $quesNum = $result->num_rows;
+    $result->close();
+        //questionテーブルのcontentNameとquesLinNumは消去している想定。
+    $sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp',b'$demo',$remove)";
+    if($mysqli->query($sql)){
+        $a = true;
+        $dm = "Question Create Succes!";
     }
-    break;
+    //quesLinNum発番
+    $sql = "SELECT * FROM question WHERE contentID = '$contentID'";
+    $result = $mysqli->query($sql);
+    $quesLinNum = $result->num_rows;
+    $result->close();
+    $sql = "UPDATE content SET quesLinNum = '$quesLinNum' WHERE contentID = '$contentID'";
+    $mysqli->query($sql);
 
-    case 'intro':
-        // $preText = "次の音楽をお聴きください";
-        // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
-        // $mysqli->query($sql);
-    $file = $_FILES['preIntro']['name'];
-        //画面側から送られてきたファイルを保存
-    if(is_uploaded_file($_FILES['preIntro']['tmp_name'])){
-        //一時ファイルを保存ファイルにコピーできたか
-        if(move_uploaded_file($_FILES['preIntro']['tmp_name'],"$path"."/intro.mp3")){
-            $a = true;//正常
-            $dm = "Qustion Create Success!!";
+    $mysqli->close();
+    $path = "data/$userID/$contentID/$quesNum";
+    //ディレクトリ作成
+    mkdir($path,0777);
+
+    switch ($preKind) {
+    //    case 'text':
+    //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+    //    $mysqli->query($sql);
+    //        break;
+
+        case 'picture':
+            // $preText = "以下の画像を御覧ください";
+            // $sql = "UPDATE question SET preText = '$preText' WHERE quesNum = '$quesNum'";
+            // $mysqli->query($sql);
+            $file = $_FILES['prePic']['name'];//もしかしたらこれいらんかも
+            //画面側から送られてきたファイルを保存
+            if(is_uploaded_file($_FILES['prePic']['tmp_name'])){
+            //一時ファイルを保存ファイルにコピーできたか
+                if(move_uploaded_file($_FILES['prePic']['tmp_name'],"$path"."/pre.jpg")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+            }else{
+    //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
         }else{
+    //そもそもファイルが来ていない。
+        }
+        break;
+
+        case 'intro':
+            // $preText = "次の音楽をお聴きください";
+            // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+            // $mysqli->query($sql);
+        $file = $_FILES['preIntro']['name'];
+            //画面側から送られてきたファイルを保存
+        if(is_uploaded_file($_FILES['preIntro']['tmp_name'])){
+            //一時ファイルを保存ファイルにコピーできたか
+            if(move_uploaded_file($_FILES['preIntro']['tmp_name'],"$path"."/intro.mp3")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+            }else{
+                //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            //そもそもファイルが来ていない。
+        }
+        break;
+
+        case 'movie':
+            // $preText = "以下の動画をご覧ください";
+            // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+            // $mysqli->query($sql);
+        $file = $_FILES['preMovie']['name'];
+            //画面側から送られてきたファイルを保存
+        if(is_uploaded_file($_FILES['preMovie']['tmp_name'])){
+            //一時ファイルを保存ファイルにコピーできたか
+            if(move_uploaded_file($_FILES['preMovie']['tmp_name'],"$path"."/intro.mp4")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+    //正常
+            }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
-        }
-    }else{
-        //そもそもファイルが来ていない。
-    }
-    break;
-
-    case 'movie':
-        // $preText = "以下の動画をご覧ください";
-        // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
-        // $mysqli->query($sql);
-    $file = $_FILES['preMovie']['name'];
-        //画面側から送られてきたファイルを保存
-    if(is_uploaded_file($_FILES['preMovie']['tmp_name'])){
-        //一時ファイルを保存ファイルにコピーできたか
-        if(move_uploaded_file($_FILES['preMovie']['tmp_name'],"$path"."/intro.mp4")){
-            $a = true;//正常
-            $dm = "Qustion Create Success!!";
-//正常
+            }
         }else{
-        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            //そもそもファイルが来ていない。
         }
-    }else{
-        //そもそもファイルが来ていない。
+        break;
     }
-    break;
-}
 
 
-switch ($quesKind) {
-//しょうみif文でいい。textの場合は特に処理なしのはず。
-    case 'text':
-//    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
-//    $mysqli->query($sql);
-    break;
+    switch ($quesKind) {
+    //しょうみif文でいい。textの場合は特に処理なしのはず。
+        case 'text':
+    //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+    //    $mysqli->query($sql);
+        break;
 
-    case 'picture':
-    $file = $_FILES['choicePic1']['name'];
-    if(is_uploaded_file($_FILES['choicePic1']['tmp_name'])){
-        if(move_uploaded_file($_FILES['choicePic1']['tmp_name'],"$path"."/choicePic0.jpg")){
-            $a = true;//正常
-            $dm = "Qustion Create Success!!";
+        case 'picture':
+        $file = $_FILES['choicePic1']['name'];
+        if(is_uploaded_file($_FILES['choicePic1']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic1']['tmp_name'],"$path"."/choicePic0.jpg")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+            }else{
+                //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
         }else{
+            //そもそもファイルが来ていない。
+        }
+        $file = $_FILES['choicePic2']['name'];
+        if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic2']['tmp_name'],"$path"."/choicePic1.jpg")){
+
+            }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
-        }
-    }else{
-        //そもそもファイルが来ていない。
-    }
-    $file = $_FILES['choicePic2']['name'];
-    if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
-        if(move_uploaded_file($_FILES['choicePic2']['tmp_name'],"$path"."/choicePic1.jpg")){
-
+            }
         }else{
-        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            //そもそもファイルが来ていない。
         }
-    }else{
-        //そもそもファイルが来ていない。
-    }
-    $file = $_FILES['choicePic3']['name'];
-    if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
-        if(move_uploaded_file($_FILES['choicePic3']['tmp_name'],"$path"."/choicePic2.jpg")){
+        $file = $_FILES['choicePic3']['name'];
+        if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic3']['tmp_name'],"$path"."/choicePic2.jpg")){
 
+            }else{
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
         }else{
-        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            //そもそもファイルが来ていない。
         }
-    }else{
-        //そもそもファイルが来ていない。
-    }
-    $file = $_FILES['choicePic4']['name'];
-    if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
-        if(move_uploaded_file($_FILES['choicePic4']['tmp_name'],"$path"."/choicePic3.jpg")){
+        $file = $_FILES['choicePic4']['name'];
+        if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic4']['tmp_name'],"$path"."/choicePic3.jpg")){
 
+            }else{
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
         }else{
-        //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
         }
-    }else{
-        $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
+        break;
     }
-    break;
+}
+else if ($updKind == "update"){
+    //更新処理
+    $sql = "
+    UPDATE question 
+    SET preKind  = '$preKind',
+        preText  = '$preText',
+        quesKind = '$quesKind',
+        quesText = '$quesText',
+        quesSec  = '$quesSec',
+        ansText1 = '$ansText1',
+        ansText2 = '$ansText2',
+        ansText3 = '$ansText3',
+        ansText4 = '$ansText4',
+        correctNum = '$correctNum',
+        correctText1 = '$correctText1',
+        correctText2 = '$correctText2',
+        correctText3 = '$correctText3',
+        correctText4 = '$correctText4',
+        demo         = '$demo',
+        remove       = '$remove'
+    WHERE adminUid = '$userID' and contentID = '$contentID' and quesNum = '$quesNum'
+    ";
+    if($mysqli->query($sql)){
+        $a = true;
+        $dm = "Question Create Succes!";
+    }
+    $mysqli->query($sql);
+
+    $mysqli->close();
+    $path = "data/$userID/$contentID/$quesNum";
+
+    switch ($preKind) {
+    //    case 'text':
+    //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+    //    $mysqli->query($sql);
+    //        break;
+
+        case 'picture':
+            // $preText = "以下の画像を御覧ください";
+            // $sql = "UPDATE question SET preText = '$preText' WHERE quesNum = '$quesNum'";
+            // $mysqli->query($sql);
+            $file = $_FILES['prePic']['name'];//もしかしたらこれいらんかも
+            //画面側から送られてきたファイルを保存
+            if(is_uploaded_file($_FILES['prePic']['tmp_name'])){
+            //一時ファイルを保存ファイルにコピーできたか
+                if(move_uploaded_file($_FILES['prePic']['tmp_name'],"$path"."/pre.jpg")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+            }else{
+    //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+    //そもそもファイルが来ていない。
+        }
+        break;
+
+        case 'intro':
+            // $preText = "次の音楽をお聴きください";
+            // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+            // $mysqli->query($sql);
+        $file = $_FILES['preIntro']['name'];
+            //画面側から送られてきたファイルを保存
+        if(is_uploaded_file($_FILES['preIntro']['tmp_name'])){
+            //一時ファイルを保存ファイルにコピーできたか
+            if(move_uploaded_file($_FILES['preIntro']['tmp_name'],"$path"."/intro.mp3")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+            }else{
+                //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            //そもそもファイルが来ていない。
+        }
+        break;
+
+        case 'movie':
+            // $preText = "以下の動画をご覧ください";
+            // $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+            // $mysqli->query($sql);
+        $file = $_FILES['preMovie']['name'];
+            //画面側から送られてきたファイルを保存
+        if(is_uploaded_file($_FILES['preMovie']['tmp_name'])){
+            //一時ファイルを保存ファイルにコピーできたか
+            if(move_uploaded_file($_FILES['preMovie']['tmp_name'],"$path"."/intro.mp4")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+    //正常
+            }else{
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            //そもそもファイルが来ていない。
+        }
+        break;
+    }
+
+
+    switch ($quesKind) {
+    //しょうみif文でいい。textの場合は特に処理なしのはず。
+        case 'text':
+    //    $sql = "UPDATE quesiton preText = '$preText' where quesNum = '$quesNum'";
+    //    $mysqli->query($sql);
+        break;
+
+        case 'picture':
+        $file = $_FILES['choicePic1']['name'];
+        if(is_uploaded_file($_FILES['choicePic1']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic1']['tmp_name'],"$path"."/choicePic0.jpg")){
+                $a = true;//正常
+                $dm = "Qustion Create Success!!";
+            }else{
+                //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            //そもそもファイルが来ていない。
+        }
+        $file = $_FILES['choicePic2']['name'];
+        if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic2']['tmp_name'],"$path"."/choicePic1.jpg")){
+
+            }else{
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            //そもそもファイルが来ていない。
+        }
+        $file = $_FILES['choicePic3']['name'];
+        if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic3']['tmp_name'],"$path"."/choicePic2.jpg")){
+
+            }else{
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            //そもそもファイルが来ていない。
+        }
+        $file = $_FILES['choicePic4']['name'];
+        if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
+            if(move_uploaded_file($_FILES['choicePic4']['tmp_name'],"$path"."/choicePic3.jpg")){
+
+            }else{
+            //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
+            }
+        }else{
+            $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
+        }
+        break;
+    }
 }
 
 $b = json_encode(array('result' => $a, 'resultdesc' => $dm));
