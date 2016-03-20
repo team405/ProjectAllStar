@@ -25,7 +25,7 @@ if ($userID !== "" && $contentID !== "") {
   $sql = "
    select *
    from dbsmaq.question ques 
-   where  ques.contentID = $contentID
+   where  ques.contentID = '$contentID' and ques.adminUid = '$userID'
    ";
 
   if ( $sqlresult = $mysqli->query($sql)) {
