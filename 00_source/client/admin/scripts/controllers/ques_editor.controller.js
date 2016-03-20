@@ -63,7 +63,7 @@
             console.log("test")
             ct.demo = (ct.ques[ct.choiceques].demo==1?true:false);
             ct.preText = ct.ques[ct.choiceques].preText;
-            ct.prePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/pre.jpg?rnd="+ Math.floor( Math.random() * 1000000 )";
+            ct.prePicPath = "../../server/data/"+$rootScope.globals.currentUser.username+"/"+$rootScope.globals.currentContent.contentid+"/"+ct.choiceques+"/pre.jpg?rnd="+ Math.floor( Math.random() * 1000000 );
             ct.prePic = null;
             ct.preIntro = null;
             ct.preMovie = null;
