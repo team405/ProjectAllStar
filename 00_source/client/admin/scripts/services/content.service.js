@@ -127,7 +127,7 @@
 
         function UploadQuestion(demo,preKind,preText,prePic,preIntro,preMovie,quesText,choiceKind,choiceText1,choiceText2,choiceText3,choiceText4,quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ansText1,ansText2,ansText3,ansText4,correctNum,contentid,quesid,username,password){
             var sendObj = {demo:demo, preKind: preKind, preText: preText, quesText: quesText, choiceKind: choiceKind, quesSec: quesSec, ansText1: ansText1, ansText2: ansText2, ansText3: ansText3, ansText4: ansText4,correctNum: correctNum,contentID: contentid,userID: username,password: password}
-            if(quesid){
+            if(quesid != null){
                 sendObj.quesID = quesid;
             }
 
