@@ -5,8 +5,8 @@
         .module('app')
         .controller('PlayerController', PlayerController);
 
-    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','FlashService','$location'];
-    function PlayerController(ContentService, $rootScope, $interval, FlashService, $location) {
+    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','$location'];
+    function PlayerController(ContentService, $rootScope, $interval,  $location) {
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
@@ -79,7 +79,7 @@
 
 
             } else {
-            FlashService.Error(response.resultdesc);
+            toastr.error(response.resultdesc)
             }
         });
     }
@@ -89,7 +89,7 @@
             if (response.result) {
 
             } else {
-            FlashService.Error(response.resultdesc);
+                toastr.error(response.resultdesc)
             }
         });
     }
@@ -101,7 +101,7 @@
                 ct.correctChoice = ct.contents.correctNumber;
                 console.log(ct.correctChoice)
             } else {
-            FlashService.Error(response.resultdesc);
+            toastr.error(response.resultdesc)
             }
         });
     }
@@ -125,7 +125,7 @@
                 }, 300);
 
 		    } else {
-			FlashService.Error(response.resultdesc);
+			toastr.error(response.resultdesc)
 		    }
 		});
 

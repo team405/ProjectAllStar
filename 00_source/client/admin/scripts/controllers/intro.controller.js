@@ -5,8 +5,8 @@
         .module('app')
         .controller('IntroController', IntroController);
 
-    IntroController.$inject = ['ContentService', '$rootScope', '$interval','$timeout','FlashService','$location'];
-    function IntroController(ContentService, $rootScope, $interval, $timeout, FlashService, $location) {
+    IntroController.$inject = ['ContentService', '$rootScope', '$interval','$timeout','$location'];
+    function IntroController(ContentService, $rootScope, $interval, $timeout,  $location) {
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
@@ -73,7 +73,7 @@
                     ct.mobileNames = response.user
                     
                 } else {
-                FlashService.Error(response.resultdesc);
+                toastr.error(response.resultdesc)
                 }
             });
         }, 5000);

@@ -5,8 +5,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
-    function LoginController($location, AuthenticationService, FlashService) {
+    LoginController.$inject = ['$location', 'AuthenticationService'];
+    function LoginController($location, AuthenticationService) {
         var vm = this;
 
         vm.login = login;
@@ -23,8 +23,9 @@
                     AuthenticationService.SetCredentials(vm.username, vm.password);
                     $location.path('/');
                 } else {
-                    FlashService.Error(response.resultdesc);
+                    // FlashService.Error(response.resultdesc);
                     vm.dataLoading = false;
+                    toastr.error(response.resultdesc)
                 }
             });
         };

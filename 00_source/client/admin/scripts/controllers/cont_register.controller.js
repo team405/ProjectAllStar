@@ -5,8 +5,8 @@
         .module('app')
         .controller('ContRegisterController', ContRegisterController);
 
-    ContRegisterController.$inject = ['ContentService','UserService', '$location', '$rootScope', 'FlashService'];
-    function ContRegisterController(ContentService, UserService, $location, $rootScope, FlashService) {
+    ContRegisterController.$inject = ['ContentService','UserService', '$location', '$rootScope'];
+    function ContRegisterController(ContentService, UserService, $location, $rootScope) {
         var ct = this;
 
         // ct.login = login;
@@ -29,12 +29,16 @@
         ct.uploadPic = uploadPic;
 
         function uploadPic(titlePic) {
+            ct.dataLoading = true;
             ContentService.UploadContent(titlePic, ct.contentname, $rootScope.globals.currentUser.username)
                 .then(function (response) {
+
+            ct.dataLoading = false;
                     if (response.result) {
                         $location.path('/');
+                        toastr.info(response.resultdesc)
                     } else {
-                        FlashService.Error(response.resultdesc);
+                        toastr.error(response.resultdesc)
                     }
                 });
             
