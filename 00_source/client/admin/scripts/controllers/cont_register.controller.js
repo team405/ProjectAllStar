@@ -5,8 +5,8 @@
         .module('app')
         .controller('ContRegisterController', ContRegisterController);
 
-    ContRegisterController.$inject = ['ContentService','UserService', '$location', '$rootScope', 'FlashService'];
-    function ContRegisterController(ContentService, UserService, $location, $rootScope, FlashService) {
+    ContRegisterController.$inject = ['ContentService','UserService', '$location', '$rootScope'];
+    function ContRegisterController(ContentService, UserService, $location, $rootScope) {
         var ct = this;
 
         // ct.login = login;
@@ -33,8 +33,9 @@
                 .then(function (response) {
                     if (response.result) {
                         $location.path('/');
+                        toastr.info(response.resultdesc)
                     } else {
-                        FlashService.Error(response.resultdesc);
+                        toastr.error(response.resultdesc)
                     }
                 });
             

@@ -89,7 +89,7 @@
             if (response.result) {
 
             } else {
-            FlashService.Error(response.resultdesc);
+                toastr.error(response.resultdesc)
             }
         });
     }
@@ -101,7 +101,7 @@
                 ct.correctChoice = ct.contents.correctNumber;
                 console.log(ct.correctChoice)
             } else {
-            FlashService.Error(response.resultdesc);
+            toastr.error(response.resultdesc)
             }
         });
     }
@@ -125,7 +125,7 @@
                 }, 300);
 
 		    } else {
-			FlashService.Error(response.resultdesc);
+			toastr.error(response.resultdesc)
 		    }
 		});
 

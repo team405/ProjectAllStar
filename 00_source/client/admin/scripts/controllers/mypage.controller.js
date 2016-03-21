@@ -5,8 +5,8 @@
         .module('app')
         .controller('MypageController', MypageController);
 
-    MypageController.$inject = ['$location','ContentService', '$rootScope','FlashService'];
-    function MypageController($location, ContentService, $rootScope,FlashService) {
+    MypageController.$inject = ['$location','ContentService', '$rootScope'];
+    function MypageController($location, ContentService, $rootScope) {
         var ct = this;
 
         //ユーザのすべてのコンテンツ
@@ -29,7 +29,7 @@
                     if (response.result) {
                         ct.contents = response.contents;
                     } else {
-                        FlashService.Error(response.resultdesc);
+                        toastr.error(response.resultdesc)
                     }
 
                     

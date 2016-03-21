@@ -187,34 +187,10 @@
                 ng-click="ct.uploadQuestion(ct.prePic,null,null,ct.choicePic1,ct.choicePic2,ct.choicePic3,ct.choicePic4)">登録</button>
         <p><a href="#/" class="btn btn-primary">マイページへ戻る</a>
 
-<!--         <span class="progress" ng-show="ct.progress >= 0">
-          <div style="width:{{ct.progress}}%" 
-              ng-bind="ct.progress + '%'"></div>
-        </span> -->
-        <span ng-show="ct.result">登録に成功しました。</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </div>
 
 
-
-<!--     <div class="form-group" ng-class="{ 'has-error': form.contentName.$dirty && form.contentName.$error }">
-        <label for="contentName">企画名</label>
-        <input type="text" name="contentName" id="contentName" class="form-control" ng-model="ct.contentName" />
-        <span ng-show="form.contentName.$dirty && form.contentName.$error" class="help-block">コンテンツ名が必要です</span>
-    </div>
-    
-    <div class="form-group">
-        <label>表紙画像</label>
-        <input type="file" file-model="file"><br>
-    </div>
-
-    <div class="form-actions">
-        <button type="submit" ng-disabled="form.$invalid || ct.dataLoading" class="btn btn-primary">コンテンツ登録</button>
-        <img ng-if="ct.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <a href="#/" class="btn btn-link">キャンセル</a>
-    </div>
-    <p>{{ct.srcUrl}}</p>
-    <p>{{ct.upfile}}</p> -->
     </form>
 
 

@@ -5,8 +5,8 @@
         .module('app')
         .controller('AllrankController', AllrankController);
 
-    AllrankController.$inject = ['ContentService', '$rootScope', '$timeout','FlashService','$location'];
-    function AllrankController(ContentService, $rootScope, $timeout, FlashService, $location) {
+    AllrankController.$inject = ['ContentService', '$rootScope', '$timeout','$location'];
+    function AllrankController(ContentService, $rootScope, $timeout,  $location) {
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
@@ -35,7 +35,7 @@
                     allranksdata[i].ranknum = i+1;
                 };
 		    } else {
-			FlashService.Error(response.resultdesc);
+			toastr.error(response.resultdesc)
 		    }
 		});
 

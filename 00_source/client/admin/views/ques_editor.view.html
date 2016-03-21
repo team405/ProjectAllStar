@@ -199,11 +199,6 @@
                 ng-click="ct.uploadQuestion(ct.prePic,null,null,ct.choicePic1,ct.choicePic2,ct.choicePic3,ct.choicePic4)">更新</button>
         <p><a href="#/" class="btn btn-primary">マイページへ戻る</a>
 
-<!--         <span class="progress" ng-show="ct.progress >= 0">
-          <div style="width:{{ct.progress}}%" 
-              ng-bind="ct.progress + '%'"></div>
-        </span> -->
-        <span ng-show="ct.result">更新に成功しました。</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </div>
     </form>

@@ -5,16 +5,14 @@
         .module('app')
         .controller('QuesEditorController', QuesEditorController);
 
-    QuesEditorController.$inject = ['ContentService','UserService', '$location', '$rootScope', 'FlashService'];
-    function QuesEditorController(ContentService, UserService, $location, $rootScope, FlashService) {
+    QuesEditorController.$inject = ['ContentService','UserService', '$location', '$rootScope'];
+    function QuesEditorController(ContentService, UserService, $location, $rootScope) {
         var ct = this;
 
         (function initController() {
             getQuestionList();
         })();
 
-
-        ct.result = null;
         ct.errorMsg = "";
         ct.ques = null;
         ct.choiceques = 0;
@@ -54,7 +52,7 @@
                     initializeForm();
                     //angular.copy(ct.ques[ct.choiceques],ct.choiceques)
                 } else {
-                FlashService.Error(response.resultdesc);
+                toastr.error(response.resultdesc)
                 }
             });
             
@@ -95,9 +93,9 @@
             ContentService.UploadQuestion((ct.demo?1:0), ct.preKind,ct.preText,prePic,ct.preIntro,ct.preMovie,ct.quesText,ct.choiceKind,ct.choiceText1,ct.choiceText2,ct.choiceText3,ct.choiceText4,ct.quesSec,choicePic1,choicePic2,choicePic3,choicePic4,ct.ansText1,ct.ansText2,ct.ansText3,ct.ansText4,(ct.correctNum-1),$rootScope.globals.currentContent.contentid, ct.choiceques,$rootScope.globals.currentUser.username, $rootScope.globals.currentUser.password)
             .then(function (response) {
                 if (response.result) {
-                    ct.result = true;
+                    toastr.info(response.resultdesc);
                 } else {
-                FlashService.Error(response.resultdesc);
+                    toastr.error(response.resultdesc);
                 }
             });
             
