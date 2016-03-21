@@ -5,8 +5,8 @@
         .module('app')
         .controller('PlayerController', PlayerController);
 
-    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','FlashService','$location'];
-    function PlayerController(ContentService, $rootScope, $interval, FlashService, $location) {
+    PlayerController.$inject = ['ContentService', '$rootScope', '$interval','$location'];
+    function PlayerController(ContentService, $rootScope, $interval,  $location) {
         var ct = this;
 
 	ct.contentid = $rootScope.globals.currentContent.contentid;
@@ -79,7 +79,7 @@
 
 
             } else {
-            FlashService.Error(response.resultdesc);
+            toastr.error(response.resultdesc)
             }
         });
     }
