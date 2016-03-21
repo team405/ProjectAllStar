@@ -29,8 +29,11 @@
         ct.uploadPic = uploadPic;
 
         function uploadPic(titlePic) {
+            ct.dataLoading = true;
             ContentService.UploadContent(titlePic, ct.contentname, $rootScope.globals.currentUser.username)
                 .then(function (response) {
+
+            ct.dataLoading = false;
                     if (response.result) {
                         $location.path('/');
                         toastr.info(response.resultdesc)
