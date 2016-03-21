@@ -74,7 +74,7 @@ $remove = 0;
 $a = false;
 $updKind = "";
 
-if($quesID==""){
+if(!isset($_GET["quesID"]) && !isset($_POST["quesID"])){
     $updKind = "create";
 }else{
     $updKind = "update";
