@@ -255,7 +255,7 @@ if ($updKind == "create"){
     ";
     if($mysqli->query($sql)){
         $a = true;
-        $dm = "Question Update Succes!";
+        $dm = "Question Update Success!!";
     }
     $mysqli->query($sql);
 
