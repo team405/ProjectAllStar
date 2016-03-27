@@ -99,7 +99,7 @@ if ($updKind == "create"){
     $sql = "INSERT INTO question VALUES('$userID','$contentID','$quesNum','$preKind','$preText','$quesKind','$quesText','$quesSec','$ansText1','$ansText2','$ansText3','$ansText4','$correctNum','$correctText1','$correctText2','$correctText3','$correctText4','$startTimeStamp',b'$demo',$remove)";
     if($mysqli->query($sql)){
         $a = true;
-        $dm = "Question Create Succes!1";
+        $dm = "Question Create Succes!";
     }
     //quesLinNum発番
     $sql = "SELECT * FROM question WHERE contentID = '$contentID'";
@@ -130,7 +130,7 @@ if ($updKind == "create"){
             //一時ファイルを保存ファイルにコピーできたか
                 if(move_uploaded_file($_FILES['prePic']['tmp_name'],"$path"."/pre.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!2";
+                $dm = "Question Create Success!!";
             }else{
     //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -149,7 +149,7 @@ if ($updKind == "create"){
             //一時ファイルを保存ファイルにコピーできたか
             if(move_uploaded_file($_FILES['preIntro']['tmp_name'],"$path"."/intro.mp3")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!3";
+                $dm = "Question Create Success!!";
             }else{
                 //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -168,7 +168,7 @@ if ($updKind == "create"){
             //一時ファイルを保存ファイルにコピーできたか
             if(move_uploaded_file($_FILES['preMovie']['tmp_name'],"$path"."/intro.mp4")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!4";
+                $dm = "Question Create Success!!";
     //正常
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
@@ -192,7 +192,7 @@ if ($updKind == "create"){
         if(is_uploaded_file($_FILES['choicePic1']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic1']['tmp_name'],"$path"."/choicePic0.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!5";
+                $dm = "Question Create Success!!";
             }else{
                 //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -227,7 +227,7 @@ if ($updKind == "create"){
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
         }else{
-            $dm = "file not uploaded.choicePic4";//そもそもファイルが来ていない。
+            $dm = "file not uploaded.choicePic";//そもそもファイルが来ていない。
         }
         break;
     }
@@ -278,7 +278,7 @@ if ($updKind == "create"){
             //一時ファイルを保存ファイルにコピーできたか
                 if(move_uploaded_file($_FILES['prePic']['tmp_name'],"$path"."/pre.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Update Success!!";
+                $dm = "Question Update Success!!";
             }else{
     //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -297,7 +297,7 @@ if ($updKind == "create"){
             //一時ファイルを保存ファイルにコピーできたか
             if(move_uploaded_file($_FILES['preIntro']['tmp_name'],"$path"."/intro.mp3")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!";
+                $dm = "Question Update Success!!";
             }else{
                 //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -316,7 +316,7 @@ if ($updKind == "create"){
             //一時ファイルを保存ファイルにコピーできたか
             if(move_uploaded_file($_FILES['preMovie']['tmp_name'],"$path"."/intro.mp4")){
                 $a = true;//正常
-                $dm = "Qustion Update Success!!!";
+                $dm = "Question Update Success!!";
     //正常
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
@@ -340,7 +340,7 @@ if ($updKind == "create"){
         if(is_uploaded_file($_FILES['choicePic1']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic1']['tmp_name'],"$path"."/choicePic0.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!";
+                $dm = "Question Update Success!!";
             }else{
                 //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -351,7 +351,7 @@ if ($updKind == "create"){
         if(is_uploaded_file($_FILES['choicePic2']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic2']['tmp_name'],"$path"."/choicePic1.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!";
+                $dm = "Question Update Success!!";
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -362,7 +362,7 @@ if ($updKind == "create"){
         if(is_uploaded_file($_FILES['choicePic3']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic3']['tmp_name'],"$path"."/choicePic2.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!";
+                $dm = "Question Update Success!!";
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
@@ -373,7 +373,7 @@ if ($updKind == "create"){
         if(is_uploaded_file($_FILES['choicePic4']['tmp_name'])){
             if(move_uploaded_file($_FILES['choicePic4']['tmp_name'],"$path"."/choicePic3.jpg")){
                 $a = true;//正常
-                $dm = "Qustion Create Success!!";
+                $dm = "Question Update Success!!";
             }else{
             //コピーに失敗（だいたい、ディレクトリがないか、パーミッションエラー）
             }
