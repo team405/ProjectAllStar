@@ -24,6 +24,8 @@
                     handleKeyUp(e);
                 });
     	    getAllRanking();
+            $("#allrankbgm")[0].volume = 0;
+            $("#allrankbgm").animate({volume: 0.5},10000);
         }
 
     function getAllRanking(){
