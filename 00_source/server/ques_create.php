@@ -249,8 +249,8 @@ if ($updKind == "create"){
         correctText2 = '$correctText2',
         correctText3 = '$correctText3',
         correctText4 = '$correctText4',
-        demo         = '$demo',
-        remove       = '$remove'
+        demo         = b'$demo',
+        remove       = $remove
     WHERE adminUid = '$userID' and contentID = '$contentID' and quesNum = '$quesID'
     ";
     if($mysqli->query($sql)){
