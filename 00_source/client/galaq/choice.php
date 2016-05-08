@@ -34,7 +34,7 @@ for ($count = 0; $count < 4; $count++){
 <form name="form'.$count.'" action="index.php" method="post">';
 	echo $hiddenInfo;
 	echo '<input type="hidden" name="choice" value="'.$count.'" />
-<input style="font-size:75px;" size="4" type="submit" value="'.($count+1).'" accesskey="'.($count+1).'">
+<input style="font-size:75px;" size="1" type="submit" value="'.($count+1).'" accesskey="'.($count+1).'">
 <input type="hidden" name="status" value="choice" />
 </form>
 </td>
