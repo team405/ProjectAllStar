@@ -20,6 +20,7 @@
         initController();
 
         function initController() {
+            angular.element(window).off('keydown');
             loadContents();
         }
 
