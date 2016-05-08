@@ -34,14 +34,14 @@ for ($count = 0; $count < 4; $count++){
 <form name="form'.$count.'" action="index.php" method="post">';
 	echo $hiddenInfo;
 	echo '<input type="hidden" name="choice" value="'.$count.'" />
-<input style="font-size:150px;" size="20" type="submit" value="'.($count+1).'" accesskey="'.($count+1).'">
+<input style="font-size:100px;" size="10" type="submit" value="'.($count+1).'" accesskey="'.($count+1).'">
 <input type="hidden" name="status" value="choice" />
 </form>
 </td>
 ';
 	if($count==1) echo'
 </tr><tr>
-';	
+';
 }
 echo '</table>';
 echo '<br />';
