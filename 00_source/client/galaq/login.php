@@ -10,6 +10,7 @@ $loginForm = '
 <input type="hidden" name="status" value="login" />
 <input type="submit">
 </form>
+<br><br><a href="https://www.facebook.com/team405/">Team405</a>
 ';
 
 if(!isset($_POST["status"])){
