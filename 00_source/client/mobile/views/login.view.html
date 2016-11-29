@@ -18,9 +18,13 @@
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">生月日を入力してください</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.contentid.$dirty && form.contentid.$error.required }">
-            
-            <input type="number" name="contentid" id="contentid" class="form-control" placeholder="コンテンツID" ng-model="vm.contentid" required />
-            <span ng-show="form.contentid.$dirty && form.contentid.$error.required" class="help-block">コンテンツIDを入力してください</span>
+            <select name="contentid" id="contentid" class="form-control" ng-model="vm.contentid" required>
+		<option value="">コンテンツを選択</option>
+                <option ng-repeat="content in vm.contents" value="{{content.contentID}}">{{content.contentID}} {{content.contentName}}</option>
+            </select>
+
+	    <!-- <input type="number" name="contentid" id="contentid" class="form-control" placeholder="コンテンツID" ng-model="vm.contentid" required />
+            <span ng-show="form.contentid.$dirty && form.contentid.$error.required" class="help-block">コンテンツIDを入力してください</span> -->
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">ログイン</button>

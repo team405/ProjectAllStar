@@ -12,6 +12,7 @@
         service.Login = Login;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
+	service.GetPlayingContent = GetPlayingContent;
 
         return service;
 
@@ -34,6 +35,22 @@ $http({
 
 
         }
+
+        function GetPlayingContent(callback) {
+
+$http({
+    method : 'POST',
+    url : '../../server/viewplayingcontent.php',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+}).success(function(data, status, headers, config) {
+    callback(data)
+}).error(function(data, status, headers, config) {
+    callback(data)
+});
+
+
+        }
+
 
         function SetCredentials(usernum, username, password, contentid) {
             var authdata = Base64.encode(username + ':' + password);

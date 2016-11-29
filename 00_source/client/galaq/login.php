@@ -1,12 +1,46 @@
 <?php
+
+
+        //出力バッファリングを開始
+        ob_start();
+        //rank.phpを読み込む
+        include ("../../server/viewplayingcontent.php");
+        header('Content-Type:text/html; charset=UTF-8');
+        $contentsplay = ob_get_contents();
+        //出力バッファリングを終了
+        ob_end_clean();
+        //結果を$jsonにいれる
+        $jsonplay = json_decode($contentsplay, true);
+
+
 $loginForm = '
 <form action="index.php" method="post">
 お名前:<br /><input type="text" name="userName" size="14" maxlength="12" /> <br/>
 <font size="2" color="gray">例：スマキュー太郎</font><br /><br />
 生月日:<br /><input type="text" name="password" size="14" maxlength="12" /> <br/>
 <font size="2" color="gray">例：0402</font><br /><br />
-コンテンツID:<br /><input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br/>
-<font size="2" color="gray">例：9</font><br /><br />
+';
+
+if($jsonplay["result"] == "true"){
+$loginForm .= 'コンテンツ:<br /><select name="contentID">
+';
+
+foreach ($jsonplay["contents"] as $content => $rec) {
+  $optContentID = $rec['contentID'];
+  $optContentName = $optContentID . ' ' . $rec['contentName'];
+  $loginForm .= '<option value="' . $optContentID . '">' . $optContentName . '</option>';
+}
+$loginForm .= '</select>
+';
+
+}else{
+
+$loginForm .= 'コンテンツID:<br /><input type="number" step="1" name="contentID" size="14" maxlength="12" /> <br/>
+<font size="2" color="gray">例：9</font>
+';
+}
+
+$loginForm .= '<br /><br />
 <input type="hidden" name="status" value="login" />
 <input type="submit">
 </form>
