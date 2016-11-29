@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $contents_array = array();
 $result = "false";
