@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $contents_array = array();
 $result = "false";
@@ -17,7 +17,7 @@ $contents_array = array();
 $now = microtime(true);
 
 //ここに処理書くよ
-$sql = "SELECT contentID,contentName FROM content WHERE ($now - playTimeStamp) < 60 ";
+$sql = "SELECT contentID,contentName FROM content WHERE ($now - playTimeStamp) < 3600 ";
 if($sql_result = mysqli_query($link,$sql)){
     while($row = mysqli_fetch_assoc($sql_result)){
         array_push($contents_array,array( "contentID" => $row['contentID'],"contentName" => $row['contentName']));
