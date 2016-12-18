@@ -10,10 +10,21 @@
         var vm = this;
 
         vm.login = login;
+	vm.contents = [];
 
         (function initController() {
             AuthenticationService.ClearCredentials();
         })();
+
+	function init() {
+            AuthenticationService.GetPlayingContent( function (response) {
+                if (response.result) {
+			vm.contents = response.contents
+                } else {
+                }
+            });
+
+	}
 
         function login() {
             vm.dataLoading = true;
@@ -27,6 +38,7 @@
                 }
             });
         };
+	init();
     }
 
 })();

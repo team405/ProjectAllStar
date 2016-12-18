@@ -24,8 +24,9 @@ $a = false;
 $sql = "SELECT * FROM content";
 $result = $mysqli->query($sql);
 $contentID = $result->num_rows;
+$playTimeStamp = 0;
 $result->close();
-$sql = "INSERT INTO content VALUES('$userID','$contentID','$contentName','$quesLinNum')";
+$sql = "INSERT INTO content VALUES('$userID','$contentID','$contentName','$quesLinNum', '$playTimeStamp')";
 if($mysqli->query($sql)){
     $a = true;
     $dm = "DB INSERT Sccess!";

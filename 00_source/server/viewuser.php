@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 if($_SERVER["REQUEST_METHOD"] != "POST"){
    $contentID = $_GET["contentID"];
@@ -16,6 +16,7 @@ if ($mysqli->connect_error) {
     exit();
 }
 
+
 $link = mysqli_connect("localhost", "dbsmaq", "ufbn516", "dbsmaq");
 
 $userArray = array();
@@ -32,7 +33,16 @@ if($sql_result = mysqli_query($link,$sql)){
 }else{
     $resultDesc="error";
 }
+
+$sql = "UPDATE content SET playTimeStamp = $now WHERE contentID = '$contentID'";
+
+$sql_result2 = mysqli_query($link,$sql);
+
+
 mysqli_free_result($sql_result);
+
+
+
 // 結果セットを閉じる
 // DB接続を閉じる
 mysqli_close($link);
