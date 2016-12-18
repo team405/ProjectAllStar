@@ -1,0 +1,17 @@
+###
+# シンボリックリンク先の参照を許可 (mod_rewrite使用のために必要)
+###
+Options +FollowSymLinks
+
+###
+# mod_rewriteを使用するために設定
+###
+RewriteEngine On
+
+###
+# /mobile ディレクトリ以外に携帯電話でアクセスされた場合、/mobile に転送させる
+###
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{HTTP_USER_AGENT} ^(DoCoMo|KDDI|DDIPOKET|UP\.Browser|J-PHONE|Vodafone|SoftBank)
+RewriteRule ^(.*)$ /client/galaq/ [R,L]
+
