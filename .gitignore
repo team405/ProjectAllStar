@@ -2,3 +2,4 @@
 *.csv
 *.db
 smaqhook.php
+/00_source/server/data/
